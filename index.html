@@ -105,13 +105,14 @@
             flex: 1;
         }
         
-        /* تصغير حجم الأيقونات في الأعلى */
+        /* تكبير حجم الأيقونات في الأعلى */
         .currency-icon {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
             flex-shrink: 0;
+            border: 2px solid #4cd964;
         }
         
         .rate-info {
@@ -167,11 +168,11 @@
         }
         
         .currency-flag {
-            width: 35px;
-            height: 35px;
+            width: 45px; /* تكبير حجم الأيقونات */
+            height: 45px; /* تكبير حجم الأيقونات */
             border-radius: 50%;
             margin-right: 12px;
-            border: 2px solid #4cd964;
+            border: 1.5px solid #4cd964; /* تصغير الحواف الخضراء */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -182,13 +183,13 @@
             text-align: center;
             position: relative;
             flex-shrink: 0;
-            box-shadow: 0 0 8px rgba(76, 217, 100, 0.3);
+            box-shadow: 0 0 4px rgba(76, 217, 100, 0.3); /* تصغير الظل */
             overflow: hidden;
         }
 
         .currency-flag.red-border {
             border-color: #ef4444;
-            box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+            box-shadow: 0 0 4px rgba(239, 68, 68, 0.3); /* تصغير الظل */
         }
         
         .currency-flag img {
@@ -416,7 +417,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="01-currency-eur.png" alt="EUR" class="currency-icon">
+                            <img src="01-currency-eurusd.png" alt="EUR" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.1595</div>
                                 <div class="currency-code-small">USD</div>
@@ -425,7 +426,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="04-currency-cad.png" alt="CAD" class="currency-icon">
+                            <img src="04-currency-cadusd.png" alt="CAD" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.2434</div>
                                 <div class="currency-code-small">USD</div>
@@ -436,7 +437,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="03-currency-gbp.png" alt="GBP" class="currency-icon">
+                            <img src="02-currency-gbpusd.png" alt="GBP" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.3236</div>
                                 <div class="currency-code-small">USD</div>
@@ -445,7 +446,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="04-currency-chf.png" alt="CHF" class="currency-icon">
+                            <img src="03-currency-chfusd.png" alt="CHF" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.7120</div>
                                 <div class="currency-code-small">USD</div>
@@ -469,7 +470,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="01-currency-eur.png" alt="EUR" class="currency-icon">
+                            <img src="01-currency-eurusd.png" alt="EUR" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.1595</div>
                                 <div class="currency-code-small">USD</div>
@@ -478,7 +479,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="04-currency-cad.png" alt="CAD" class="currency-icon">
+                            <img src="04-currency-cadusd.png" alt="CAD" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.2434</div>
                                 <div class="currency-code-small">USD</div>
@@ -489,7 +490,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="03-currency-gbp.png" alt="GBP" class="currency-icon">
+                            <img src="02-currency-gbpusd.png" alt="GBP" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.3236</div>
                                 <div class="currency-code-small">USD</div>
@@ -498,7 +499,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="04-currency-chf.png" alt="CHF" class="currency-icon">
+                            <img src="03-currency-chfusd.png" alt="CHF" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.7120</div>
                                 <div class="currency-code-small">USD</div>
@@ -534,10 +535,6 @@
             { code: 'CAD', buy: 164, sell: 161, trending: true, arrow: 'up', fullName: 'Canadian Dollar' },
             { code: 'AUD', buy: 155, sell: 158, trending: true, arrow: 'up', fullName: 'Australian Dollar' },
             { code: 'CHF', buy: 295, sell: 297, trending: true, arrow: 'up', fullName: 'Swiss Franc' },
-            { code: 'DKK', buy: 36.5, sell: 37.2, trending: false, arrow: 'none', fullName: 'Danish Krone' },
-            { code: 'SEK', buy: 22.8, sell: 23.5, trending: false, arrow: 'none', fullName: 'Swedish Krona' },
-            { code: 'NOK', buy: 22.1, sell: 22.8, trending: false, arrow: 'none', fullName: 'Norwegian Krone' },
-            { code: 'ISK', buy: 1.7, sell: 1.8, trending: false, arrow: 'none', fullName: 'Icelandic Króna' },
             { code: 'TRY', buy: 5.5, sell: 6.5, trending: false, arrow: 'none', fullName: 'Turkish Lira' },
             { code: 'CNY', buy: 33, sell: 34, trending: false, arrow: 'none', fullName: 'Chinese Yuan' },
             { code: 'RUB', buy: 2.6, sell: 2.8, trending: false, arrow: 'none', fullName: 'Russian Ruble' },
@@ -545,7 +542,7 @@
             { code: 'KRW', buy: 0.18, sell: 0.2, trending: false, arrow: 'none', fullName: 'Korean Won' },
             { code: 'INR', buy: 2.85, sell: 3.05, trending: false, arrow: 'none', fullName: 'Indian Rupee' },
             { code: 'MYR', buy: 50.25, sell: 53, trending: false, arrow: 'none', fullName: 'Malaysian Ringgit' },
-            { code: 'ZAR', buy: 15, sell: 13, trending: false, arrow: 'none', fullName: ' Rand' },
+            { code: 'ZAR', buy: 15, sell: 13, trending: false, arrow: 'none', fullName: 'Rand' },
             { code: 'BRL', buy: 5.26, sell: 5.6, trending: false, arrow: 'none', fullName: 'Brazilian Real' },
             { code: 'MXN', buy: 13, sell: 14, trending: false, arrow: 'none', fullName: 'Mexican Peso' },
             { code: 'ARS', buy: 256, sell: 468, trending: false, arrow: 'none', fullName: 'Argentine Peso' },
@@ -571,6 +568,50 @@
         // نهاية بيانات الأسعار
         // =============================================
 
+        // ذاكرة التخزين المؤقت للصور
+        const imageCache = new Map();
+
+        // دالة لتحميل الصور مسبقاً
+        function preloadImages() {
+            const allImages = [
+                '01-currency-eur.png',
+                '02-currency-usd.png',
+                '03-currency-gbp.png',
+                '04-currency-cad.png',
+                '04-currency-chf.png',
+                '05-currency-aud.png',
+                '01-currency-eurusd.png',
+                '02-currency-gbpusd.png',
+                '03-currency-chfusd.png',
+                '04-currency-cadusd.png',
+                '06-currency-mxn.png',
+                '07-currency-brl.png',
+                '08-currency-zar.png',
+                '09-currency-cny.png',
+                '10-currency-jpy.png',
+                '11-currency-krw.png',
+                '12-currency-try.png',
+                '13-currency-myr.png',
+                '14-currency-inr.png',
+                '16-currency-rub.png',
+                '17-currency-ars.png',
+                '18-currency-egp.png',
+                '19-currency-mad.png',
+                '20-currency-tnd.png',
+                '21-currency-qar.png',
+                '22-currency-sar.png',
+                '23-currency-aed.png'
+            ];
+
+            allImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+                img.onload = () => {
+                    imageCache.set(src, img);
+                };
+            });
+        }
+
         // روابط الصور المحلية للعملات
         const flagImages = {
             'EUR': '01-currency-eur.png',
@@ -579,10 +620,6 @@
             'CAD': '04-currency-cad.png',
             'CHF': '04-currency-chf.png',
             'AUD': '05-currency-aud.png',
-            'DKK': 'placeholder.png',
-            'SEK': 'placeholder.png',
-            'NOK': 'placeholder.png',
-            'ISK': 'placeholder.png',
             'TRY': '12-currency-try.png',
             'CNY': '09-currency-cny.png',
             'RUB': '16-currency-rub.png',
@@ -655,7 +692,7 @@
             item.innerHTML = `
                 <div class="currency-info">
                     <div class="currency-flag ${isSpecialCurrency ? '' : 'red-border'}">
-                        <img src="${imageFile}" alt="${currency.code}" loading="lazy">
+                        <img src="${imageFile}" alt="${currency.code}" loading="lazy" onerror="this.onerror=null; this.src='placeholder.png';">
                     </div>
                     <div class="currency-names">
                         <div class="currency-code">${currency.code}${trendingHtml}</div>
@@ -678,7 +715,7 @@
             item.innerHTML = `
                 <div class="currency-info">
                     <div class="currency-flag">
-                        <img src="${imageFile}" alt="${currency.code}" loading="lazy">
+                        <img src="${imageFile}" alt="${currency.code}" loading="lazy" onerror="this.onerror=null; this.src='placeholder.png';">
                     </div>
                     <div class="currency-names">
                         <div class="currency-code">${currency.code}</div>
@@ -704,6 +741,9 @@
             squareCurrencyList.innerHTML = '';
             officialCurrencyList.innerHTML = '';
             
+            // تحميل الصور مسبقاً
+            preloadImages();
+            
             // إنشاء جميع عناصر العملات دفعة واحدة لـ Square
             squareExchangeRates.forEach((currency) => {
                 const item = createSquareCurrencyItem(currency);
@@ -724,13 +764,13 @@
                 squareItems.forEach((item, index) => {
                     setTimeout(() => {
                         item.classList.add('visible');
-                    }, 50 * index);
+                    }, 30 * index); // تسريع ظهور العناصر
                 });
                 
                 officialItems.forEach((item, index) => {
                     setTimeout(() => {
                         item.classList.add('visible');
-                    }, 50 * index);
+                    }, 30 * index); // تسريع ظهور العناصر
                 });
                 
                 // إخفاء شريط التحميل بعد اكتمال الظهور
@@ -740,10 +780,10 @@
                         document.querySelector('.loading-bar').style.opacity = '0';
                         setTimeout(() => {
                             document.querySelector('.loading-bar').style.display = 'none';
-                        }, 300);
-                    }, 200);
-                }, 50 * Math.max(squareItems.length, officialItems.length));
-            }, 100);
+                        }, 200);
+                    }, 150);
+                }, 30 * Math.max(squareItems.length, officialItems.length));
+            }, 50);
         }
 
         // دالة للتبديل بين التبويبات
@@ -785,6 +825,3 @@
     
 </body>
 </html>
-
-
-
