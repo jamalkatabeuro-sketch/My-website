@@ -295,50 +295,62 @@
             flex: 1;
         }
         
+        /* تعديل حجم صندوق الأسعار ليكون أكبر */
         .rate-box {
-            padding: 6px 10px;
-            border-radius: 6px;
+            padding: 10px 15px;
+            border-radius: 8px;
             font-weight: 700;
             text-align: center;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
-            min-width: 60px;
+            min-width: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
-        /* ألوان Square */
+        /* ألوان Square - زيادة الحجم */
         .sell-box {
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.5);
+            min-width: 85px;
+            min-height: 50px;
         }
         
         .buy-box {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
-            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
+            min-width: 85px;
+            min-height: 50px;
         }
 
-        /* مستطيل أحمر مركزي للعملات الأخرى */
+        /* مستطيل أحمر مركزي للعملات الأخرى - زيادة الحجم */
         .single-red-box {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
-            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
-            min-width: 70px;
+            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
+            min-width: 90px;
+            min-height: 50px;
         }
         
-        /* ألوان Official */
+        /* ألوان Official - زيادة الحجم */
         .official-rate-box {
             background: linear-gradient(135deg, #1e3a8a, #3730a3);
             color: white;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            min-width: 70px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            min-width: 90px;
+            min-height: 50px;
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 2px;
         }
         
+        /* زيادة حجم النص داخل الصناديق */
         .rate-box-value {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 800;
             line-height: 1.2;
         }
@@ -350,8 +362,8 @@
         }
         
         .rate-box:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
         
         .update-header {
@@ -393,21 +405,96 @@
             }
             
             .rate-box {
-                padding: 8px 12px;
-                min-width: 70px;
+                padding: 12px 18px;
+                min-width: 100px;
             }
             
             .official-rate-box {
-                padding: 8px 12px;
-                min-width: 80px;
+                padding: 12px 18px;
+                min-width: 100px;
             }
             
             .rate-box-value {
-                font-size: 16px;
+                font-size: 20px;
             }
             
             .currency-full-name {
                 font-size: 12px;
+            }
+            
+            .sell-box, .buy-box, .single-red-box {
+                min-width: 100px;
+                min-height: 55px;
+            }
+        }
+        
+        /* دوائر التدوير (اللودر) */
+        .spinner-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .spinner-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+        
+        .spinner-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+        }
+        
+        .green-circle {
+            border: 8px solid transparent;
+            border-top: 8px solid #10b981;
+            border-right: 8px solid #10b981;
+            animation-delay: 0s;
+        }
+        
+        .red-circle {
+            border: 8px solid transparent;
+            border-bottom: 8px solid #ef4444;
+            border-left: 8px solid #ef4444;
+            animation-delay: -0.75s;
+        }
+        
+        .spinner-text {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .spinner-subtext {
+            color: #888;
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: center;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
             }
         }
         
@@ -437,6 +524,16 @@
     </style>
 </head>
 <body>
+    <!-- دوائر التدوير (اللودر) قبل تحميل الصور -->
+    <div class="spinner-overlay" id="spinnerOverlay">
+        <div class="spinner-container">
+            <div class="spinner-circle green-circle"></div>
+            <div class="spinner-circle red-circle"></div>
+        </div>
+        <div class="spinner-text">جاري تحميل بيانات الأسعار</div>
+        <div class="spinner-subtext">يتم تحميل الصور والبيانات...</div>
+    </div>
+    
     <div class="loading-bar">
         <div class="loading-progress" id="loadingProgress"></div>
     </div>
@@ -444,7 +541,7 @@
     <!-- قسم لتحميل الصور مسبقاً لزيادة السرعة -->
     <div class="preload-images"></div>
     
-    <div class="container">
+    <div class="container" id="mainContainer" style="display: none;">
         <div class="tab-buttons">
             <button class="tab-button active" id="squareTab">Square</button>
             <button class="tab-button" id="officialTab">Official</button>
@@ -638,17 +735,87 @@
             'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png'
         };
 
-        // دالة لتحميل الصور مسبقاً لزيادة السرعة
-        function preloadImages() {
+        // متغيرات لتتبع تحميل الصور
+        let loadedImagesCount = 0;
+        let totalImagesToLoad = 0;
+        let imagesLoaded = false;
+        let dataLoaded = false;
+
+        // دالة لتحميل الصور مسبقاً وضمان تحميلها كاملة
+        function preloadAndCheckImages() {
             const preloadContainer = document.querySelector('.preload-images');
             const uniqueImages = [...new Set(Object.values(flagImages))];
+            totalImagesToLoad = uniqueImages.length;
             
-            uniqueImages.forEach(imageUrl => {
-                const img = document.createElement('img');
+            // تحديث نص اللودر
+            document.querySelector('.spinner-subtext').textContent = `جاري تحميل الصور (0/${totalImagesToLoad})...`;
+            
+            uniqueImages.forEach((imageUrl, index) => {
+                const img = new Image();
                 img.src = imageUrl;
                 img.style.display = 'none';
                 preloadContainer.appendChild(img);
+                
+                img.onload = function() {
+                    loadedImagesCount++;
+                    // تحديث نص اللودر
+                    document.querySelector('.spinner-subtext').textContent = 
+                        `جاري تحميل الصور (${loadedImagesCount}/${totalImagesToLoad})...`;
+                    
+                    // تحديث شريط التحميل
+                    const progress = (loadedImagesCount / totalImagesToLoad) * 50;
+                    document.getElementById('loadingProgress').style.width = `${progress}%`;
+                    
+                    // إذا تم تحميل جميع الصور
+                    if (loadedImagesCount === totalImagesToLoad) {
+                        imagesLoaded = true;
+                        document.querySelector('.spinner-subtext').textContent = 'تم تحميل جميع الصور!';
+                        checkIfReadyToShow();
+                    }
+                };
+                
+                img.onerror = function() {
+                    loadedImagesCount++;
+                    if (loadedImagesCount === totalImagesToLoad) {
+                        imagesLoaded = true;
+                        checkIfReadyToShow();
+                    }
+                };
             });
+            
+            // إذا لم تكن هناك صور لتحميلها
+            if (totalImagesToLoad === 0) {
+                imagesLoaded = true;
+                checkIfReadyToShow();
+            }
+        }
+
+        // دالة للتحقق مما إذا كان كل شيء جاهزاً للعرض
+        function checkIfReadyToShow() {
+            if (imagesLoaded && dataLoaded) {
+                setTimeout(() => {
+                    // إخفاء اللودر وإظهار المحتوى
+                    const spinnerOverlay = document.getElementById('spinnerOverlay');
+                    spinnerOverlay.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        spinnerOverlay.style.display = 'none';
+                        document.getElementById('mainContainer').style.display = 'block';
+                        
+                        // إنشاء قائمة العملات
+                        createCurrencyList();
+                        
+                        // إضافة مستمعي الأحداث للتبويبات
+                        document.getElementById('squareTab').addEventListener('click', function() {
+                            switchTab('square');
+                        });
+                        
+                        document.getElementById('officialTab').addEventListener('click', function() {
+                            switchTab('official');
+                        });
+                    }, 500);
+                }, 500);
+            }
         }
 
         // دالة لإنشاء عنصر عملة لـ Square
@@ -723,132 +890,4 @@
             item.innerHTML = `
                 <div class="currency-info">
                     <div class="currency-flag" style="--i: ${index}">
-                        <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png'">
-                    </div>
-                    <div class="currency-names">
-                        <div class="currency-code">${currency.code}</div>
-                    </div>
-                </div>
-                <div class="currency-rates">
-                    <div class="rate-box official-rate-box">
-                        <div class="rate-box-value">${currency.rate}</div>
-                        <div class="rate-label"></div>
-                    </div>
-                </div>
-            `;
-            
-            return item;
-        }
-
-        // دالة لإنشاء قائمة العملات
-        function createCurrencyList() {
-            const squareCurrencyList = document.getElementById('square-currency-list');
-            const officialCurrencyList = document.getElementById('official-currency-list');
-            const loadingProgress = document.getElementById('loadingProgress');
-            
-            squareCurrencyList.innerHTML = '';
-            officialCurrencyList.innerHTML = '';
-            
-            // تحديث شريط التحميل بشكل تدريجي
-            loadingProgress.style.width = '20%';
-            
-            squareExchangeRates.forEach((currency, index) => {
-                const item = createSquareCurrencyItem(currency, index);
-                squareCurrencyList.appendChild(item);
-                
-                // تحديث شريط التحميل
-                if (index % 5 === 0) {
-                    loadingProgress.style.width = `${20 + (index / squareExchangeRates.length * 40)}%`;
-                }
-            });
-            
-            loadingProgress.style.width = '60%';
-            
-            officialExchangeRates.forEach((currency, index) => {
-                const item = createOfficialCurrencyItem(currency, index);
-                officialCurrencyList.appendChild(item);
-            });
-            
-            loadingProgress.style.width = '80%';
-            
-            setTimeout(() => {
-                const squareItems = document.querySelectorAll('#squareContent .currency-item');
-                const officialItems = document.querySelectorAll('#officialContent .currency-item');
-                
-                squareItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, 30 * index); // تقليل التأخير لزيادة السرعة
-                });
-                
-                officialItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, 30 * index); // تقليل التأخير لزيادة السرعة
-                });
-                
-                setTimeout(() => {
-                    loadingProgress.style.width = '100%';
-                    setTimeout(() => {
-                        document.querySelector('.loading-bar').style.opacity = '0';
-                        setTimeout(() => {
-                            document.querySelector('.loading-bar').style.display = 'none';
-                        }, 300);
-                    }, 200);
-                }, 30 * Math.max(squareItems.length, officialItems.length));
-            }, 100);
-        }
-
-        // دالة للتبديل بين التبويبات
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            if (tabName === 'square') {
-                document.getElementById('squareContent').classList.add('active');
-                document.getElementById('squareTab').classList.add('active');
-            } else if (tabName === 'official') {
-                document.getElementById('officialContent').classList.add('active');
-                document.getElementById('officialTab').classList.add('active');
-            }
-        }
-
-        // تشغيل الدالة عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            // تحميل الصور مسبقاً
-            preloadImages();
-            
-            // إنشاء قائمة العملات
-            createCurrencyList();
-            
-            // إضافة مستمعي الأحداث للتبويبات
-            document.getElementById('squareTab').addEventListener('click', function() {
-                switchTab('square');
-            });
-            
-            document.getElementById('officialTab').addEventListener('click', function() {
-                switchTab('official');
-            });
-        });
-        
-        // تحسين تحميل الصور من خلال استخدام خاصية lazy loading
-        if ('loading' in HTMLImageElement.prototype) {
-            // المتصفح يدعم lazy loading
-            const images = document.querySelectorAll('img[loading="lazy"]');
-            images.forEach(img => {
-                img.src = img.dataset.src;
-            });
-        } else {
-            // المتصفح لا يدعم lazy loading - استخدام polyfill
-            const script = document.createElement('script');
-            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-            document.body.appendChild(script);
-        }
-    </script>
-</body>
-</html>
+                        <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-us
