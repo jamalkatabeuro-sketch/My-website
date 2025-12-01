@@ -3,487 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Exchange Rates</title>
     <style>
+        /* CSS الأساسي */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
         
         body {
-            background: #000;
-            color: #fff;
+            background: #000000;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             min-height: 100vh;
-            padding: 0;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
         }
         
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            background: #111;
+        /* حاوية رئيسية */
+        .main-container {
+            max-width: 100%;
             min-height: 100vh;
+            background: #000000;
             position: relative;
-            padding-bottom: 60px;
-            opacity: 0;
-            animation: fadeIn 0.5s ease forwards;
         }
         
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-        
-        .tab-buttons {
+        /* تبويبات */
+        .tabs {
             display: flex;
-            background: #000;
-            border-bottom: 1px solid #333;
+            width: 100%;
+            background: #000000;
+            border-bottom: 1px solid #333333;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
         
-        .tab-button {
+        .tab-btn {
             flex: 1;
-            padding: 15px;
-            text-align: center;
-            background: #000;
-            color: #fff;
+            padding: 16px 12px;
+            background: transparent;
             border: none;
+            color: #ffffff;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-align: center;
         }
         
-        .tab-button.active {
-            background: #151515;
+        .tab-btn.active {
+            background: #1a1a1a;
             color: #4cd964;
         }
         
+        /* محتوى التبويبات */
         .tab-content {
             display: none;
+            width: 100%;
         }
         
         .tab-content.active {
             display: block;
         }
         
-        .usd-rates-container {
-            display: flex;
-            padding: 15px;
-            background: #000;
-            border-bottom: 1px solid #333;
-            position: relative;
+        /* رأس التحديث */
+        .update-header {
+            padding: 16px;
+            text-align: center;
+            background: #000000;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 1px solid #333333;
         }
         
-        /* إضافة الخط العمودي في المنتصف */
-        .usd-rates-container::after {
-            content: '';
-            position: absolute;
-            top: 15px;
-            bottom: 15px;
-            left: 50%;
-            width: 1px;
-            background: #333;
-            transform: translateX(-50%);
+        /* أسعار USD */
+        .usd-rates {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #333333;
+            margin: 0;
+            padding: 0;
         }
         
-        .usd-rates-card {
-            flex: 1;
-            background: #000;
-            padding: 0 10px;
+        .usd-rate-column {
+            background: #000000;
         }
         
         .rate-pair {
+            padding: 16px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 12px 0;
-            gap: 10px;
+            gap: 12px;
+            border-bottom: 1px solid #333333;
         }
         
-        .rate-pair:not(:last-child) {
-            border-bottom: 1px solid #333;
+        .rate-pair:last-child {
+            border-bottom: none;
         }
         
-        .rate-content {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-        }
-        
-        /* تعديل الأيقونات لتكون مستطيلة وليست دائرية */
         .currency-icon {
             width: 60px;
             height: 40px;
             border-radius: 8px;
             object-fit: cover;
             flex-shrink: 0;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-        }
-        
-        /* إضافة تأثير الضباب على الصور */
-        .currency-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: fogAnimation 3s infinite;
-            z-index: 1;
-        }
-        
-        .currency-icon:hover {
-            transform: scale(1.05);
-        }
-        
-        @keyframes fogAnimation {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
         }
         
         .rate-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 2px;
+            flex: 1;
         }
         
         .rate-value {
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2px;
         }
         
-        .currency-code-small {
-            color: #888;
+        .rate-currency {
             font-size: 12px;
-            font-weight: 500;
+            color: #888888;
         }
         
+        /* قائمة العملات */
         .currency-list {
+            list-style: none;
             padding: 0;
-            overflow: hidden;
+            margin: 0;
         }
         
         .currency-item {
-            padding: 12px 15px;
-            border-bottom: 1px solid #333;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: #000;
-            transition: all 0.3s ease;
-            position: relative;
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        
-        .currency-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .currency-item:hover {
-            background: #151515;
+            padding: 14px 16px;
+            border-bottom: 1px solid #333333;
+            background: #000000;
+            gap: 12px;
         }
         
         .currency-info {
             display: flex;
             align-items: center;
+            gap: 12px;
             flex: 1;
-            min-width: 0;
-            overflow: hidden;
         }
         
-        /* تعديل الأيقونات للعملات في القائمة لتكون مستطيلة */
         .currency-flag {
             width: 60px;
             height: 40px;
             border-radius: 8px;
-            margin-right: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            position: relative;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        
-        /* تأثير الضباب على أيقونات القائمة */
-        .currency-flag::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: fogAnimation 3s infinite;
-            animation-delay: calc(var(--i, 0) * 0.2s);
-            z-index: 1;
-        }
-        
-        .currency-flag:hover {
-            transform: scale(1.05);
-        }
-        
-        .currency-flag img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
-            border-radius: 8px;
-            position: relative;
-            z-index: 2;
+            flex-shrink: 0;
         }
         
-        .currency-names {
+        .currency-details {
             flex: 1;
-            min-width: 0;
-            overflow: hidden;
         }
         
         .currency-code {
+            font-size: 16px;
             font-weight: 600;
-            font-size: 15px;
+            color: #ffffff;
             margin-bottom: 2px;
             display: flex;
             align-items: center;
             gap: 6px;
-            white-space: nowrap;
         }
         
-        .currency-full-name {
+        .currency-name {
             font-size: 12px;
-            color: #888;
-            font-weight: 400;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            color: #888888;
         }
         
-        /* تنسيق الأسهم فقط (بدون نار) */
-        .trending-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .arrow {
+            font-size: 14px;
+            font-weight: bold;
         }
         
-        .arrow-indicators {
-            display: flex;
-            align-items: center;
-            gap: 2px;
-        }
-        
-        .up-arrow {
+        .arrow.up {
             color: #10b981;
-            font-weight: bold;
-            font-size: 16px;
         }
         
-        .down-arrow {
+        .arrow.down {
             color: #ef4444;
-            font-weight: bold;
-            font-size: 16px;
         }
         
-        .currency-rates {
+        /* أسعار العملات */
+        .currency-prices {
             display: flex;
-            gap: 6px;
-            align-items: center;
-            justify-content: flex-end;
-            flex-shrink: 0;
-            margin-left: 8px;
+            gap: 8px;
         }
         
-        /* تصغير حجم المستطيلات مع الحفاظ على حجم الأرقام الكبير */
-        .rate-box {
-            padding: 6px 8px;
+        .price-box {
+            min-width: 70px;
+            height: 45px;
             border-radius: 8px;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
-            min-width: 65px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
+            padding: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
         
-        /* إضافة الحواف السوداء الرقيقة على الأرقام */
-        .rate-box-value {
-            font-size: 20px; /* حجم كبير للأرقام */
+        .price-box.sell {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        
+        .price-box.buy {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+        
+        .price-box.single {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            min-width: 75px;
+        }
+        
+        .price-value {
+            font-size: 18px;
             font-weight: 900;
-            line-height: 1.1;
+            color: #ffffff;
             text-shadow: 
                 -1px -1px 0 #000,
                 1px -1px 0 #000,
                 -1px 1px 0 #000,
-                1px 1px 0 #000,
-                0 0 2px rgba(0, 0, 0, 0.8); /* حواف سوداء رقيقة */
-            letter-spacing: 0.5px;
+                1px 1px 0 #000;
+            line-height: 1.1;
         }
         
-        .rate-label {
-            font-size: 9px;
-            opacity: 0.8;
-            font-weight: 500;
-            text-shadow: none;
-        }
-        
-        /* ألوان Square - تصغير المستطيلات فقط */
-        .sell-box {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.5);
-            min-width: 65px;
-            min-height: 40px;
-        }
-        
-        .buy-box {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
-            min-width: 65px;
-            min-height: 40px;
-        }
-
-        /* مستطيل أحمر مركزي للعملات الأخرى - تصغير المستطيل فقط */
-        .single-red-box {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
-            min-width: 70px;
-            min-height: 40px;
-        }
-        
-        /* ألوان Official - تصغير المستطيل فقط */
-        .official-rate-box {
+        /* Official Tab */
+        .price-box.official {
             background: linear-gradient(135deg, #1e3a8a, #3730a3);
-            color: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            min-width: 70px;
-            min-height: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
+            min-width: 75px;
         }
         
-        .rate-box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        .official-rate-label {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 2px;
         }
         
-        .update-header {
-            padding: 15px;
-            background: #000000;
-            border-bottom: 1px solid #333;
-            text-align: center;
-            font-size: 14px;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .update-card {
-            background: #000;
-            padding: 12px;
-            margin: 0;
-            border-bottom: 1px solid #333;
-            text-align: center;
-            font-size: 14px;
-            color: #fff;
-        }
-        
+        /* حقوق النشر */
         .copyright {
-            position: absolute;
+            position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
-            font-size: 10px;
-            color: #666;
-            border-top: 1px solid #333;
+            font-size: 11px;
+            color: #666666;
             background: #1a1a1a;
+            border-top: 1px solid #333333;
+            z-index: 1000;
         }
         
-        /* تحسينات للشاشات الصغيرة جداً (جوالات صغيرة) */
-        @media (max-width: 360px) {
+        /* Media Queries للتجاوب */
+        
+        /* شاشات صغيرة جداً (جوالات صغيرة) */
+        @media (max-width: 320px) {
             .currency-item {
-                padding: 10px;
+                padding: 12px;
+                gap: 8px;
+            }
+            
+            .price-box {
+                min-width: 60px;
+                height: 40px;
+                padding: 6px;
+            }
+            
+            .price-value {
+                font-size: 16px;
             }
             
             .currency-flag {
                 width: 50px;
                 height: 35px;
-                margin-right: 8px;
             }
             
-            .rate-box {
-                min-width: 55px;
-                padding: 5px 6px;
-            }
-            
-            .rate-box-value {
-                font-size: 18px;
-            }
-            
-            .currency-code {
+            .tab-btn {
+                padding: 14px 8px;
                 font-size: 14px;
-            }
-            
-            .currency-full-name {
-                font-size: 10px;
-            }
-            
-            .tab-button {
-                padding: 12px;
-                font-size: 14px;
-            }
-            
-            .usd-rates-card {
-                padding: 0 5px;
             }
         }
         
-        /* تحسينات للشاشات المتوسطة (أجهزة لوحية صغيرة) */
-        @media (min-width: 361px) and (max-width: 480px) {
-            .rate-box {
-                min-width: 60px;
-            }
-            
-            .rate-box-value {
-                font-size: 19px;
-            }
-        }
-        
-        /* تحسينات للشاشات المتوسطة (أجهزة لوحية) */
-        @media (min-width: 481px) and (max-width: 768px) {
+        /* شاشات صغيرة (جوالات) */
+        @media (min-width: 321px) and (max-width: 480px) {
             .currency-item {
-                padding: 15px 20px;
+                padding: 14px;
+            }
+            
+            .price-box {
+                min-width: 65px;
+            }
+            
+            .price-value {
+                font-size: 17px;
+            }
+        }
+        
+        /* شاشات متوسطة (أجهزة لوحية صغيرة) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .main-container {
+                max-width: 768px;
+                margin: 0 auto;
+            }
+            
+            .currency-item {
+                padding: 16px 20px;
+            }
+            
+            .price-box {
+                min-width: 75px;
+                height: 50px;
+            }
+            
+            .price-value {
+                font-size: 20px;
             }
             
             .currency-flag {
@@ -491,281 +334,257 @@
                 height: 45px;
             }
             
-            .rate-box {
-                min-width: 70px;
-                padding: 8px 10px;
-            }
-            
-            .rate-box-value {
-                font-size: 21px;
-            }
-            
-            .currency-code {
-                font-size: 16px;
-            }
-            
-            .currency-full-name {
-                font-size: 13px;
-            }
-            
-            .tab-button {
-                padding: 16px;
+            .tab-btn {
+                padding: 18px;
                 font-size: 17px;
             }
         }
         
-        /* تحسينات للشاشات الكبيرة (أجهزة كمبيوتر) */
+        /* شاشات كبيرة (أجهزة لوحية) */
         @media (min-width: 769px) and (max-width: 1024px) {
-            .container {
-                max-width: 800px;
+            .main-container {
+                max-width: 900px;
+                margin: 0 auto;
             }
             
             .currency-item {
-                padding: 18px 25px;
+                padding: 18px 24px;
+            }
+            
+            .price-box {
+                min-width: 85px;
+                height: 55px;
+                padding: 10px;
+            }
+            
+            .price-value {
+                font-size: 22px;
             }
             
             .currency-flag {
                 width: 70px;
                 height: 50px;
-                margin-right: 15px;
-            }
-            
-            .rate-box {
-                min-width: 80px;
-                padding: 10px 12px;
-            }
-            
-            .rate-box-value {
-                font-size: 22px;
             }
             
             .currency-code {
                 font-size: 18px;
             }
             
-            .currency-full-name {
-                font-size: 14px;
-            }
-            
-            .currency-rates {
-                gap: 10px;
-            }
-            
-            .tab-button {
-                padding: 18px;
+            .tab-btn {
+                padding: 20px;
                 font-size: 18px;
             }
         }
         
-        /* تحسينات للشاشات الكبيرة جداً (أجهزة كمبيوتر مكتبية) */
+        /* شاشات كبيرة جداً (كمبيوتر) */
         @media (min-width: 1025px) {
-            .container {
+            .main-container {
                 max-width: 1000px;
+                margin: 0 auto;
             }
             
             .currency-item {
-                padding: 20px 30px;
+                padding: 20px 28px;
             }
             
-            .currency-flag {
-                width: 80px;
-                height: 55px;
-                margin-right: 20px;
-            }
-            
-            .rate-box {
+            .price-box {
                 min-width: 90px;
-                padding: 12px 15px;
+                height: 60px;
+                padding: 12px;
             }
             
-            .rate-box-value {
+            .price-value {
                 font-size: 24px;
             }
             
+            .currency-flag {
+                width: 75px;
+                height: 55px;
+            }
+            
             .currency-code {
                 font-size: 20px;
             }
             
-            .currency-full-name {
-                font-size: 15px;
-            }
-            
-            .currency-rates {
-                gap: 12px;
-            }
-            
-            .tab-button {
-                padding: 20px;
+            .tab-btn {
+                padding: 22px;
                 font-size: 20px;
             }
         }
         
-        /* إصلاح للشاشات العمودية الضيقة */
-        @media (max-height: 600px) and (orientation: portrait) {
-            .currency-item {
-                padding: 8px 12px;
+        /* تحسينات للشاشات العمودية الضيقة */
+        @media (max-width: 360px) and (orientation: portrait) {
+            .currency-prices {
+                flex-direction: column;
+                gap: 4px;
             }
             
-            .rate-box {
+            .price-box {
                 min-width: 55px;
-                min-height: 35px;
-                padding: 4px 6px;
+                height: 35px;
             }
             
-            .rate-box-value {
-                font-size: 18px;
+            .price-value {
+                font-size: 15px;
             }
         }
         
-        /* تحسينات لتحميل الصور السريع */
-        .preload-images {
-            display: none;
+        /* ضمان عرض جميع العناصر */
+        .currency-info, .currency-details {
+            min-width: 0;
+            overflow: hidden;
         }
         
-        /* تحسينات للصور السريعة */
-        .currency-flag img,
-        .currency-icon {
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
+        .currency-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
-        /* تحسينات للتفاعل مع اللمس */
-        .tab-button,
-        .rate-box {
-            touch-action: manipulation;
+        /* تحسينات للتفاعل */
+        .tab-btn, .currency-item {
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
         }
         
-        /* تحسينات للعرض على المتصفحات المختلفة */
-        .container {
-            -webkit-overflow-scrolling: touch;
+        .tab-btn:active {
+            background: #222222;
+        }
+        
+        /* تحميل فوري */
+        body.loaded .currency-item {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* إصلاح لمتصفح Safari */
+        @supports (-webkit-touch-callout: none) {
+            .main-container {
+                min-height: -webkit-fill-available;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container" id="mainContainer">
-        <div class="tab-buttons">
-            <button class="tab-button active" id="squareTab">Square</button>
-            <button class="tab-button" id="officialTab">Official</button>
+    <div class="main-container">
+        <!-- تبويبات -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="square">Square</button>
+            <button class="tab-btn" data-tab="official">Official</button>
         </div>
         
-        <!-- Square Tab Content -->
-        <div class="tab-content active" id="squareContent">
+        <!-- محتوى Square -->
+        <div class="tab-content active" id="square">
             <div class="update-header">Last Update 2025-11-18</div>
             
-            <!-- بطاقات أسعار USD لـ Square -->
-            <div class="usd-rates-container">
-                <div class="usd-rates-card">
+            <!-- أسعار USD -->
+            <div class="usd-rates">
+                <div class="usd-rate-column">
                     <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon" loading="eager">
-                            <div class="rate-info">
-                                <div class="rate-value">1.1595</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.1595</div>
+                            <div class="rate-currency">USD</div>
                         </div>
                     </div>
                     <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon" loading="eager">
-                            <div class="rate-info">
-                                <div class="rate-value">1.2434</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.2434</div>
+                            <div class="rate-currency">USD</div>
                         </div>
                     </div>
                 </div>
-                <div class="usd-rates-card">
+                <div class="usd-rate-column">
                     <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon" loading="eager">
-                            <div class="rate-info">
-                                <div class="rate-value">1.3236</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.3236</div>
+                            <div class="rate-currency">USD</div>
                         </div>
                     </div>
                     <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon" loading="eager">
-                            <div class="rate-info">
-                                <div class="rate-value">1.7120</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.7120</div>
+                            <div class="rate-currency">USD</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="currency-list" id="square-currency-list">
-                <!-- سيتم ملء العملات تلقائياً بواسطة JavaScript -->
-            </div>
+            <!-- قائمة العملات -->
+            <ul class="currency-list" id="square-list">
+                <!-- سيتم إضافة العملات هنا بواسطة JavaScript -->
+            </ul>
         </div>
         
-        <!-- Official Tab Content -->
-        <div class="tab-content" id="officialContent">
-            <div class="update-card">Last Update 2025-11-18</div>
+        <!-- محتوى Official -->
+        <div class="tab-content" id="official">
+            <div class="update-header">Last Update 2025-11-18</div>
             
-            <!-- بطاقات أسعار USD لـ Official -->
-            <div class="usd-rates-container">
-                <div class="usd-rates-card">
+            <!-- أسعار USD -->
+            <div class="usd-rates">
+                <div class="usd-rate-column">
                     <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon" loading="eager">
-                            <div class="rate-info">
-                                <div class="rate-value">1.1595</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.1595</div>
+                            <div class="rate-currency">USD</div>
                         </div>
                     </div>
                     <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon" loading="eager">
-                            <div class="rate-info">
-                                <div class="rate-value">1.2434</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.2434</div>
+                            <div class="rate-currency">USD</div>
                         </div>
                     </div>
                 </div>
-                <div class="usd-rates-card">
+                <div class="usd-rate-column">
                     <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon" loading="eager">
-                            <div class="rate-info">
-                                <div class="rate-value">1.3236</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.3236</div>
+                            <div class="rate-currency">USD</div>
                         </div>
                     </div>
                     <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon" loading="eager">
-                            <div class="rate-info">
-                                <div class="rate-value">1.7120</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.7120</div>
+                            <div class="rate-currency">USD</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="currency-list" id="official-currency-list">
-                <!-- سيتم ملء العملات تلقائياً بواسطة JavaScript -->
-            </div>
+            <!-- قائمة العملات -->
+            <ul class="currency-list" id="official-list">
+                <!-- سيتم إضافة العملات هنا بواسطة JavaScript -->
+            </ul>
         </div>
         
-        <div class="copyright">
-            © 2025 Square Market 
-        </div>
+        <!-- حقوق النشر -->
+        <div class="copyright">© 2025 Square Market</div>
     </div>
 
     <script>
-        // العملات الخاصة (لها مستطيلان أخضر وأحمر)
+        // البيانات الأساسية
         const specialCurrencies = ['EUR', 'USD', 'CAD', 'GBP', 'CHF', 'AUD'];
-
-        // بيانات العملات مع الأسهم المطلوبة
+        
+        // بيانات Square
         const squareExchangeRates = [
             { code: 'EUR', buy: 301, sell: 284, trending: true, arrow: 'up', fullName: 'Euro' },
             { code: 'USD', buy: 246, sell: 244, trending: true, arrow: 'down', fullName: 'US Dollar' },
@@ -784,7 +603,7 @@
             { code: 'KRW', buy: 0.18, sell: 0.2, trending: false, arrow: 'none', fullName: 'Korean Won' },
             { code: 'INR', buy: 2.85, sell: 3.05, trending: false, arrow: 'none', fullName: 'Indian Rupee' },
             { code: 'MYR', buy: 50.25, sell: 53, trending: false, arrow: 'none', fullName: 'Malaysian Ringgit' },
-            { code: 'ZAR', buy: 15, sell: 13, trending: false, arrow: 'none', fullName: ' Rand' },
+            { code: 'ZAR', buy: 15, sell: 13, trending: false, arrow: 'none', fullName: 'South African Rand' },
             { code: 'BRL', buy: 5.26, sell: 5.6, trending: false, arrow: 'none', fullName: 'Brazilian Real' },
             { code: 'MXN', buy: 13, sell: 14, trending: false, arrow: 'none', fullName: 'Mexican Peso' },
             { code: 'ARS', buy: 256, sell: 468, trending: false, arrow: 'none', fullName: 'Argentine Peso' },
@@ -796,7 +615,7 @@
             { code: 'AED', buy: 37.15, sell: 39.8, trending: false, arrow: 'none', fullName: 'UAE Dirham' }
         ];
 
-        // بيانات العملات المحدثة مع العملات الجديدة (Official)
+        // بيانات Official
         const officialExchangeRates = [
             { code: 'EUR', rate: 151 },
             { code: 'USD', rate: 130 },
@@ -806,7 +625,7 @@
             { code: 'AUD', rate: 87 }
         ];
 
-        // روابط الصور من المستودع الصحيح: My-website
+        // روابط الصور
         const flagImages = {
             'EUR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png',
             'USD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png',
@@ -838,98 +657,185 @@
             'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png'
         };
 
-        // دالة لإنشاء قائمة العملات
-        function createCurrencyList() {
-            const squareList = document.getElementById('square-currency-list');
-            const officialList = document.getElementById('official-currency-list');
-            
-            // إنشاء قائمة Square
-            squareExchangeRates.forEach((currency, index) => {
-                const item = createSquareCurrencyItem(currency, index);
-                squareList.appendChild(item);
-                
-                // إضافة تأثير الظهور التدريجي
-                setTimeout(() => {
-                    item.classList.add('visible');
-                }, index * 50);
-            });
-            
-            // إنشاء قائمة Official
-            officialExchangeRates.forEach((currency, index) => {
-                const item = createOfficialCurrencyItem(currency, index);
-                officialList.appendChild(item);
-                
-                // إضافة تأثير الظهور التدريجي
-                setTimeout(() => {
-                    item.classList.add('visible');
-                }, index * 50);
-            });
-            
-            // تحميل الصور مسبقاً
-            preloadImages();
-        }
-
         // دالة لإنشاء عنصر عملة لـ Square
-        function createSquareCurrencyItem(currency, index) {
-            const item = document.createElement('div');
-            item.className = 'currency-item';
+        function createSquareCurrencyItem(currency) {
+            const li = document.createElement('li');
+            li.className = 'currency-item';
             
             const imageUrl = flagImages[currency.code] || flagImages['USD'];
-            const isSpecialCurrency = specialCurrencies.includes(currency.code);
+            const isSpecial = specialCurrencies.includes(currency.code);
             
-            let trendingHtml = '';
-            if (currency.trending) {
-                let arrowHtml = '';
-                if (currency.arrow === 'up') {
-                    arrowHtml = '<span class="up-arrow">▲</span>';
-                } else if (currency.arrow === 'down') {
-                    arrowHtml = '<span class="down-arrow">▼</span>';
-                }
-                
-                trendingHtml = `
-                    <div class="trending-indicator">
-                        ${arrowHtml}
-                    </div>
-                `;
+            let arrowHtml = '';
+            if (currency.trending && currency.arrow !== 'none') {
+                arrowHtml = `<span class="arrow ${currency.arrow}">${currency.arrow === 'up' ? '▲' : '▼'}</span>`;
             }
             
-            let ratesHtml = '';
-            if (isSpecialCurrency) {
-                ratesHtml = `
-                    <div class="currency-rates">
-                        <div class="rate-box sell-box">
-                            <div class="rate-box-value">${currency.sell}</div>
+            let pricesHtml = '';
+            if (isSpecial) {
+                pricesHtml = `
+                    <div class="currency-prices">
+                        <div class="price-box sell">
+                            <div class="price-value">${currency.sell}</div>
                         </div>
-                        <div class="rate-box buy-box">
-                            <div class="rate-box-value">${currency.buy}</div>
+                        <div class="price-box buy">
+                            <div class="price-value">${currency.buy}</div>
                         </div>
                     </div>
                 `;
             } else {
-                ratesHtml = `
-                    <div class="currency-rates">
-                        <div class="rate-box single-red-box">
-                            <div class="rate-box-value">${currency.sell}</div>
+                pricesHtml = `
+                    <div class="currency-prices">
+                        <div class="price-box single">
+                            <div class="price-value">${currency.sell}</div>
                         </div>
                     </div>
                 `;
             }
             
-            item.innerHTML = `
+            li.innerHTML = `
                 <div class="currency-info">
-                    <div class="currency-flag" style="--i: ${index}">
-                        <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png'">
-                    </div>
-                    <div class="currency-names">
-                        <div class="currency-code">${currency.code}${trendingHtml}</div>
-                        <div class="currency-full-name">${currency.fullName}</div>
+                    <img src="${imageUrl}" alt="${currency.code}" class="currency-flag" loading="lazy" onerror="this.src='${flagImages.USD}'">
+                    <div class="currency-details">
+                        <div class="currency-code">${currency.code} ${arrowHtml}</div>
+                        <div class="currency-name">${currency.fullName}</div>
                     </div>
                 </div>
-                ${ratesHtml}
+                ${pricesHtml}
             `;
             
-            return item;
+            return li;
         }
 
         // دالة لإنشاء عنصر عملة لـ Official
-        function createOfficialCurrencyItem(currency, index)
+        function createOfficialCurrencyItem(currency) {
+            const li = document.createElement('li');
+            li.className = 'currency-item';
+            
+            const imageUrl = flagImages[currency.code] || flagImages['USD'];
+            
+            li.innerHTML = `
+                <div class="currency-info">
+                    <img src="${imageUrl}" alt="${currency.code}" class="currency-flag" loading="lazy" onerror="this.src='${flagImages.USD}'">
+                    <div class="currency-details">
+                        <div class="currency-code">${currency.code}</div>
+                        <div class="currency-name">${getCurrencyName(currency.code)}</div>
+                    </div>
+                </div>
+                <div class="currency-prices">
+                    <div class="price-box official">
+                        <div class="price-value">${currency.rate}</div>
+                        <div class="official-rate-label">Rate</div>
+                    </div>
+                </div>
+            `;
+            
+            return li;
+        }
+
+        // دالة للحصول على اسم العملة
+        function getCurrencyName(code) {
+            const names = {
+                'EUR': 'Euro',
+                'USD': 'US Dollar',
+                'CAD': 'Canadian Dollar',
+                'GBP': 'British Pound',
+                'CHF': 'Swiss Franc',
+                'AUD': 'Australian Dollar'
+            };
+            return names[code] || code;
+        }
+
+        // دالة لتحميل قائمة العملات
+        function loadCurrencyLists() {
+            const squareList = document.getElementById('square-list');
+            const officialList = document.getElementById('official-list');
+            
+            // تحميل قائمة Square
+            squareExchangeRates.forEach((currency, index) => {
+                const item = createSquareCurrencyItem(currency);
+                squareList.appendChild(item);
+                
+                // تأخير بسيط للرسوم المتحركة
+                setTimeout(() => {
+                    item.style.animationDelay = `${index * 0.05}s`;
+                }, 10);
+            });
+            
+            // تحميل قائمة Official
+            officialExchangeRates.forEach((currency, index) => {
+                const item = createOfficialCurrencyItem(currency);
+                officialList.appendChild(item);
+                
+                // تأخير بسيط للرسوم المتحركة
+                setTimeout(() => {
+                    item.style.animationDelay = `${index * 0.05}s`;
+                }, 10);
+            });
+        }
+
+        // دالة لتبديل التبويبات
+        function setupTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    
+                    // إزالة النشاط من جميع الأزهار
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    // إخفاء جميع المحتويات
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // إضافة النشاط للزر المختار
+                    btn.classList.add('active');
+                    // عرض المحتوى المختار
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+
+        // دالة لتحميل الصور مسبقاً
+        function preloadImages() {
+            const images = Object.values(flagImages);
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
+        // تهيئة التطبيق عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحميل قوائم العملات
+            loadCurrencyLists();
+            
+            // إعداد التبويبات
+            setupTabs();
+            
+            // تحميل الصور مسبقاً
+            preloadImages();
+            
+            // تم وضع علامة على الجسم على أنه محمل
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+            
+            // إصلاح للارتفاع على iOS
+            function setAppHeight() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            
+            window.addEventListener('resize', setAppHeight);
+            setAppHeight();
+        });
+
+        // إصلاحات للمتصفحات القديمة
+        if (!window.requestAnimationFrame) {
+            window.requestAnimationFrame = function(callback) {
+                return setTimeout(callback, 1000 / 60);
+            };
+        }
+    </script>
+</body>
+</html>
