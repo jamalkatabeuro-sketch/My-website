@@ -26,6 +26,14 @@
             min-height: 100vh;
             position: relative;
             padding-bottom: 60px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
         
         .tab-buttons {
@@ -428,7 +436,7 @@
             }
         }
         
-        /* دوائر التدوير (اللودر) */
+        /* دائرة التدوير الخضراء فقط (تم إزالة الحمراء) */
         .spinner-overlay {
             position: fixed;
             top: 0;
@@ -446,31 +454,19 @@
         
         .spinner-container {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             margin-bottom: 20px;
         }
         
-        .spinner-circle {
-            position: absolute;
+        .green-circle {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            animation: spin 1.5s linear infinite;
-        }
-        
-        .green-circle {
-            border: 8px solid transparent;
-            border-top: 8px solid #10b981;
-            border-right: 8px solid #10b981;
-            animation-delay: 0s;
-        }
-        
-        .red-circle {
-            border: 8px solid transparent;
-            border-bottom: 8px solid #ef4444;
-            border-left: 8px solid #ef4444;
-            animation-delay: -0.75s;
+            border: 6px solid transparent;
+            border-top: 6px solid #10b981;
+            border-right: 6px solid #10b981;
+            animation: spin 1s linear infinite;
         }
         
         .spinner-text {
@@ -521,17 +517,28 @@
         .preload-images {
             display: none;
         }
+        
+        /* تحسينات للصور السريعة */
+        .currency-flag img,
+        .currency-icon {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
     </style>
 </head>
 <body>
-    <!-- دوائر التدوير (اللودر) قبل تحميل الصور -->
+    <!-- دائرة التدوير الخضراء فقط -->
     <div class="spinner-overlay" id="spinnerOverlay">
         <div class="spinner-container">
-            <div class="spinner-circle green-circle"></div>
-            <div class="spinner-circle red-circle"></div>
+            <div class="green-circle"></div>
         </div>
         <div class="spinner-text">جاري تحميل بيانات الأسعار</div>
-        <div class="spinner-subtext">يتم تحميل الصور والبيانات...</div>
+        <div class="spinner-subtext" id="spinnerSubtext">يتم تحميل الصور...</div>
     </div>
     
     <div class="loading-bar">
@@ -556,7 +563,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon" loading="eager">
                             <div class="rate-info">
                                 <div class="rate-value">1.1595</div>
                                 <div class="currency-code-small">USD</div>
@@ -565,7 +572,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon" loading="eager">
                             <div class="rate-info">
                                 <div class="rate-value">1.2434</div>
                                 <div class="currency-code-small">USD</div>
@@ -576,7 +583,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon" loading="eager">
                             <div class="rate-info">
                                 <div class="rate-value">1.3236</div>
                                 <div class="currency-code-small">USD</div>
@@ -585,7 +592,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon" loading="eager">
                             <div class="rate-info">
                                 <div class="rate-value">1.7120</div>
                                 <div class="currency-code-small">USD</div>
@@ -609,7 +616,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon" loading="eager">
                             <div class="rate-info">
                                 <div class="rate-value">1.1595</div>
                                 <div class="currency-code-small">USD</div>
@@ -618,7 +625,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon" loading="eager">
                             <div class="rate-info">
                                 <div class="rate-value">1.2434</div>
                                 <div class="currency-code-small">USD</div>
@@ -629,7 +636,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon" loading="eager">
                             <div class="rate-info">
                                 <div class="rate-value">1.3236</div>
                                 <div class="currency-code-small">USD</div>
@@ -638,7 +645,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon" loading="eager">
                             <div class="rate-info">
                                 <div class="rate-value">1.7120</div>
                                 <div class="currency-code-small">USD</div>
@@ -735,87 +742,97 @@
             'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png'
         };
 
-        // متغيرات لتتبع تحميل الصور
-        let loadedImagesCount = 0;
-        let totalImagesToLoad = 0;
-        let imagesLoaded = false;
-        let dataLoaded = false;
-
-        // دالة لتحميل الصور مسبقاً وضمان تحميلها كاملة
-        function preloadAndCheckImages() {
-            const preloadContainer = document.querySelector('.preload-images');
-            const uniqueImages = [...new Set(Object.values(flagImages))];
-            totalImagesToLoad = uniqueImages.length;
+        // دالة لتحميل الصور بسرعة مع ضمان ظهورها كاملة
+        function preloadCriticalImages() {
+            const spinnerSubtext = document.getElementById('spinnerSubtext');
+            const loadingProgress = document.getElementById('loadingProgress');
             
-            // تحديث نص اللودر
-            document.querySelector('.spinner-subtext').textContent = `جاري تحميل الصور (0/${totalImagesToLoad})...`;
+            // تحميل الصور الأساسية أولاً (التي تظهر في الأعلى)
+            const criticalImages = [
+                'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png',
+                'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png',
+                'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png',
+                'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png'
+            ];
             
-            uniqueImages.forEach((imageUrl, index) => {
+            let criticalLoaded = 0;
+            
+            // عرض المحتوى الرئيسي بسرعة بعد تحميل الصور الأساسية
+            criticalImages.forEach((imgUrl, index) => {
                 const img = new Image();
-                img.src = imageUrl;
-                img.style.display = 'none';
-                preloadContainer.appendChild(img);
-                
+                img.src = imgUrl;
                 img.onload = function() {
-                    loadedImagesCount++;
-                    // تحديث نص اللودر
-                    document.querySelector('.spinner-subtext').textContent = 
-                        `جاري تحميل الصور (${loadedImagesCount}/${totalImagesToLoad})...`;
+                    criticalLoaded++;
+                    loadingProgress.style.width = `${(criticalLoaded / criticalImages.length) * 40}%`;
                     
-                    // تحديث شريط التحميل
-                    const progress = (loadedImagesCount / totalImagesToLoad) * 50;
-                    document.getElementById('loadingProgress').style.width = `${progress}%`;
-                    
-                    // إذا تم تحميل جميع الصور
-                    if (loadedImagesCount === totalImagesToLoad) {
-                        imagesLoaded = true;
-                        document.querySelector('.spinner-subtext').textContent = 'تم تحميل جميع الصور!';
-                        checkIfReadyToShow();
+                    if (criticalLoaded === criticalImages.length) {
+                        // تحميل الصور الأساسية كاملة، نعرض المحتوى الرئيسي
+                        setTimeout(() => {
+                            showMainContent();
+                        }, 300);
                     }
                 };
-                
                 img.onerror = function() {
-                    loadedImagesCount++;
-                    if (loadedImagesCount === totalImagesToLoad) {
-                        imagesLoaded = true;
-                        checkIfReadyToShow();
+                    criticalLoaded++;
+                    if (criticalLoaded === criticalImages.length) {
+                        setTimeout(() => {
+                            showMainContent();
+                        }, 300);
                     }
                 };
             });
             
-            // إذا لم تكن هناك صور لتحميلها
-            if (totalImagesToLoad === 0) {
-                imagesLoaded = true;
-                checkIfReadyToShow();
-            }
+            // تحميل باقي الصور في الخلفية
+            setTimeout(() => {
+                const uniqueImages = [...new Set(Object.values(flagImages))];
+                spinnerSubtext.textContent = 'جاري تحميل الصور الإضافية...';
+                
+                uniqueImages.forEach((imageUrl) => {
+                    const img = new Image();
+                    img.src = imageUrl;
+                });
+            }, 100);
         }
 
-        // دالة للتحقق مما إذا كان كل شيء جاهزاً للعرض
-        function checkIfReadyToShow() {
-            if (imagesLoaded && dataLoaded) {
+        // دالة لعرض المحتوى الرئيسي
+        function showMainContent() {
+            const spinnerOverlay = document.getElementById('spinnerOverlay');
+            const mainContainer = document.getElementById('mainContainer');
+            const loadingProgress = document.getElementById('loadingProgress');
+            
+            // تحديث شريط التحميل
+            loadingProgress.style.width = '80%';
+            
+            // إخفاء اللودر
+            spinnerOverlay.style.opacity = '0';
+            
+            setTimeout(() => {
+                spinnerOverlay.style.display = 'none';
+                mainContainer.style.display = 'block';
+                
+                // إنشاء قائمة العملات
+                createCurrencyList();
+                
+                // تحديث شريط التحميل إلى 100%
+                loadingProgress.style.width = '100%';
+                
+                // إخفاء شريط التحميل بعد ثانية
                 setTimeout(() => {
-                    // إخفاء اللودر وإظهار المحتوى
-                    const spinnerOverlay = document.getElementById('spinnerOverlay');
-                    spinnerOverlay.style.opacity = '0';
-                    
+                    document.querySelector('.loading-bar').style.opacity = '0';
                     setTimeout(() => {
-                        spinnerOverlay.style.display = 'none';
-                        document.getElementById('mainContainer').style.display = 'block';
-                        
-                        // إنشاء قائمة العملات
-                        createCurrencyList();
-                        
-                        // إضافة مستمعي الأحداث للتبويبات
-                        document.getElementById('squareTab').addEventListener('click', function() {
-                            switchTab('square');
-                        });
-                        
-                        document.getElementById('officialTab').addEventListener('click', function() {
-                            switchTab('official');
-                        });
-                    }, 500);
-                }, 500);
-            }
+                        document.querySelector('.loading-bar').style.display = 'none';
+                    }, 300);
+                }, 1000);
+                
+                // إضافة مستمعي الأحداث للتبويبات
+                document.getElementById('squareTab').addEventListener('click', function() {
+                    switchTab('square');
+                });
+                
+                document.getElementById('officialTab').addEventListener('click', function() {
+                    switchTab('official');
+                });
+            }, 300);
         }
 
         // دالة لإنشاء عنصر عملة لـ Square
@@ -871,23 +888,3 @@
                     </div>
                     <div class="currency-names">
                         <div class="currency-code">${currency.code}${trendingHtml}</div>
-                        <div class="currency-full-name">${currency.fullName}</div>
-                    </div>
-                </div>
-                ${ratesHtml}
-            `;
-            
-            return item;
-        }
-
-        // دالة لإنشاء عنصر عملة لـ Official
-        function createOfficialCurrencyItem(currency, index) {
-            const item = document.createElement('div');
-            item.className = 'currency-item';
-            
-            const imageUrl = flagImages[currency.code] || flagImages['USD'];
-            
-            item.innerHTML = `
-                <div class="currency-info">
-                    <div class="currency-flag" style="--i: ${index}">
-                        <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-us
