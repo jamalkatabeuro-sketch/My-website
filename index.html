@@ -28,41 +28,25 @@
             padding-bottom: 70px;
         }
         
-        .tab-buttons {
-            display: flex;
-            background: #000;
+        .header {
+            padding: 25px;
+            background: #000000;
             border-bottom: 1px solid #333;
-            padding: 0 15px;
-            gap: 10px;
-        }
-        
-        .tab-button {
-            flex: 1;
-            padding: 16px 12px;
             text-align: center;
-            background: #000;
-            color: #fff;
-            border: none;
+        }
+        
+        .square-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .update-date {
             font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 10px 10px 0 0;
-            margin: 0 5px;
-        }
-        
-        .tab-button.active {
-            background: #151515;
-            color: #4cd964;
-            border-bottom: 3px solid #4cd964;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
+            color: #888888;
+            font-weight: 500;
         }
         
         .usd-rates-container {
@@ -220,39 +204,11 @@
             margin-right: 20px;
         }
         
-        /* تأثير الضباب على الصور */
-        .currency-flag::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            z-index: 2;
-            transition: all 0.8s ease;
-            border-radius: 12px;
-        }
-        
-        .currency-flag.loaded::before {
-            opacity: 0;
-            backdrop-filter: blur(0);
-        }
-        
         .currency-flag img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.8s ease;
             border-radius: 12px;
-        }
-        
-        .currency-flag img.loaded {
-            opacity: 1;
         }
         
         .currency-names {
@@ -306,7 +262,6 @@
             margin-left: 25px;
         }
         
-        /* زيادة المسافات بين المستطيلات */
         .rate-box {
             padding: 15px 20px;
             border-radius: 12px;
@@ -329,7 +284,6 @@
         .rate-box:nth-child(1) { animation-delay: 0.2s; }
         .rate-box:nth-child(2) { animation-delay: 0.25s; }
         
-        /* تكبير حجم السعر داخل المستطيل */
         .rate-box-value {
             font-size: 32px;
             font-weight: 900;
@@ -361,17 +315,6 @@
             min-width: 120px;
         }
         
-        .official-rate-box {
-            background: linear-gradient(135deg, #1e3a8a, #3730a3);
-            color: white;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-            min-width: 120px;
-            min-height: 70px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        
         .rate-label {
             font-size: 12px;
             opacity: 0.9;
@@ -384,28 +327,6 @@
         .rate-box:hover {
             transform: translateY(-4px) translateX(0);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-        }
-        
-        .update-header {
-            padding: 25px;
-            background: #000000;
-            border-bottom: 1px solid #333;
-            text-align: center;
-            font-size: 18px;
-            color: white;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        
-        .update-card {
-            background: #000;
-            padding: 25px;
-            margin: 0;
-            border-bottom: 1px solid #333;
-            text-align: center;
-            font-size: 18px;
-            color: #fff;
-            font-weight: 600;
         }
         
         .copyright {
@@ -440,12 +361,6 @@
             }
             
             .rate-box {
-                padding: 18px 25px;
-                min-width: 130px;
-                min-height: 80px;
-            }
-            
-            .official-rate-box {
                 padding: 18px 25px;
                 min-width: 130px;
                 min-height: 80px;
@@ -510,310 +425,539 @@
                 height: 60px;
             }
             
-            .tab-buttons {
-                padding: 0 10px;
-            }
-            
-            .tab-button {
-                padding: 14px 10px;
-                font-size: 14px;
+            .square-title {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container" id="mainContainer">
-        <div class="tab-buttons">
-            <button class="tab-button active" id="squareTab">Square</button>
-            <button class="tab-button" id="officialTab">Official</button>
+        <!-- Header -->
+        <div class="header">
+            <h1 class="square-title">Square</h1>
+            <div class="update-date">Last Update 2025-11-18</div>
         </div>
         
-        <!-- Square Tab Content -->
-        <div class="tab-content active" id="squareContent">
-            <div class="update-header">Last Update 2025-11-18</div>
-            
-            <!-- بطاقات أسعار USD لـ Square -->
-            <div class="usd-rates-container">
-                <div class="usd-rates-card">
-                    <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
-                            <div class="rate-info">
-                                <div class="rate-value">1.1595</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon">
-                            <div class="rate-info">
-                                <div class="rate-value">1.2434</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+        <!-- بطاقات أسعار USD -->
+        <div class="usd-rates-container">
+            <div class="usd-rates-card">
+                <div class="rate-pair">
+                    <div class="rate-content">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.1595</div>
+                            <div class="currency-code-small">USD</div>
                         </div>
                     </div>
                 </div>
-                <div class="usd-rates-card">
-                    <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
-                            <div class="rate-info">
-                                <div class="rate-value">1.3236</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon">
-                            <div class="rate-info">
-                                <div class="rate-value">1.7120</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
+                <div class="rate-pair">
+                    <div class="rate-content">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.2434</div>
+                            <div class="currency-code-small">USD</div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="currency-list" id="square-currency-list">
-                <!-- سيتم ملء العملات تلقائياً بواسطة JavaScript -->
+            <div class="usd-rates-card">
+                <div class="rate-pair">
+                    <div class="rate-content">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.3236</div>
+                            <div class="currency-code-small">USD</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rate-pair">
+                    <div class="rate-content">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon">
+                        <div class="rate-info">
+                            <div class="rate-value">1.7120</div>
+                            <div class="currency-code-small">USD</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <!-- Official Tab Content -->
-        <div class="tab-content" id="officialContent">
-            <div class="update-card">Last Update 2025-11-18</div>
-            
-            <!-- بطاقات أسعار USD لـ Official -->
-            <div class="usd-rates-container">
-                <div class="usd-rates-card">
-                    <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
-                            <div class="rate-info">
-                                <div class="rate-value">1.1595</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
-                        </div>
+        <!-- قائمة العملات الكاملة -->
+        <div class="currency-list">
+            <!-- EUR -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png" alt="EUR">
                     </div>
-                    <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon">
-                            <div class="rate-info">
-                                <div class="rate-value">1.2434</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
-                        </div>
+                    <div class="currency-names">
+                        <div class="currency-code">EUR <span class="up-arrow">▲</span></div>
+                        <div class="currency-full-name">Euro</div>
                     </div>
                 </div>
-                <div class="usd-rates-card">
-                    <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
-                            <div class="rate-info">
-                                <div class="rate-value">1.3236</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
-                        </div>
+                <div class="currency-rates">
+                    <div class="rate-box sell-box">
+                        <div class="rate-box-value">284</div>
+                        <div class="rate-label">SELL</div>
                     </div>
-                    <div class="rate-pair">
-                        <div class="rate-content">
-                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon">
-                            <div class="rate-info">
-                                <div class="rate-value">1.7120</div>
-                                <div class="currency-code-small">USD</div>
-                            </div>
-                        </div>
+                    <div class="rate-box buy-box">
+                        <div class="rate-box-value">301</div>
+                        <div class="rate-label">BUY</div>
                     </div>
                 </div>
             </div>
             
-            <div class="currency-list" id="official-currency-list">
-                <!-- سيتم ملء العملات تلقائياً بواسطة JavaScript -->
+            <!-- USD -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png" alt="USD">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">USD <span class="down-arrow">▼</span></div>
+                        <div class="currency-full-name">US Dollar</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box sell-box">
+                        <div class="rate-box-value">244</div>
+                        <div class="rate-label">SELL</div>
+                    </div>
+                    <div class="rate-box buy-box">
+                        <div class="rate-box-value">246</div>
+                        <div class="rate-label">BUY</div>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="copyright">
-            © 2025 Square Market 
-        </div>
-    </div>
-
-    <script>
-        // العملات الخاصة (لها مستطيلان أخضر وأحمر)
-        const specialCurrencies = ['EUR', 'USD', 'CAD', 'GBP', 'CHF', 'AUD'];
-
-        // بيانات العملات الكاملة (27 عملة) مع التصحيح
-        const squareExchangeRates = [
-            { code: 'EUR', buy: 301, sell: 284, trending: true, arrow: 'up', fullName: 'Euro' },
-            { code: 'USD', buy: 246, sell: 244, trending: true, arrow: 'down', fullName: 'US Dollar' },
-            { code: 'GBP', buy: 318, sell: 315, trending: true, arrow: 'up', fullName: 'British Pound' },
-            { code: 'CAD', buy: 164, sell: 161, trending: true, arrow: 'down', fullName: 'Canadian Dollar' },
-            { code: 'AUD', buy: 155, sell: 158, trending: true, arrow: 'down', fullName: 'Australian Dollar' },
-            { code: 'CHF', buy: 295, sell: 297, trending: true, arrow: 'up', fullName: 'Swiss Franc' },
-            { code: 'DKK', buy: 36.5, sell: 37.2, trending: false, arrow: 'none', fullName: 'Danish Krone' },
-            { code: 'SEK', buy: 22.8, sell: 23.5, trending: false, arrow: 'none', fullName: 'Swedish Krona' },
-            { code: 'NOK', buy: 22.1, sell: 22.8, trending: false, arrow: 'none', fullName: 'Norwegian Krone' },
-            { code: 'ISK', buy: 1.7, sell: 1.8, trending: false, arrow: 'none', fullName: 'Icelandic Króna' },
-            { code: 'TRY', buy: 5.5, sell: 6.5, trending: false, arrow: 'none', fullName: 'Turkish Lira' },
-            { code: 'CNY', buy: 33, sell: 34, trending: false, arrow: 'none', fullName: 'Chinese Yuan' },
-            { code: 'RUB', buy: 2.6, sell: 2.8, trending: false, arrow: 'none', fullName: 'Russian Ruble' },
-            { code: 'JPY', buy: 1.58, sell: 1.7, trending: false, arrow: 'none', fullName: 'Japanese Yen' },
-            { code: 'KRW', buy: 0.18, sell: 0.2, trending: false, arrow: 'none', fullName: 'Korean Won' },
-            { code: 'INR', buy: 2.85, sell: 3.05, trending: false, arrow: 'none', fullName: 'Indian Rupee' },
-            { code: 'MYR', buy: 50.25, sell: 53, trending: false, arrow: 'none', fullName: 'Malaysian Ringgit' },
-            { code: 'ZAR', buy: 15, sell: 13, trending: false, arrow: 'none', fullName: 'South African Rand' },
-            { code: 'BRL', buy: 5.26, sell: 5.6, trending: false, arrow: 'none', fullName: 'Brazilian Real' },
-            { code: 'MXN', buy: 13, sell: 14, trending: false, arrow: 'none', fullName: 'Mexican Peso' },
-            { code: 'ARS', buy: 256, sell: 468, trending: false, arrow: 'none', fullName: 'Argentine Peso' },
-            { code: 'MAD', buy: 7.69, sell: 8.2, trending: false, arrow: 'none', fullName: 'Moroccan Dirham' },
-            { code: 'TND', buy: 2.33, sell: 2.5, trending: false, arrow: 'none', fullName: 'Tunisian Dinar' },
-            { code: 'EGP', buy: 26, sell: 28, trending: false, arrow: 'none', fullName: 'Egyptian Pound' },
-            { code: 'SAR', buy: 36.2, sell: 38.5, trending: false, arrow: 'none', fullName: 'Saudi Riyal' },
-            { code: 'QAR', buy: 4.17, sell: 4.45, trending: false, arrow: 'none', fullName: 'Qatari Riyal' },
-            { code: 'AED', buy: 37.15, sell: 39.8, trending: false, arrow: 'none', fullName: 'UAE Dirham' }
-        ];
-
-        // بيانات العملات الرسمية
-        const officialExchangeRates = [
-            { code: 'EUR', rate: 151, fullName: 'Euro' },
-            { code: 'USD', rate: 130, fullName: 'US Dollar' },
-            { code: 'GBP', rate: 171, fullName: 'British Pound' },
-            { code: 'CAD', rate: 93, fullName: 'Canadian Dollar' },
-            { code: 'CHF', rate: 148, fullName: 'Swiss Franc' },
-            { code: 'AUD', rate: 87, fullName: 'Australian Dollar' },
-            { code: 'DKK', rate: 37, fullName: 'Danish Krone' },
-            { code: 'SEK', rate: 23, fullName: 'Swedish Krona' },
-            { code: 'NOK', rate: 22, fullName: 'Norwegian Krone' },
-            { code: 'TRY', rate: 6, fullName: 'Turkish Lira' },
-            { code: 'CNY', rate: 33, fullName: 'Chinese Yuan' },
-            { code: 'JPY', rate: 1.6, fullName: 'Japanese Yen' },
-            { code: 'KRW', rate: 0.19, fullName: 'Korean Won' },
-            { code: 'INR', rate: 3, fullName: 'Indian Rupee' },
-            { code: 'MYR', rate: 51, fullName: 'Malaysian Ringgit' },
-            { code: 'ZAR', rate: 14, fullName: 'South African Rand' },
-            { code: 'BRL', rate: 5.4, fullName: 'Brazilian Real' },
-            { code: 'MXN', rate: 13.5, fullName: 'Mexican Peso' },
-            { code: 'ARS', rate: 360, fullName: 'Argentine Peso' },
-            { code: 'MAD', rate: 7.9, fullName: 'Moroccan Dirham' },
-            { code: 'TND', rate: 2.4, fullName: 'Tunisian Dinar' },
-            { code: 'EGP', rate: 27, fullName: 'Egyptian Pound' },
-            { code: 'SAR', rate: 37, fullName: 'Saudi Riyal' },
-            { code: 'QAR', rate: 4.3, fullName: 'Qatari Riyal' },
-            { code: 'AED', rate: 38, fullName: 'UAE Dirham' }
-        ];
-
-        // روابط الصور الكاملة من المستودع
-        const flagImages = {
-            'EUR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png',
-            'USD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png',
-            'GBP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png',
-            'CHF': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chf.png',
-            'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-cad.png',
-            'AUD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png',
-            'TRY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-try.png',
-            'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-cny.png',
-            'BRL': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-brl.png',
-            'MXN': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-mxn.png',
-            'ARS': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/110-currency-ars.png',
-            'RUB': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-rub.png',
-            'ZAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/112-currency-zar.png',
-            'JPY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-jpy.png',
-            'KRW': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-krw.png',
-            'INR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/115-currency-inr.png',
-            'HKD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/116-currency-hkd.png',
-            'MYR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/117-currency-myr.png',
-            'MAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-mad.png',
-            'EGP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/119-currency-egp.png',
-            'TND': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/120-currency-tnd.png',
-            'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/121-currency-sar.png',
-            'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/122-currency-qar.png',
-            'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/123-currency-aed.png',
-            'DKK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png',
-            'SEK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png',
-            'NOK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chf.png',
-            'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png'
-        };
-
-        // دالة لتحميل الصور مع تأثير الضباب
-        function loadImageWithFog(imgElement) {
-            const flagContainer = imgElement.parentElement;
             
-            // إذا كانت الصورة محملة مسبقاً
-            if (imgElement.complete) {
-                setTimeout(() => {
-                    imgElement.classList.add('loaded');
-                    flagContainer.classList.add('loaded');
-                }, 300);
-                return;
-            }
+            <!-- GBP -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png" alt="GBP">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">GBP <span class="up-arrow">▲</span></div>
+                        <div class="currency-full-name">British Pound</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box sell-box">
+                        <div class="rate-box-value">315</div>
+                        <div class="rate-label">SELL</div>
+                    </div>
+                    <div class="rate-box buy-box">
+                        <div class="rate-box-value">318</div>
+                        <div class="rate-label">BUY</div>
+                    </div>
+                </div>
+            </div>
             
-            // عندما يتم تحميل الصورة
-            imgElement.onload = () => {
-                setTimeout(() => {
-                    imgElement.classList.add('loaded');
-                    flagContainer.classList.add('loaded');
-                }, 300);
-            };
+            <!-- CAD -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-cad.png" alt="CAD">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">CAD <span class="down-arrow">▼</span></div>
+                        <div class="currency-full-name">Canadian Dollar</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box sell-box">
+                        <div class="rate-box-value">161</div>
+                        <div class="rate-label">SELL</div>
+                    </div>
+                    <div class="rate-box buy-box">
+                        <div class="rate-box-value">164</div>
+                        <div class="rate-label">BUY</div>
+                    </div>
+                </div>
+            </div>
             
-            // إذا حدث خطأ في التحميل
-            imgElement.onerror = () => {
-                setTimeout(() => {
-                    imgElement.classList.add('loaded');
-                    flagContainer.classList.add('loaded');
-                }, 300);
-            };
-        }
-
-        // دالة لإنشاء قائمة العملات
-        function createCurrencyList() {
-            const squareList = document.getElementById('square-currency-list');
-            const officialList = document.getElementById('official-currency-list');
+            <!-- AUD -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png" alt="AUD">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">AUD <span class="down-arrow">▼</span></div>
+                        <div class="currency-full-name">Australian Dollar</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box sell-box">
+                        <div class="rate-box-value">158</div>
+                        <div class="rate-label">SELL</div>
+                    </div>
+                    <div class="rate-box buy-box">
+                        <div class="rate-box-value">155</div>
+                        <div class="rate-label">BUY</div>
+                    </div>
+                </div>
+            </div>
             
-            // مسح المحتوى القديم
-            squareList.innerHTML = '';
-            officialList.innerHTML = '';
+            <!-- CHF -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chf.png" alt="CHF">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">CHF <span class="up-arrow">▲</span></div>
+                        <div class="currency-full-name">Swiss Franc</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box sell-box">
+                        <div class="rate-box-value">297</div>
+                        <div class="rate-label">SELL</div>
+                    </div>
+                    <div class="rate-box buy-box">
+                        <div class="rate-box-value">295</div>
+                        <div class="rate-label">BUY</div>
+                    </div>
+                </div>
+            </div>
             
-            // إنشاء قائمة Square (27 عملة)
-            squareExchangeRates.forEach((currency, index) => {
-                const item = createSquareCurrencyItem(currency, index);
-                squareList.appendChild(item);
-                
-                // تحميل الصورة مع تأثير الضباب
-                setTimeout(() => {
-                    const img = item.querySelector('.currency-flag img');
-                    if (img) {
-                        loadImageWithFog(img);
-                    }
-                }, index * 50);
-            });
+            <!-- DKK -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png" alt="DKK">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">DKK</div>
+                        <div class="currency-full-name">Danish Krone</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">37.2</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
             
-            // إنشاء قائمة Official (25 عملة)
-            officialExchangeRates.forEach((currency, index) => {
-                const item = createOfficialCurrencyItem(currency, index);
-                officialList.appendChild(item);
-                
-                // تحميل الصورة مع تأثير الضباب
-                setTimeout(() => {
-                    const img = item.querySelector('.currency-flag img');
-                    if (img) {
-                        loadImageWithFog(img);
-                    }
-                }, index * 50);
-            });
-        }
-
-        // دالة لإنشاء عنصر عملة لـ Square
-        function createSquareCurrencyItem(currency, index) {
-            const item = document.createElement('div');
-            item.className = 'currency-item';
+            <!-- SEK -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png" alt="SEK">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">SEK</div>
+                        <div class="currency-full-name">Swedish Krona</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">23.5</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
             
-            const imageUrl = flagImages[currency.code] || flagImages['USD'];
-            const isSpecialCurrency = specialCurrencies.includes(currency.code);
+            <!-- NOK -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chf.png" alt="NOK">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">NOK</div>
+                        <div class="currency-full-name">Norwegian Krone</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">22.8</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
             
-            let trendingHtml = '';
-            if (currency.trending) {
-                let arrowHtml = '';
-                if (currency.arrow === 'up') {
-                    arrowHtml = '<span class="up-arrow">▲</span>';
-                }
+            <!-- ISK -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png" alt="ISK">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">ISK</div>
+                        <div class="currency-full-name">Icelandic Króna</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">1.8</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TRY -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-try.png" alt="TRY">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">TRY</div>
+                        <div class="currency-full-name">Turkish Lira</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">6.5</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CNY -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-cny.png" alt="CNY">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">CNY</div>
+                        <div class="currency-full-name">Chinese Yuan</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">34</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RUB -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-rub.png" alt="RUB">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">RUB</div>
+                        <div class="currency-full-name">Russian Ruble</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">2.8</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- JPY -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-jpy.png" alt="JPY">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">JPY</div>
+                        <div class="currency-full-name">Japanese Yen</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">1.7</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- KRW -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-krw.png" alt="KRW">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">KRW</div>
+                        <div class="currency-full-name">Korean Won</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">0.2</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- INR -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/115-currency-inr.png" alt="INR">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">INR</div>
+                        <div class="currency-full-name">Indian Rupee</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">3.05</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MYR -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/117-currency-myr.png" alt="MYR">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">MYR</div>
+                        <div class="currency-full-name">Malaysian Ringgit</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">53</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ZAR -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/112-currency-zar.png" alt="ZAR">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">ZAR</div>
+                        <div class="currency-full-name">South African Rand</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">13</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BRL -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-brl.png" alt="BRL">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">BRL</div>
+                        <div class="currency-full-name">Brazilian Real</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">5.6</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MXN -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-mxn.png" alt="MXN">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">MXN</div>
+                        <div class="currency-full-name">Mexican Peso</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">14</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ARS -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/110-currency-ars.png" alt="ARS">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">ARS</div>
+                        <div class="currency-full-name">Argentine Peso</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">468</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MAD -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-mad.png" alt="MAD">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">MAD</div>
+                        <div class="currency-full-name">Moroccan Dirham</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">8.2</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TND -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/120-currency-tnd.png" alt="TND">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">TND</div>
+                        <div class="currency-full-name">Tunisian Dinar</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">2.5</div>
+                        <div class="rate-label">RATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- EGP -->
+            <div class="currency-item">
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/119-currency-egp.png" alt="EGP">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">EGP</div>
+                        <div class="currency-full-name">Egyptian Pound</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box single-red-box">
+                        <div class="rate-box-value">28</div>
+                        <div class="rate-label">RATE</div>
