@@ -105,13 +105,43 @@
             flex: 1;
         }
         
-        /* تصغير حجم الأيقونات في الأعلى */
+        /* تعديل الأيقونات لتكون مستطيلة وليست دائرية */
         .currency-icon {
-            width: 40px;
+            width: 60px;
             height: 40px;
-            border-radius: 50%;
+            border-radius: 8px;
             object-fit: cover;
             flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+        
+        /* إضافة تأثير الضباب على الصور */
+        .currency-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: fogAnimation 3s infinite;
+            z-index: 1;
+        }
+        
+        .currency-icon:hover {
+            transform: scale(1.05);
+        }
+        
+        @keyframes fogAnimation {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
         }
         
         .rate-info {
@@ -166,37 +196,48 @@
             flex: 1;
         }
         
-        /* إزالة الحدود من الدوائر تماماً */
+        /* تعديل الأيقونات للعملات في القائمة لتكون مستطيلة */
         .currency-flag {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
+            width: 70px;
+            height: 40px;
+            border-radius: 8px;
             margin-right: 12px;
-            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             background: transparent;
-            color: #fff;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
             position: relative;
             flex-shrink: 0;
-            box-shadow: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             overflow: hidden;
+            transition: transform 0.3s ease;
         }
-
-        .currency-flag.red-border {
-            border: none;
-            box-shadow: none;
+        
+        /* تأثير الضباب على أيقونات القائمة */
+        .currency-flag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: fogAnimation 3s infinite;
+            animation-delay: calc(var(--i, 0) * 0.2s);
+            z-index: 1;
+        }
+        
+        .currency-flag:hover {
+            transform: scale(1.05);
         }
         
         .currency-flag img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
+            border-radius: 8px;
+            position: relative;
+            z-index: 2;
         }
         
         .currency-names {
@@ -388,12 +429,20 @@
             width: 0%;
             transition: width 0.3s ease;
         }
+        
+        /* تحسينات لتحميل الصور السريع */
+        .preload-images {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="loading-bar">
         <div class="loading-progress" id="loadingProgress"></div>
     </div>
+    
+    <!-- قسم لتحميل الصور مسبقاً لزيادة السرعة -->
+    <div class="preload-images"></div>
     
     <div class="container">
         <div class="tab-buttons">
@@ -589,8 +638,21 @@
             'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png'
         };
 
+        // دالة لتحميل الصور مسبقاً لزيادة السرعة
+        function preloadImages() {
+            const preloadContainer = document.querySelector('.preload-images');
+            const uniqueImages = [...new Set(Object.values(flagImages))];
+            
+            uniqueImages.forEach(imageUrl => {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.style.display = 'none';
+                preloadContainer.appendChild(img);
+            });
+        }
+
         // دالة لإنشاء عنصر عملة لـ Square
-        function createSquareCurrencyItem(currency) {
+        function createSquareCurrencyItem(currency, index) {
             const item = document.createElement('div');
             item.className = 'currency-item';
             
@@ -637,7 +699,7 @@
             
             item.innerHTML = `
                 <div class="currency-info">
-                    <div class="currency-flag">
+                    <div class="currency-flag" style="--i: ${index}">
                         <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png'">
                     </div>
                     <div class="currency-names">
@@ -652,7 +714,7 @@
         }
 
         // دالة لإنشاء عنصر عملة لـ Official
-        function createOfficialCurrencyItem(currency) {
+        function createOfficialCurrencyItem(currency, index) {
             const item = document.createElement('div');
             item.className = 'currency-item';
             
@@ -660,7 +722,7 @@
             
             item.innerHTML = `
                 <div class="currency-info">
-                    <div class="currency-flag">
+                    <div class="currency-flag" style="--i: ${index}">
                         <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png'">
                     </div>
                     <div class="currency-names">
@@ -687,15 +749,27 @@
             squareCurrencyList.innerHTML = '';
             officialCurrencyList.innerHTML = '';
             
-            squareExchangeRates.forEach((currency) => {
-                const item = createSquareCurrencyItem(currency);
+            // تحديث شريط التحميل بشكل تدريجي
+            loadingProgress.style.width = '20%';
+            
+            squareExchangeRates.forEach((currency, index) => {
+                const item = createSquareCurrencyItem(currency, index);
                 squareCurrencyList.appendChild(item);
+                
+                // تحديث شريط التحميل
+                if (index % 5 === 0) {
+                    loadingProgress.style.width = `${20 + (index / squareExchangeRates.length * 40)}%`;
+                }
             });
             
-            officialExchangeRates.forEach((currency) => {
-                const item = createOfficialCurrencyItem(currency);
+            loadingProgress.style.width = '60%';
+            
+            officialExchangeRates.forEach((currency, index) => {
+                const item = createOfficialCurrencyItem(currency, index);
                 officialCurrencyList.appendChild(item);
             });
+            
+            loadingProgress.style.width = '80%';
             
             setTimeout(() => {
                 const squareItems = document.querySelectorAll('#squareContent .currency-item');
@@ -704,13 +778,13 @@
                 squareItems.forEach((item, index) => {
                     setTimeout(() => {
                         item.classList.add('visible');
-                    }, 50 * index);
+                    }, 30 * index); // تقليل التأخير لزيادة السرعة
                 });
                 
                 officialItems.forEach((item, index) => {
                     setTimeout(() => {
                         item.classList.add('visible');
-                    }, 50 * index);
+                    }, 30 * index); // تقليل التأخير لزيادة السرعة
                 });
                 
                 setTimeout(() => {
@@ -721,7 +795,7 @@
                             document.querySelector('.loading-bar').style.display = 'none';
                         }, 300);
                     }, 200);
-                }, 50 * Math.max(squareItems.length, officialItems.length));
+                }, 30 * Math.max(squareItems.length, officialItems.length));
             }, 100);
         }
 
@@ -746,8 +820,13 @@
 
         // تشغيل الدالة عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
+            // تحميل الصور مسبقاً
+            preloadImages();
+            
+            // إنشاء قائمة العملات
             createCurrencyList();
             
+            // إضافة مستمعي الأحداث للتبويبات
             document.getElementById('squareTab').addEventListener('click', function() {
                 switchTab('square');
             });
@@ -756,7 +835,20 @@
                 switchTab('official');
             });
         });
+        
+        // تحسين تحميل الصور من خلال استخدام خاصية lazy loading
+        if ('loading' in HTMLImageElement.prototype) {
+            // المتصفح يدعم lazy loading
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        } else {
+            // المتصفح لا يدعم lazy loading - استخدام polyfill
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+            document.body.appendChild(script);
+        }
     </script>
 </body>
 </html>
-
