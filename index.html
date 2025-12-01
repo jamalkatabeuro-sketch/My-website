@@ -303,70 +303,79 @@
             flex: 1;
         }
         
-        /* تعديل حجم صندوق الأسعار ليكون أكبر */
+        /* تعديل حجم صندوق الأسعار ليكون أصغر كما كان سابقاً */
         .rate-box {
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 8px;
             font-weight: 700;
             text-align: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
-            min-width: 80px;
+            min-width: 70px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
         
-        /* ألوان Square - زيادة الحجم */
-        .sell-box {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.5);
-            min-width: 85px;
-            min-height: 50px;
-        }
-        
-        .buy-box {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
-            min-width: 85px;
-            min-height: 50px;
-        }
-
-        /* مستطيل أحمر مركزي للعملات الأخرى - زيادة الحجم */
-        .single-red-box {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
-            min-width: 90px;
-            min-height: 50px;
-        }
-        
-        /* ألوان Official - زيادة الحجم */
-        .official-rate-box {
-            background: linear-gradient(135deg, #1e3a8a, #3730a3);
-            color: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            min-width: 90px;
-            min-height: 50px;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        
-        /* زيادة حجم النص داخل الصناديق */
+        /* إضافة الحواف السوداء الرقيقة على الأرقام */
         .rate-box-value {
-            font-size: 18px;
-            font-weight: 800;
+            font-size: 22px; /* تكبير حجم السعر */
+            font-weight: 900;
             line-height: 1.2;
+            text-shadow: 
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000,
+                0 0 2px rgba(0, 0, 0, 0.8); /* حواف سوداء رقيقة */
+            letter-spacing: 0.5px;
         }
         
         .rate-label {
             font-size: 9px;
             opacity: 0.8;
             font-weight: 500;
+            text-shadow: none;
+        }
+        
+        /* ألوان Square - حجم أصغر كما كان سابقاً */
+        .sell-box {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.5);
+            min-width: 75px;
+            min-height: 45px;
+        }
+        
+        .buy-box {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
+            min-width: 75px;
+            min-height: 45px;
+        }
+
+        /* مستطيل أحمر مركزي للعملات الأخرى - حجم أصغر */
+        .single-red-box {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
+            min-width: 80px;
+            min-height: 45px;
+        }
+        
+        /* ألوان Official - حجم أصغر */
+        .official-rate-box {
+            background: linear-gradient(135deg, #1e3a8a, #3730a3);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            min-width: 80px;
+            min-height: 45px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
         
         .rate-box:hover {
@@ -413,17 +422,17 @@
             }
             
             .rate-box {
-                padding: 12px 18px;
-                min-width: 100px;
+                padding: 10px 15px;
+                min-width: 85px;
             }
             
             .official-rate-box {
-                padding: 12px 18px;
-                min-width: 100px;
+                padding: 10px 15px;
+                min-width: 85px;
             }
             
             .rate-box-value {
-                font-size: 20px;
+                font-size: 24px; /* حجم أكبر على الشاشات الكبيرة */
             }
             
             .currency-full-name {
@@ -431,8 +440,8 @@
             }
             
             .sell-box, .buy-box, .single-red-box {
-                min-width: 100px;
-                min-height: 55px;
+                min-width: 85px;
+                min-height: 50px;
             }
         }
         
@@ -452,8 +461,6 @@
     </style>
 </head>
 <body>
-    <!-- تمت إزالة دائرة التدوير -->
-    
     <div class="container" id="mainContainer">
         <div class="tab-buttons">
             <button class="tab-button active" id="squareTab">Square</button>
