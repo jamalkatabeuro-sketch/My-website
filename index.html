@@ -32,12 +32,11 @@
             display: flex;
             background: #000;
             border-bottom: 1px solid #333;
-            padding: 0 10px;
         }
         
         .tab-button {
             flex: 1;
-            padding: 15px;
+            padding: 12px;
             text-align: center;
             background: #000;
             color: #fff;
@@ -46,14 +45,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 0 5px;
-            border-radius: 8px 8px 0 0;
         }
         
         .tab-button.active {
             background: #151515;
             color: #4cd964;
-            border-bottom: 2px solid #4cd964;
         }
         
         .tab-content {
@@ -66,19 +62,18 @@
         
         .usd-rates-container {
             display: flex;
-            padding: 20px;
+            padding: 15px;
             background: #000;
             border-bottom: 1px solid #333;
             position: relative;
-            gap: 20px;
         }
         
         /* إضافة الخط العمودي في المنتصف */
         .usd-rates-container::after {
             content: '';
             position: absolute;
-            top: 20px;
-            bottom: 20px;
+            top: 15px;
+            bottom: 15px;
             left: 50%;
             width: 1px;
             background: #333;
@@ -95,8 +90,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 0;
-            gap: 15px;
+            padding: 12px 0;
+            gap: 10px;
         }
         
         .rate-pair:not(:last-child) {
@@ -106,36 +101,34 @@
         .rate-content {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             flex: 1;
         }
         
         .currency-icon {
-            width: 70px;
-            height: 50px;
-            border-radius: 10px;
+            width: 60px;
+            height: 40px;
+            border-radius: 8px;
             object-fit: cover;
             flex-shrink: 0;
-            margin-right: 10px;
         }
         
         .rate-info {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 5px;
-            flex: 1;
+            gap: 2px;
         }
         
         .rate-value {
             color: #fff;
-            font-size: 16px;
-            font-weight: 700;
+            font-size: 14px;
+            font-weight: 600;
         }
         
         .currency-code-small {
             color: #888;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
         }
         
@@ -145,68 +138,62 @@
         }
         
         .currency-item {
-            padding: 20px;
+            padding: 12px 15px;
             border-bottom: 1px solid #333;
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: #000;
             transition: all 0.3s ease;
-            margin: 10px 15px;
-            border-radius: 12px;
         }
         
         .currency-item:hover {
             background: #151515;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .currency-info {
             display: flex;
             align-items: center;
             flex: 1;
-            gap: 20px;
         }
         
         .currency-flag {
-            width: 90px;
-            height: 60px;
-            border-radius: 10px;
+            width: 70px;
+            height: 40px;
+            border-radius: 8px;
+            margin-right: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: transparent;
             position: relative;
             flex-shrink: 0;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            margin-right: 15px;
         }
         
         .currency-flag img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 8px;
         }
         
         .currency-names {
             flex: 1;
-            margin-right: 20px;
         }
         
         .currency-code {
-            font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
         
         .currency-full-name {
-            font-size: 14px;
+            font-size: 11px;
             color: #888;
             font-weight: 400;
             white-space: nowrap;
@@ -217,50 +204,46 @@
         .trending-indicator {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .up-arrow {
             color: #10b981;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .down-arrow {
             color: #ef4444;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .currency-rates {
             display: flex;
-            gap: 15px;
+            gap: 8px;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
             flex: 1;
-            margin-left: 20px;
         }
         
-        /* زيادة المسافات بين المستطيلات */
         .rate-box {
-            padding: 12px 15px;
-            border-radius: 10px;
-            font-weight: 800;
+            padding: 6px 8px;
+            border-radius: 8px;
+            font-weight: 700;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
-            min-width: 90px;
-            min-height: 60px;
+            min-width: 65px;
+            min-height: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 0 5px;
         }
         
-        /* تكبير حجم السعر داخل المستطيل */
         .rate-box-value {
-            font-size: 28px;
+            font-size: 22px;
             font-weight: 900;
             line-height: 1.1;
             text-shadow: 
@@ -268,72 +251,68 @@
                 1px -1px 0 #000,
                 -1px 1px 0 #000,
                 1px 1px 0 #000;
-            letter-spacing: 1px;
         }
         
         .sell-box {
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.6);
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.5);
         }
         
         .buy-box {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
-            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6);
+            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
         }
 
         .single-red-box {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
-            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6);
-            min-width: 100px;
+            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
+            min-width: 70px;
         }
         
         .official-rate-box {
             background: linear-gradient(135deg, #1e3a8a, #3730a3);
             color: white;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            min-width: 100px;
-            min-height: 60px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            min-width: 70px;
+            min-height: 40px;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 1px;
         }
         
         .rate-label {
-            font-size: 11px;
-            opacity: 0.9;
-            font-weight: 600;
+            font-size: 9px;
+            opacity: 0.8;
+            font-weight: 500;
             text-shadow: none;
-            letter-spacing: 0.5px;
         }
         
         .rate-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
         
         .update-header {
-            padding: 20px;
+            padding: 15px;
             background: #000000;
             border-bottom: 1px solid #333;
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
             color: white;
             font-weight: 600;
-            letter-spacing: 1px;
         }
         
         .update-card {
             background: #000;
-            padding: 20px;
+            padding: 12px;
             margin: 0;
             border-bottom: 1px solid #333;
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
             color: #fff;
-            font-weight: 600;
         }
         
         .copyright {
@@ -341,9 +320,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 15px;
+            padding: 10px;
             text-align: center;
-            font-size: 12px;
+            font-size: 10px;
             color: #666;
             border-top: 1px solid #333;
             background: #1a1a1a;
@@ -351,79 +330,25 @@
         
         @media (min-width: 768px) {
             .currency-item {
-                padding: 25px;
-                margin: 15px 20px;
+                padding: 15px;
             }
             
             .rate-box {
-                padding: 15px 20px;
-                min-width: 110px;
-                min-height: 70px;
+                padding: 8px 10px;
+                min-width: 75px;
             }
             
             .official-rate-box {
-                padding: 15px 20px;
-                min-width: 110px;
-                min-height: 70px;
-            }
-            
-            .rate-box-value {
-                font-size: 32px;
-            }
-            
-            .currency-full-name {
-                font-size: 15px;
-            }
-            
-            .currency-flag {
-                width: 100px;
-                height: 70px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .currency-item {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 20px;
-                padding: 25px 20px;
-                margin: 10px;
-            }
-            
-            .currency-info {
-                width: 100%;
-            }
-            
-            .currency-rates {
-                width: 100%;
-                justify-content: center;
-                margin-left: 0;
-                gap: 10px;
-            }
-            
-            .rate-box {
-                flex: 1;
-                min-width: auto;
-                padding: 15px 10px;
-                min-height: 55px;
+                padding: 8px 10px;
+                min-width: 75px;
             }
             
             .rate-box-value {
                 font-size: 24px;
             }
             
-            .usd-rates-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .usd-rates-container::after {
-                display: none;
-            }
-            
-            .currency-flag {
-                width: 80px;
-                height: 55px;
+            .currency-full-name {
+                font-size: 12px;
             }
         }
     </style>
@@ -591,20 +516,28 @@
             const squareList = document.getElementById('square-currency-list');
             const officialList = document.getElementById('official-currency-list');
             
-            // مسح المحتوى القديم
-            squareList.innerHTML = '';
-            officialList.innerHTML = '';
-            
             // إنشاء قائمة Square
             squareExchangeRates.forEach((currency, index) => {
                 const item = createSquareCurrencyItem(currency, index);
                 squareList.appendChild(item);
+                
+                // إضافة تأثير الظهور التدريجي
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 50);
             });
             
             // إنشاء قائمة Official
             officialExchangeRates.forEach((currency, index) => {
                 const item = createOfficialCurrencyItem(currency, index);
                 officialList.appendChild(item);
+                
+                // إضافة تأثير الظهور التدريجي
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 50);
             });
         }
 
@@ -612,6 +545,9 @@
         function createSquareCurrencyItem(currency, index) {
             const item = document.createElement('div');
             item.className = 'currency-item';
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(10px)';
+            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
             
             const imageUrl = flagImages[currency.code] || flagImages['USD'];
             const isSpecialCurrency = specialCurrencies.includes(currency.code);
@@ -638,11 +574,9 @@
                     <div class="currency-rates">
                         <div class="rate-box sell-box">
                             <div class="rate-box-value">${currency.sell}</div>
-                            <div class="rate-label">SELL</div>
                         </div>
                         <div class="rate-box buy-box">
                             <div class="rate-box-value">${currency.buy}</div>
-                            <div class="rate-label">BUY</div>
                         </div>
                     </div>
                 `;
@@ -651,7 +585,6 @@
                     <div class="currency-rates">
                         <div class="rate-box single-red-box">
                             <div class="rate-box-value">${currency.sell}</div>
-                            <div class="rate-label">RATE</div>
                         </div>
                     </div>
                 `;
@@ -677,6 +610,9 @@
         function createOfficialCurrencyItem(currency, index) {
             const item = document.createElement('div');
             item.className = 'currency-item';
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(10px)';
+            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
             
             const imageUrl = flagImages[currency.code] || flagImages['USD'];
             
@@ -698,7 +634,7 @@
                 <div class="currency-rates">
                     <div class="rate-box official-rate-box">
                         <div class="rate-box-value">${currency.rate}</div>
-                        <div class="rate-label">RATE</div>
+                        <div class="rate-label">Rate</div>
                     </div>
                 </div>
             `;
