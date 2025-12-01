@@ -166,38 +166,38 @@
             flex: 1;
         }
         
-        /* تصغير حواف الدوائر وزيادة لونها */
+        /* إزالة الحدود من الدوائر تماماً */
         .currency-flag {
             width: 35px;
             height: 35px;
-            border-radius: 18px; /* تصغير الحواف */
+            border-radius: 50%;
             margin-right: 12px;
-            border: 3px solid #4cd964; /* زيادة سمك الحدود للون أكثر وضوحًا */
+            border: none; /* إزالة الحدود */
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #111; /* لون خلفية أغمق لتظهر الصورة أوضح */
+            background: transparent; /* إزالة الخلفية */
             color: #fff;
             font-weight: bold;
             font-size: 14px;
             text-align: center;
             position: relative;
             flex-shrink: 0;
-            box-shadow: 0 0 12px rgba(76, 217, 100, 0.5); /* زيادة شدة الظل */
+            box-shadow: none; /* إزالة الظل */
             overflow: hidden;
         }
 
+        /* إزالة الأحمر الحدودي */
         .currency-flag.red-border {
-            border-color: #ef4444;
-            border-width: 3px; /* زيادة سمك الحدود */
-            box-shadow: 0 0 12px rgba(239, 68, 68, 0.5); /* زيادة شدة الظل */
+            border: none;
+            box-shadow: none;
         }
         
         .currency-flag img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 16px; /* تصغير حوا الصورة لتناسب الحواف الجديدة */
+            border-radius: 50%;
         }
         
         .currency-names {
@@ -418,8 +418,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <!-- تغيير الرابط إلى GitHub -->
-                            <img src="https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.1595</div>
                                 <div class="currency-code-small">USD</div>
@@ -428,8 +427,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <!-- تغيير الرابط إلى GitHub -->
-                            <img src="https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/1002-currency-cadusd.png" alt="CAD" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.2434</div>
                                 <div class="currency-code-small">USD</div>
@@ -440,8 +438,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <!-- تغيير الرابط إلى GitHub -->
-                            <img src="https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.3236</div>
                                 <div class="currency-code-small">USD</div>
@@ -450,8 +447,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <!-- تغيير الرابط إلى GitHub -->
-                            <img src="https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/1003-currency-chfusd.png" alt="CHF" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.7120</div>
                                 <div class="currency-code-small">USD</div>
@@ -475,8 +471,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <!-- تغيير الرابط إلى GitHub -->
-                            <img src="https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/1000-currency-eurusd.png" alt="EUR" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.1595</div>
                                 <div class="currency-code-small">USD</div>
@@ -485,8 +480,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <!-- تغيير الرابط إلى GitHub -->
-                            <img src="https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/1002-currency-cadusd.png" alt="CAD" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/1003-currency-cadusd.png" alt="CAD" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.2434</div>
                                 <div class="currency-code-small">USD</div>
@@ -497,8 +491,7 @@
                 <div class="usd-rates-card">
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <!-- تغيير الرابط إلى GitHub -->
-                            <img src="https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/1001-currency-gbpusd.png" alt="GBP" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.3236</div>
                                 <div class="currency-code-small">USD</div>
@@ -507,8 +500,7 @@
                     </div>
                     <div class="rate-pair">
                         <div class="rate-content">
-                            <!-- تغيير الرابط إلى GitHub -->
-                            <img src="https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/1003-currency-chfusd.png" alt="CHF" class="currency-icon">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/1002-currency-chfusd.png" alt="CHF" class="currency-icon">
                             <div class="rate-info">
                                 <div class="rate-value">1.7120</div>
                                 <div class="currency-code-small">USD</div>
@@ -581,35 +573,36 @@
         // نهاية بيانات الأسعار
         // =============================================
 
-        // روابط الصور المخزنة على GitHub - تم تغيير جميع الروابط
+        // روابط الصور المصححة حسب أسماء الملفات الفعلية في مستودعك
         const flagImages = {
-            'EUR': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/100-currency-eur.png',
-            'USD': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/101-currency-usd.png',
-            'GBP': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/102-currency-gbp.png',
-            'CAD': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/103-currency-cad.png',
-            'AUD': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/104-currency-aud.png',
-            'CHF': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/105-currency-chf.png',
-            'DKK': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/106-currency-dkk.png',
-            'SEK': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/107-currency-sek.png',
-            'NOK': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/108-currency-nok.png',
-            'ISK': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/109-currency-isk.png',
-            'TRY': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/110-currency-try.png',
-            'CNY': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/111-currency-cny.png',
-            'RUB': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/112-currency-rub.png',
-            'JPY': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/113-currency-jpy.png',
-            'KRW': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/114-currency-krw.png',
-            'INR': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/115-currency-inr.png',
-            'MYR': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/116-currency-myr.png',
-            'ZAR': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/117-currency-zar.png',
-            'BRL': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/118-currency-brl.png',
-            'MXN': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/119-currency-mxn.png',
-            'ARS': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/120-currency-ars.png',
-            'MAD': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/121-currency-mad.png',
-            'TND': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/122-currency-tnd.png',
-            'EGP': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/123-currency-egp.png',
-            'SAR': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/124-currency-sar.png',
-            'QAR': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/125-currency-qar.png',
-            'AED': 'https://raw.githubusercontent.com/[اسم-المستخدم]/[اسم-المستودع]/main/126-currency-aed.png'
+            'EUR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/100-currency-eur.png',
+            'USD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/101-currency-usd.png',
+            'GBP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/102-currency-gbp.png',
+            'CHF': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/103-currency-chf.png',
+            'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/104-currency-cad.png',
+            'AUD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/105-currency-aud.png',
+            'TRY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/106-currency-try.png',
+            'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/107-currency-cny.png',
+            'BRL': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/108-currency-brl.png',
+            'MXN': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/109-currency-mxn.png',
+            'ARS': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/110-currency-ars.png',
+            'RUB': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/111-currency-rub.png',
+            'ZAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/112-currency-zar.png',
+            'JPY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/113-currency-jpy.png',
+            'KRW': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/114-currency-krw.png',
+            'INR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/115-currency-inr.png',
+            'HKD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/116-currency-hkd.png',
+            'MYR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/117-currency-myr.png',
+            'MAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/118-currency-mad.png',
+            'EGP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/119-currency-egp.png',
+            'TND': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/120-currency-tnd.png',
+            'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/121-currency-sar.png',
+            'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/122-currency-qar.png',
+            'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/123-currency-aed.png',
+            'DKK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/100-currency-eur.png', // مؤقت - EUR
+            'SEK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/102-currency-gbp.png', // مؤقت - GBP
+            'NOK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/103-currency-chf.png', // مؤقت - CHF
+            'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/105-currency-aud.png' // مؤقت - AUD
         };
 
         // دالة لإنشاء عنصر عملة لـ Square
@@ -617,7 +610,7 @@
             const item = document.createElement('div');
             item.className = 'currency-item';
             
-            const imageUrl = flagImages[currency.code];
+            const imageUrl = flagImages[currency.code] || flagImages['USD']; // استخدام USD كبديل
             const isSpecialCurrency = specialCurrencies.includes(currency.code);
             
             // إضافة السهم فقط (بدون نار)
@@ -664,8 +657,8 @@
             
             item.innerHTML = `
                 <div class="currency-info">
-                    <div class="currency-flag ${isSpecialCurrency ? '' : 'red-border'}">
-                        <img src="${imageUrl}" alt="${currency.code}" loading="lazy">
+                    <div class="currency-flag">
+                        <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/101-currency-usd.png'">
                     </div>
                     <div class="currency-names">
                         <div class="currency-code">${currency.code}${trendingHtml}</div>
@@ -683,10 +676,12 @@
             const item = document.createElement('div');
             item.className = 'currency-item';
             
+            const imageUrl = flagImages[currency.code] || flagImages['USD'];
+            
             item.innerHTML = `
                 <div class="currency-info">
                     <div class="currency-flag">
-                        <img src="${flagImages[currency.code]}" alt="${currency.code}" loading="lazy">
+                        <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/jamalkatabeuro-sketch/main/101-currency-usd.png'">
                     </div>
                     <div class="currency-names">
                         <div class="currency-code">${currency.code}</div>
