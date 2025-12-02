@@ -482,11 +482,11 @@
 
         // بيانات العملات مع الأسهم المطلوبة - جميع العملات من الكود الأول
         const squareExchangeRates = [
-            { code: 'EUR', buy: 277, sell: 284, trending: true, arrow: 'down', fullName: 'Euro' },
-            { code: 'USD', buy: 246, sell: 244, trending: true, arrow: 'down', fullName: 'US Dollar' },
+            { code: 'EUR', buy: 277, sell: 284, trending: true, arrow: 'up', fullName: 'Euro' },
+            { code: 'USD', buy: 246, sell: 244, trending: true, arrow: 'up', fullName: 'US Dollar' },
             { code: 'GBP', buy: 318, sell: 315, trending: true, arrow: 'up', fullName: 'Pound' },
-            { code: 'CAD', buy: 164, sell: 161, trending: true, arrow: 'down', fullName: 'Can Dollar' },
-            { code: 'AUD', buy: 155, sell: 158, trending: true, arrow: 'down', fullName: 'Aus Dollar' },
+            { code: 'CAD', buy: 164, sell: 161, trending: true, arrow: 'up', fullName: 'Can Dollar' },
+            { code: 'AUD', buy: 155, sell: 158, trending: true, arrow: 'up', fullName: 'Aus Dollar' },
             { code: 'CHF', buy: 295, sell: 297, trending: true, arrow: 'up', fullName: 'Swiss Franc' },
             { code: 'DKK', buy: 36.5, sell: 37.2, trending: false, arrow: 'none', fullName: 'Danish Krone' },
             { code: 'SEK', buy: 22.8, sell: 23.5, trending: false, arrow: 'none', fullName: 'Swedish Krona' },
@@ -497,8 +497,8 @@
             { code: 'RUB', buy: 2.6, sell: 2.8, trending: false, arrow: 'none', fullName: 'Russian Ruble' },
             { code: 'JPY', buy: 1.58, sell: 1.7, trending: false, arrow: 'none', fullName: 'Japanese Yen' },
             { code: 'KRW', buy: 0.18, sell: 0.2, trending: false, arrow: 'none', fullName: 'Korean Won' },
-            { code: 'INR', buy: 2.85, sell: 3.05, trending: false, arrow: 'none', fullName: 'Indian Rupee' },
-            { code: 'MYR', buy: 50.25, sell: 53, trending: false, arrow: 'none', fullName: 'Malaysian Ringgit' },
+            { code: 'INR', buy: 200, sell: 100, trending: false, arrow: 'none', fullName: 'Indian Rupee' },
+            { code: 'MYR', buy: 50, sell: 53, trending: false, arrow: 'none', fullName: 'Malaysian Ringgit' },
             { code: 'ZAR', buy: 15, sell: 13, trending: false, arrow: 'none', fullName: 'African Rand' },
             { code: 'BRL', buy: 5.26, sell: 5.6, trending: false, arrow: 'none', fullName: 'Brazilian Real' },
             { code: 'MXN', buy: 13, sell: 14, trending: false, arrow: 'none', fullName: 'Mexican Peso' },
@@ -513,12 +513,12 @@
 
         // بيانات العملات المحدثة مع العملات الجديدة (Official)
         const officialExchangeRates = [
-            { code: 'EUR', rate: 151 },
-            { code: 'USD', rate: 130 },
-            { code: 'CAD', rate: 93 },
-            { code: 'GBP', rate: 171 },
-            { code: 'CHF', rate: 148 },
-            { code: 'AUD', rate: 87 }
+            { code: 'EUR', : 151 },
+            { code: 'USD', : 130 },
+            { code: 'CAD', : 93 },
+            { code: 'GBP', : 171 },
+            { code: 'CHF', : 148 },
+            { code: 'AUD', : 87 }
         ];
 
         // روابط الصور من المستودع الصحيح: My-website
@@ -547,10 +547,10 @@
             'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/121-currency-sar.png',
             'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/122-currency-qar.png',
             'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/123-currency-aed.png',
-            'DKK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png',
-            'SEK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png',
-            'NOK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chf.png',
-            'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png'
+            'DKK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/001-currency-dkk.png',
+            'SEK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/002-currency-sek.png',
+            'NOK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/003-currency-nok.png',
+            'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/004-currency-isk.png'
         };
 
         // دالة لإنشاء قائمة العملات
@@ -718,5 +718,3 @@
     </script>
 </body>
 </html>
-
-
