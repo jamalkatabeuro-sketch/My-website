@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold and Silver Prices</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background: #111;
+            color: #fff;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #111;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 60px;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            background: #000;
+            border-bottom: 1px solid #333;
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 16px;
+            text-align: center;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            background: #151515;
+        }
+        
+        .gold-tab.active {
+            color: #ffd700;
+        }
+        
+        .silver-tab.active {
+            color: #c0c0c0;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .header {
+            padding: 20px 15px;
+            background: #000;
+            border-bottom: 1px solid #333;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+        }
+        
+        .update-header {
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        .ounce-prices {
+            display: flex;
+            padding: 20px 15px;
+            background: #000;
+            border-bottom: 1px solid #333;
+            position: relative;
+            gap: 20px;
+        }
+        
+        .ounce-prices::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: 50%;
+            width: 1px;
+            background: #333;
+            transform: translateX(-50%);
+        }
+        
+        .ounce-card {
+            flex: 1;
+            background: transparent;
+        }
+        
+        .ounce-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            gap: 15px;
+        }
+        
+        .ounce-item:not(:last-child) {
+            border-bottom: 1px solid #333;
+        }
+        
+        .ounce-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .metal-icon-large {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            background: #222;
+        }
+        
+        .gold-ounce .metal-icon-large {
+            border-color: #ffd700;
+        }
+        
+        .silver-ounce .metal-icon-large {
+            border-color: #c0c0c0;
+        }
+        
+        .metal-icon-large img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .ounce-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+            flex: 1;
+        }
+        
+        .ounce-value {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .metal-code-small {
+            color: #888;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .metal-list {
+            padding: 10px 0;
+            overflow: hidden;
+        }
+        
+        .metal-item {
+            padding: 18px 20px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #000;
+            transition: all 0.3s ease;
+        }
+        
+        .metal-item:hover {
+            background: #151515;
+        }
+        
+        .metal-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            gap: 15px;
+        }
+        
+        .metal-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #222;
+            flex-shrink: 0;
+        }
+        
+        .gold-item .metal-icon {
+            border-color: #ffd700;
+        }
+        
+        .silver-item .metal-icon {
+            border-color: #c0c0c0;
+        }
+        
+        .metal-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .metal-names {
+            flex: 1;
+        }
+        
+        .metal-code {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .metal-full-name {
+            font-size: 12px;
+            color: #888;
+            font-weight: 400;
+        }
+        
+        .trending-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .up-arrow {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .down-arrow {
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .metal-rates {
+            display: flex;
+            align-items: center;
+        }
+        
+        .rate-box {
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            min-width: 100px;
+        }
+        
+        .gold-rate-box {
+            background: linear-gradient(135deg, #ffd700, #daa520);
+            color: #000;
+        }
+        
+        .silver-rate-box {
+            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+            color: #000;
+        }
+        
+        .rate-box-value {
+            font-size: 18px;
+            font-weight: 800;
+        }
+        
+        .copyright {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #333;
+            background: #1a1a1a;
+        }
+        
+        /* إضافة أنماط جديدة للأسهم بجانب سعر الأونصة */
+        .ounce-trending {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .ounce-up-arrow {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .ounce-down-arrow {
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tab-buttons">
+            <button class="tab-button gold-tab active" id="goldTab">GOLD</button>
+            <button class="tab-button silver-tab" id="silverTab">SILVER</button>
+        </div>
+        
+        <!-- Gold Tab Content -->
+        <div class="tab-content active" id="goldContent">
+            <div class="header">
+                <h1>GOLD</h1>
+                <div class="update-header">Last Update: November 27, 2025</div>
+            </div>
+            
+            <div class="ounce-prices">
+                <div class="ounce-card">
+                    <div class="ounce-item gold-ounce">
+                        <div class="ounce-content">
+                            <div class="metal-icon-large">
+                                <img src="https://raw.githubusercontent.com/your-username/your-repo/main/51-currency-gold.png" alt="GOLD">
+                            </div>
+                            <div class="ounce-info">
+                                <div class="ounce-value">4065$
+                                    <div class="ounce-trending" id="gold-ounce-trending">
+                                        <!-- سيتم ملؤه تلقائياً -->
+                                    </div>
+                                </div>
+                                <div class="metal-code-small">GOLD OUNCE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ounce-card">
+                    <div class="ounce-item silver-ounce">
+                        <div class="ounce-content">
+                            <div class="metal-icon-large">
+                                <img src="https://raw.githubusercontent.com/your-username/your-repo/main/50-currency-silver.png" alt="SILVER">
+                            </div>
+                            <div class="ounce-info">
+                                <div class="ounce-value">50.36$
+                                    <div class="ounce-trending" id="silver-ounce-trending">
+                                        <!-- سيتم ملؤه تلقائياً -->
+                                    </div>
+                                </div>
+                                <div class="metal-code-small">SILVER OUNCE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metal-list" id="gold-metal-list">
+                <!-- سيتم ملء الذهب تلقائياً بواسطة JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Silver Tab Content -->
+        <div class="tab-content" id="silverContent">
+            <div class="header">
+                <h1>SILVER</h1>
+                <div class="update-header">Last Update: November 27, 2025</div>
+            </div>
+            
+            <div class="ounce-prices">
+                <div class="ounce-card">
+                    <div class="ounce-item gold-ounce">
+                        <div class="ounce-content">
+                            <div class="metal-icon-large">
+                                <img src="https://raw.githubusercontent.com/your-username/your-repo/main/51-currency-gold.png" alt="GOLD">
+                            </div>
+                            <div class="ounce-info">
+                                <div class="ounce-value">4065$
+                                    <div class="ounce-trending" id="gold-ounce-trending-silver-tab">
+                                        <!-- سيتم ملؤه تلقائياً -->
+                                    </div>
+                                </div>
+                                <div class="metal-code-small">GOLD OUNCE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ounce-card">
+                    <div class="ounce-item silver-ounce">
+                        <div class="ounce-content">
+                            <div class="metal-icon-large">
+                                <img src="https://raw.githubusercontent.com/your-username/your-repo/main/50-currency-silver.png" alt="SILVER">
+                            </div>
+                            <div class="ounce-info">
+                                <div class="ounce-value">50.36$
+                                    <div class="ounce-trending" id="silver-ounce-trending-silver-tab">
+                                        <!-- سيتم ملؤه تلقائياً -->
+                                    </div>
+                                </div>
+                                <div class="metal-code-small">SILVER OUNCE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metal-list" id="silver-metal-list">
+                <!-- سيتم ملء الفضة تلقائياً بواسطة JavaScript -->
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Square Market 
+        </div>
+    </div>
+
+    <script>
+        // =============================================
+        // الموقع المركزي لتغيير اتجاه الأسعار (الأسهم)
+        // =============================================
+        const priceDirections = {
+            // اتجاهات الأونصات
+            "GOLD OUNCE": "up",   // يمكن تغيير إلى "up"
+            "SILVER OUNCE": "up", // يمكن تغيير إلى "up"
+            
+            // اتجاهات الذهب
+            "GOLD 24K": "up",
+            "GOLD 21K": "up", 
+            "GOLD 18K": "up",
+            
+            // اتجاهات الفضة
+            "SILVER 999": "up",
+            "SILVER 925": "up",
+            "SILVER 800": "up"
+        };
+
+        // بيانات الذهب
+        const goldPrices = [
+            { 
+                code: 'GOLD 24K', 
+                price: '30,000 DA', 
+                type: 'gold',
+                image: 'https://raw.githubusercontent.com/your-username/your-repo/main/51-currency-gold.png',
+                trending: true,
+                fullName: 'Gold 24 Karat'
+            },
+            { 
+                code: 'GOLD 21K', 
+                price: '25,280 DA', 
+                type: 'gold',
+                image: 'https://raw.githubusercontent.com/your-username/your-repo/main/51-currency-gold.png',
+                trending: true,
+                fullName: 'Gold 21 Karat'
+            },
+            { 
+                code: 'GOLD 18K', 
+                price: '20,320 DA', 
+                type: 'gold',
+                image: 'https://raw.githubusercontent.com/your-username/your-repo/main/51-currency-gold.png',
+                trending: true,
+                fullName: 'Gold 18 Karat'
+            }
+        ];
+
+        // بيانات الفضة
+        const silverPrices = [
+            { 
+                code: 'SILVER 999', 
+                price: '500 DA', 
+                type: 'silver',
+                image: 'https://raw.githubusercontent.com/your-username/your-repo/main/50-currency-silver.png',
+                trending: true,
+                fullName: 'Silver 999 Fine'
+            },
+            { 
+                code: 'SILVER 925', 
+                price: '400 DA', 
+                type: 'silver',
+                image: 'https://raw.githubusercontent.com/your-username/your-repo/main/50-currency-silver.png',
+                trending: true,
+                fullName: 'Silver 925 Sterling'
+            },
+            { 
+                code: 'SILVER 800', 
+                price: '300 DA', 
+                type: 'silver',
+                image: 'https://raw.githubusercontent.com/your-username/your-repo/main/50-currency-silver.png',
+                trending: true,
+                fullName: 'Silver 800'
+            }
+        ];
+
+        // دالة لإنشاء عنصر معدن
+        function createMetalItem(metal) {
+            const item = document.createElement('div');
+            item.className = `metal-item ${metal.type}-item`;
+            
+            let trendingHtml = '';
+            if (metal.trending) {
+                const direction = priceDirections[metal.code];
+                let arrowHtml = '';
+                if (direction === 'up') {
+                    arrowHtml = '<span class="up-arrow">▲</span>';
+                } else if (direction === 'down') {
+                    arrowHtml = '<span class="down-arrow">▼</span>';
+                }
+                
+                trendingHtml = `
+                    <div class="trending-indicator">
+                        ${arrowHtml}
+                    </div>
+                `;
+            }
+            
+            item.innerHTML = `
+                <div class="metal-info">
+                    <div class="metal-icon">
+                        <img src="${metal.image}" alt="${metal.code}">
+                    </div>
+                    <div class="metal-names">
+                        <div class="metal-code">${metal.code}${trendingHtml}</div>
+ "صف الغوص" المعدن - كامل الاسم" ${metal.fullName}</div>
+                    </div>
+                </div>
+                <div class="metal-rates">
+                    <div class="rate-box ${metal.type}-rate-box">
+                        <div class="rate-box-value">${metal.price}</div>
+                    </div>
+                </div>
+            `;
+            
+            return item;
+        }
+
+        // دالة لتحديث اتجاهات الأونصات
+        function updateOunceTrendings() {
+            // تحديث الأونصات في تبويب الذهب
+            const goldOunceDirection = priceDirections["GOLD OUNCE"];
+            const silverOunceDirection = priceDirections["SILVER OUNCE"];
+            
+            // تحديث تبويب الذهب
+            const goldOunceTrending = document.getElementById('gold-ounce-trending');
+            const silverOunceTrending = document.getElementById('silver-ounce-trending');
+            
+            if (goldOunceDirection === 'up') {
+                goldOunceTrending.innerHTML = '<span class="ounce-up-arrow">▲</span>';
+            } else if (goldOunceDirection === 'down') {
+                goldOunceTrending.innerHTML = '<span class="ounce-down-arrow">▼</span>';
+            }
+            
+            if (silverOunceDirection === 'up') {
+                (ب) الفضية.(ب) الداخلية = '<class span="ououse-up-arrow">>> span>.;
+            } أيضاً إذا (ألف- التوجيه الفضي  ===  "إلى أسفل") {
+                silverOunceTrending.innerHTML = '<span class="ounce-down-arrow">▼</span>';
+            }
+            
+            // تحديث تبويب الفضة
+            <!DOCTYPE html> goldOunceTrendingSilverTab = document.getElementById('gold-ounce-trending-silver-tab');
+            < html = lang="en"('silver-ounce-trending-silver-tab');
+            
+            < metagoldOunceDirection  ===  charset)="UTF-8"
+                <.meta = name=
+            < title >Gold and Silver Prices</title === >) {
+                <.style = >;
+        * }
+            
+            padding: 0silverOunceDirection;'up') {
+                box-sizing: border-box;'<span class="ounce-up-arrow">▲</span>';
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI'silverOunceDirection, Roboto), sans-serif
+                }.innerHTML = '<span class="ounce-down-arrow">▼</span>';
+             } 
+        body
+
+        color
+             min-heightقائمة      كريع    Metalقائمة(): 100
+            padding: 0قائمة            الميتلا      الذهبية;الوثيقة.(ب) إلى (ب)(       قائمة      المعدن الذهبي);
+            overflow-x: hiddenالميثيل        الفضيةالفضية     قائمة   قائمة  قائمة  مترات  قائمة  قائمة مترات الميتالست;الوثيقة.(ب) إلى (ب)(     قائمة      المعادن الفضية);
+            
+                 قائمة          الميتلا      الذهبية.(ب) الداخلية      =      '';
+        .containerالميثيل      الفضية.{ب) الداخلية      =      '';
+            
+            margin
+                 backgroundالذهب: #111;كل واحد((المعدن)      =>      {
+                min-height: 100      =       vhمن      نوع الجنس(المعدن);
+                   positionالميتلا    الذهبية: relative;خدمات    الطفل(البند);
+            padding-bottom): 
+            
+            // إنشاء عناصر الفضة
+        .tab-buttonsالفضية.{ واحد((المعدن)    =>    {
+                display: flex;البند  من نوع الجنس(المعدن);
+                backgroundالميثيل الفضية: #000;ألف - خدمات الطفل(البند);
+            border-bottom): 
+        }
+
+        .tab-button
+        flexswitchTab(اسم): 1
+            padding
+            text-align: center('.tab-content');forEach(tab  =>  {
+                background: #000;classList.remove('active');
+            color): #fff;
+            
+            font-size
+            font-weight: 600('.tab-button');forEach(button => {
+                cursor: pointer;remove('active');
+            transition): 
+            
+            // إظهار المحتوى المطلوب وتفعيل الزر
+        .tab-button.activetabName === {) {
+                background: #151515;getElementById('goldContent').classList.add('active');
+                }.getElementById('goldTab').classList.add('active');
+            } else if (tabName === 'silver') {
+        .gold-tab.active('silverContent').{.add('active');
+                color: #ffd700;getElementById('silverTab').classList.add('active');
+            }
+        }
+
+        color
+        }.addEventListener('DOMContentLoaded', function() {
+            createMetalList();
+        .tab-content();
+            
+            // إضافة مستمعي الأحداث للأزرار
+            document.getElementById('goldTab').addEventListener('click', function() {
+        .switchTab('gold');
+            });
+            
+            document.getElementById('silverTab').addEventListener('click', function() {
+        .switchTab('silver');
+            });
+        });
+    border-bottomscript>
+</body>
+</htmlhtml
