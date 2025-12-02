@@ -175,6 +175,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            flex-direction: row-reverse; /* تغيير اتجاه السعر والسهم */
         }
         
         .metal-code-small {
@@ -320,6 +321,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            order: -1; /* وضع السهم قبل السعر */
         }
         
         .ounce-up-arrow {
@@ -358,10 +360,12 @@
                                 <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.jpg" alt="GOLD">
                             </div>
                             <div class="ounce-info">
-                                <div class="ounce-value">4065$
+                                <div class="ounce-value">
+                                    <!-- السهم على اليسار ثم السعر -->
                                     <div class="ounce-trending" id="gold-ounce-trending">
                                         <!-- سيتم ملؤه تلقائياً -->
                                     </div>
+                                    4065$
                                 </div>
                                 <div class="metal-code-small">GOLD OUNCE</div>
                             </div>
@@ -375,10 +379,12 @@
                                 <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg" alt="SILVER">
                             </div>
                             <div class="ounce-info">
-                                <div class="ounce-value">50.36$
+                                <div class="ounce-value">
+                                    <!-- السهم على اليسار ثم السعر -->
                                     <div class="ounce-trending" id="silver-ounce-trending">
                                         <!-- سيتم ملؤه تلقائياً -->
                                     </div>
+                                    50.36$
                                 </div>
                                 <div class="metal-code-small">SILVER OUNCE</div>
                             </div>
@@ -408,10 +414,12 @@
                                 <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.jpg" alt="GOLD">
                             </div>
                             <div class="ounce-info">
-                                <div class="ounce-value">4065$
+                                <div class="ounce-value">
+                                    <!-- السهم على اليسار ثم السعر -->
                                     <div class="ounce-trending" id="gold-ounce-trending-silver-tab">
                                         <!-- سيتم ملؤه تلقائياً -->
                                     </div>
+                                    4065$
                                 </div>
                                 <div class="metal-code-small">GOLD OUNCE</div>
                             </div>
@@ -425,10 +433,12 @@
                                 <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg" alt="SILVER">
                             </div>
                             <div class="ounce-info">
-                                <div class="ounce-value">50.36$
+                                <div class="ounce-value">
+                                    <!-- السهم على اليسار ثم السعر -->
                                     <div class="ounce-trending" id="silver-ounce-trending-silver-tab">
                                         <!-- سيتم ملؤه تلقائياً -->
                                     </div>
+                                    50.36$
                                 </div>
                                 <div class="metal-code-small">SILVER OUNCE</div>
                             </div>
@@ -471,7 +481,7 @@
         const goldPrices = [
             { 
                 code: 'GOLD 24K', 
-                price: '30,000 DA', 
+                price: '32,000 DA', 
                 type: 'gold',
                 // تم تصحيح رابط صورة الذهب إلى .jpg
                 image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.jpg',
