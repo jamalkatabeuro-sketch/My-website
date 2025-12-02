@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض العملات</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .image-card {
+            background: rgba(30, 30, 40, 0.7);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            position: relative;
+            border: 2px solid transparent;
+            height: 350px;
+        }
+        
+        .image-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-color: #6a11cb;
+        }
+        
+        .image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-card:hover .image-container img {
+            transform: scale(1.1);
+        }
+        
+        .image-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .image-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #6a11cb;
+        }
+        
+        .image-info p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-delay-1 {
+            animation-delay: 0.5s;
+        }
+        
+        .floating-delay-2 {
+            animation-delay: 1s;
+        }
+        
+        .floating-delay-3 {
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+        }
+        
+        /* تأثيرات إضافية */
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(106, 17, 203, 0.1), transparent 70%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .image-card:hover .glow {
+            opacity: 1;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .image-card {
+                height: 300px;
+            }
+            
+            .image-container {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>معرض العملات الرقمية</h1>
+            <p class="subtitle">انقر على أي صورة للانتقال إلى صفحة التفاصيل</p>
+        </header>
+        
+        <main>
+            <div class="gallery">
+                <!-- الصورة الأولى -->
+                <div class="image-card floating" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index.html">
+                    <div class="glow"></div>
+                    <div class="image-container">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/750-currency-er.jpg" alt="عملة Euro">
+                    </div>
+                    <div class="image-info">
+                        <h3>اليورو</h3>
+                        <p>العملة الأوروبية الموحدة</p>
+                    </div>
+                </div>
+                
+                <!-- الصورة الثانية -->
+                <div class="image-card floating floating-delay-1" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index-v2.html">
+                    <div class="glow"></div>
+                    <div class="image-container">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/751-currency-go.jpg" alt="عملة Gold">
+                    </div>
+                    <div class="image-info">
+                        <h3>الذهب</h3>
+                        <p>الاستثمار الآمن التقليدي</p>
+                    </div>
+                </div>
+                
+                <!-- الصورة الثالثة -->
+                <div class="image-card floating floating-delay-2" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index-v3.html">
+                    <div class="glow"></div>
+                    <div class="image-container">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/752-currency-ch.jpg" alt="عملة فرنك سويسري">
+                    </div>
+                    <div class="image-info">
+                        <h3>الفرنك السويسري</h3>
+                        <p>عملة الملاذ الآمن</p>
+                    </div>
+                </div>
+                
+                <!-- الصورة الرابعة -->
+                <div class="image-card floating floating-delay-3" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index.html">
+                    <div class="glow"></div>
+                    <div class="image-container">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/200-currency-usdt.png" alt="عملة USDT">
+                    </div>
+                    <div class="image-info">
+                        <h3>USDT</h3>
+                        <p>عملة مستقرة مرتبطة بالدولار</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2023 معرض العملات التفاعلي | جميع الصور من مستودع GitHub</p>
+        </footer>
+    </div>
+
+    <script>
+        // إضافة حدث النقر على البطاقات
+        document.querySelectorAll('.image-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const link = this.getAttribute('data-link');
+                if (link) {
+                    window.open(link, '_blank');
+                }
+            });
+        });
+        
+        // إضافة تأثيرات صوتية افتراضية (يمكن إزالتها إذا لم تكن مرغوبة)
+        document.querySelectorAll('.image-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                // تأثير صوتي خفيف (يمكن استبداله بصوت حقيقي)
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                gainNode.gain.value = 0.1;
+                
+                oscillator.start();
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            });
+        });
+        
+        // إضافة تأثيرات عند تحميل الصفحة
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.image-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
