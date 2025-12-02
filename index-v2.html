@@ -354,7 +354,7 @@
                     <div class="ounce-item gold-ounce">
                         <div class="ounce-content">
                             <div class="metal-icon-large">
-                                <!-- تم تغيير رابط الصورة فقط -->
+                                <!-- صورة الذهب -->
                                 <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.png" alt="GOLD">
                             </div>
                             <div class="ounce-info">
@@ -372,8 +372,8 @@
                     <div class="ounce-item silver-ounce">
                         <div class="ounce-content">
                             <div class="metal-icon-large">
-                                <!-- تم تغيير رابط الصورة فقط -->
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.png" alt="SILVER">
+                                <!-- صورة الفضة - تم تصحيح الامتداد إلى .jpg -->
+                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg" alt="SILVER">
                             </div>
                             <div class="ounce-info">
                                 <div class="ounce-value">50.36$
@@ -405,7 +405,7 @@
                     <div class="ounce-item gold-ounce">
                         <div class="ounce-content">
                             <div class="metal-icon-large">
-                                <!-- تم تغيير رابط الصورة فقط -->
+                                <!-- صورة الذهب -->
                                 <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.png" alt="GOLD">
                             </div>
                             <div class="ounce-info">
@@ -423,8 +423,8 @@
                     <div class="ounce-item silver-ounce">
                         <div class="ounce-content">
                             <div class="metal-icon-large">
-                                <!-- تم تغيير رابط الصورة فقط -->
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.png" alt="SILVER">
+                                <!-- صورة الفضة - تم تصحيح الامتداد إلى .jpg -->
+                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg" alt="SILVER">
                             </div>
                             <div class="ounce-info">
                                 <div class="ounce-value">50.36$
@@ -455,8 +455,8 @@
         // =============================================
         const priceDirections = {
             // اتجاهات الأونصات
-            "GOLD OUNCE": "up",   // يمكن تغيير إلى "up"
-            "SILVER OUNCE": "up", // يمكن تغيير إلى "up"
+            "GOLD OUNCE": "up",
+            "SILVER OUNCE": "up",
             
             // اتجاهات الذهب
             "GOLD 24K": "up",
@@ -475,7 +475,7 @@
                 code: 'GOLD 24K', 
                 price: '30,000 DA', 
                 type: 'gold',
-                // تم تغيير رابط الصورة فقط
+                // صورة الذهب
                 image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.png',
                 trending: true,
                 fullName: 'Gold 24 Karat'
@@ -484,7 +484,6 @@
                 code: 'GOLD 21K', 
                 price: '25,280 DA', 
                 type: 'gold',
-                // تم تغيير رابط الصورة فقط
                 image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.png',
                 trending: true,
                 fullName: 'Gold 21 Karat'
@@ -493,7 +492,6 @@
                 code: 'GOLD 18K', 
                 price: '20,320 DA', 
                 type: 'gold',
-                // تم تغيير رابط الصورة فقط
                 image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.png',
                 trending: true,
                 fullName: 'Gold 18 Karat'
@@ -506,8 +504,8 @@
                 code: 'SILVER 999', 
                 price: '500 DA', 
                 type: 'silver',
-                // تم تغيير رابط الصورة فقط
-                image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.png',
+                // صورة الفضة - تم تصحيح الامتداد إلى .jpg
+                image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg',
                 trending: true,
                 fullName: 'Silver 999 Fine'
             },
@@ -515,8 +513,7 @@
                 code: 'SILVER 925', 
                 price: '400 DA', 
                 type: 'silver',
-                // تم تغيير رابط الصورة فقط
-                image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.png',
+                image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg',
                 trending: true,
                 fullName: 'Silver 925 Sterling'
             },
@@ -524,8 +521,7 @@
                 code: 'SILVER 800', 
                 price: '300 DA', 
                 type: 'silver',
-                // تم تغيير رابط الصورة فقط
-                image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.png',
+                image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg',
                 trending: true,
                 fullName: 'Silver 800'
             }
@@ -575,7 +571,6 @@
 
         // دالة لتحديث اتجاهات الأونصات
         function updateOunceTrendings() {
-            // تحديث الأونصات في تبويب الذهب
             const goldOunceDirection = priceDirections["GOLD OUNCE"];
             const silverOunceDirection = priceDirections["SILVER OUNCE"];
             
@@ -635,17 +630,14 @@
 
         // دالة للتبديل بين التبويبات
         function switchTab(tabName) {
-            // إخفاء جميع المحتويات
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // إزالة النشاط من جميع الأزرار
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
             });
             
-            // إظهار المحتوى المطلوب وتفعيل الزر
             if (tabName === 'gold') {
                 document.getElementById('goldContent').classList.add('active');
                 document.getElementById('goldTab').classList.add('active');
@@ -660,7 +652,6 @@
             createMetalList();
             updateOunceTrendings();
             
-            // إضافة مستمعي الأحداث للأزرار
             document.getElementById('goldTab').addEventListener('click', function() {
                 switchTab('gold');
             });
