@@ -115,27 +115,18 @@
         .ounce-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             padding: 12px 0;
-            gap: 12px;
+            gap: 15px;
         }
         
         .ounce-item:not(:last-child) {
             border-bottom: 1px solid #333;
         }
         
-        .ounce-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-        }
-        
         .metal-icon-large {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            object-fit: cover;
             flex-shrink: 0;
             border: 2px solid;
             display: flex;
@@ -160,27 +151,46 @@
             border-radius: 50%;
         }
         
-        .ounce-info {
+        .ounce-details {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 2px;
+            gap: 5px;
             flex: 1;
+        }
+        
+        .ounce-price-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ounce-trending {
+            display: flex;
+            align-items: center;
+            order: -1;
+        }
+        
+        .ounce-up-arrow {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .ounce-down-arrow {
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 20px;
         }
         
         .ounce-value {
             color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-direction: row-reverse; /* تغيير اتجاه السعر والسهم */
+            font-size: 20px;
+            font-weight: 700;
         }
         
         .metal-code-small {
             color: #888;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 500;
         }
         
@@ -315,26 +325,6 @@
             border-top: 1px solid #333;
             background: #1a1a1a;
         }
-        
-        /* إضافة أنماط جديدة للأسهم بجانب سعر الأونصة */
-        .ounce-trending {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            order: -1; /* وضع السهم قبل السعر */
-        }
-        
-        .ounce-up-arrow {
-            color: #10b981;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .ounce-down-arrow {
-            color: #ef4444;
-            font-weight: bold;
-            font-size: 18px;
-        }
     </style>
 </head>
 <body>
@@ -354,40 +344,50 @@
             <div class="ounce-prices">
                 <div class="ounce-card">
                     <div class="ounce-item gold-ounce">
-                        <div class="ounce-content">
-                            <div class="metal-icon-large">
-                                <!-- تم تصحيح رابط صورة الذهب إلى .jpg -->
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.jpg" alt="GOLD">
-                            </div>
-                            <div class="ounce-info">
-                                <div class="ounce-value">
-                                    <!-- السهم على اليسار ثم السعر -->
-                                    <div class="ounce-trending" id="gold-ounce-trending">
-                                        <!-- سيتم ملؤه تلقائياً -->
-                                    </div>
-                                    4065$
+                        <!-- الصورة على اليسار -->
+                        <div class="metal-icon-large">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.jpg" alt="GOLD">
+                        </div>
+                        
+                        <!-- التفاصيل على اليمين -->
+                        <div class="ounce-details">
+                            <!-- السطر الأول: السهم + السعر -->
+                            <div class="ounce-price-row">
+                                <!-- السهم على اليسار -->
+                                <div class="ounce-trending" id="gold-ounce-trending">
+                                    <!-- سيتم ملؤه تلقائياً -->
                                 </div>
-                                <div class="metal-code-small">GOLD OUNCE</div>
+                                <!-- السعر -->
+                                <div class="ounce-value">4065$</div>
                             </div>
+                            
+                            <!-- السطر الثاني: النص -->
+                            <div class="metal-code-small">GOLD OUNCE</div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="ounce-card">
                     <div class="ounce-item silver-ounce">
-                        <div class="ounce-content">
-                            <div class="metal-icon-large">
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg" alt="SILVER">
-                            </div>
-                            <div class="ounce-info">
-                                <div class="ounce-value">
-                                    <!-- السهم على اليسار ثم السعر -->
-                                    <div class="ounce-trending" id="silver-ounce-trending">
-                                        <!-- سيتم ملؤه تلقائياً -->
-                                    </div>
-                                    50.36$
+                        <!-- الصورة على اليسار -->
+                        <div class="metal-icon-large">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg" alt="SILVER">
+                        </div>
+                        
+                        <!-- التفاصيل على اليمين -->
+                        <div class="ounce-details">
+                            <!-- السطر الأول: السهم + السعر -->
+                            <div class="ounce-price-row">
+                                <!-- السهم على اليسار -->
+                                <div class="ounce-trending" id="silver-ounce-trending">
+                                    <!-- سيتم ملؤه تلقائياً -->
                                 </div>
-                                <div class="metal-code-small">SILVER OUNCE</div>
+                                <!-- السعر -->
+                                <div class="ounce-value">50.36$</div>
                             </div>
+                            
+                            <!-- السطر الثاني: النص -->
+                            <div class="metal-code-small">SILVER OUNCE</div>
                         </div>
                     </div>
                 </div>
@@ -408,40 +408,50 @@
             <div class="ounce-prices">
                 <div class="ounce-card">
                     <div class="ounce-item gold-ounce">
-                        <div class="ounce-content">
-                            <div class="metal-icon-large">
-                                <!-- تم تصحيح رابط صورة الذهب إلى .jpg -->
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.jpg" alt="GOLD">
-                            </div>
-                            <div class="ounce-info">
-                                <div class="ounce-value">
-                                    <!-- السهم على اليسار ثم السعر -->
-                                    <div class="ounce-trending" id="gold-ounce-trending-silver-tab">
-                                        <!-- سيتم ملؤه تلقائياً -->
-                                    </div>
-                                    4065$
+                        <!-- الصورة على اليسار -->
+                        <div class="metal-icon-large">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.jpg" alt="GOLD">
+                        </div>
+                        
+                        <!-- التفاصيل على اليمين -->
+                        <div class="ounce-details">
+                            <!-- السطر الأول: السهم + السعر -->
+                            <div class="ounce-price-row">
+                                <!-- السهم على اليسار -->
+                                <div class="ounce-trending" id="gold-ounce-trending-silver-tab">
+                                    <!-- سيتم ملؤه تلقائياً -->
                                 </div>
-                                <div class="metal-code-small">GOLD OUNCE</div>
+                                <!-- السعر -->
+                                <div class="ounce-value">4065$</div>
                             </div>
+                            
+                            <!-- السطر الثاني: النص -->
+                            <div class="metal-code-small">GOLD OUNCE</div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="ounce-card">
                     <div class="ounce-item silver-ounce">
-                        <div class="ounce-content">
-                            <div class="metal-icon-large">
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg" alt="SILVER">
-                            </div>
-                            <div class="ounce-info">
-                                <div class="ounce-value">
-                                    <!-- السهم على اليسار ثم السعر -->
-                                    <div class="ounce-trending" id="silver-ounce-trending-silver-tab">
-                                        <!-- سيتم ملؤه تلقائياً -->
-                                    </div>
-                                    50.36$
+                        <!-- الصورة على اليسار -->
+                        <div class="metal-icon-large">
+                            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/50-currency-silver.jpg" alt="SILVER">
+                        </div>
+                        
+                        <!-- التفاصيل على اليمين -->
+                        <div class="ounce-details">
+                            <!-- السطر الأول: السهم + السعر -->
+                            <div class="ounce-price-row">
+                                <!-- السهم على اليسار -->
+                                <div class="ounce-trending" id="silver-ounce-trending-silver-tab">
+                                    <!-- سيتم ملؤه تلقائياً -->
                                 </div>
-                                <div class="metal-code-small">SILVER OUNCE</div>
+                                <!-- السعر -->
+                                <div class="ounce-value">50.36$</div>
                             </div>
+                            
+                            <!-- السطر الثاني: النص -->
+                            <div class="metal-code-small">SILVER OUNCE</div>
                         </div>
                     </div>
                 </div>
@@ -481,9 +491,8 @@
         const goldPrices = [
             { 
                 code: 'GOLD 24K', 
-                price: '32,000 DA', 
+                price: '30,000 DA', 
                 type: 'gold',
-                // تم تصحيح رابط صورة الذهب إلى .jpg
                 image: 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/51-currency-gold.jpg',
                 trending: true,
                 fullName: 'Gold 24 Karat'
