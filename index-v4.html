@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض العملات</title>
+    <title>معرض الصور</title>
     <style>
         * {
             margin: 0;
@@ -12,236 +12,258 @@
         }
         
         body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2a 100%);
             min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
+            overflow: hidden;
+            font-family: sans-serif;
         }
         
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
         
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 20px;
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
         }
         
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #aaa;
-            margin-bottom: 30px;
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
         
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            min-height: 100vh;
+            padding: 40px;
+            perspective: 1000px;
         }
         
         .image-card {
-            background: rgba(30, 30, 40, 0.7);
+            width: 280px;
+            height: 280px;
             border-radius: 20px;
             overflow: hidden;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             position: relative;
-            border: 2px solid transparent;
-            height: 350px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* تأخيرات مختلفة للصور */
+        .image-card:nth-child(1) { animation-delay: 0s; }
+        .image-card:nth-child(2) { animation-delay: 1s; }
+        .image-card:nth-child(3) { animation-delay: 2s; }
+        .image-card:nth-child(4) { animation-delay: 3s; }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotateY(0);
+            }
+            33% {
+                transform: translateY(-20px) rotateY(5deg);
+            }
+            66% {
+                transform: translateY(10px) rotateY(-5deg);
+            }
         }
         
         .image-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border-color: #6a11cb;
+            animation-play-state: paused;
+            transform: scale(1.15) rotateY(10deg);
         }
         
-        .image-container {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .image-container img {
+        .image-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
         
-        .image-card:hover .image-container img {
+        .image-card:hover img {
             transform: scale(1.1);
         }
         
-        .image-info {
-            padding: 20px;
-            text-align: center;
+        /* الخلفيات المتوهجة */
+        .glow-effect {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.7;
+            filter: blur(20px);
+            animation: pulse 4s ease-in-out infinite;
         }
         
-        .image-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #6a11cb;
+        /* الخلفية البنفسجية لـ ch */
+        .image-card:nth-child(3) .glow-effect {
+            background: linear-gradient(45deg, 
+                #8A2BE2, 
+                #9370DB, 
+                #DA70D6,
+                #FF00FF);
+            box-shadow: 0 0 60px 30px rgba(138, 43, 226, 0.6);
         }
         
-        .image-info p {
-            color: #aaa;
-            font-size: 0.9rem;
+        /* الخلفية الصفراء لـ go */
+        .image-card:nth-child(2) .glow-effect {
+            background: linear-gradient(45deg, 
+                #FFD700, 
+                #FFA500, 
+                #FF8C00,
+                #FF4500);
+            box-shadow: 0 0 60px 30px rgba(255, 215, 0, 0.6);
         }
         
-        .floating {
-            animation: float 6s ease-in-out infinite;
+        /* الخلفية الخضراء لـ er */
+        .image-card:nth-child(1) .glow-effect {
+            background: linear-gradient(45deg, 
+                #32CD32, 
+                #00FF00, 
+                #7CFC00,
+                #98FB98);
+            box-shadow: 0 0 60px 30px rgba(50, 205, 50, 0.6);
         }
         
-        .floating-delay-1 {
-            animation-delay: 0.5s;
+        /* الخلفية الزرقاء لـ usdt */
+        .image-card:nth-child(4) .glow-effect {
+            background: linear-gradient(45deg, 
+                #1E90FF, 
+                #00BFFF, 
+                #87CEEB,
+                #4169E1);
+            box-shadow: 0 0 60px 30px rgba(30, 144, 255, 0.6);
         }
         
-        .floating-delay-2 {
-            animation-delay: 1s;
-        }
-        
-        .floating-delay-3 {
-            animation-delay: 1.5s;
-        }
-        
-        @keyframes float {
+        @keyframes pulse {
             0%, 100% {
-                transform: translateY(0);
+                opacity: 0.5;
+                transform: scale(0.95);
             }
             50% {
-                transform: translateY(-20px);
+                opacity: 0.8;
+                transform: scale(1.05);
             }
         }
         
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            padding: 20px;
-            color: #666;
-            font-size: 0.9rem;
-            border-top: 1px solid #333;
+        /* تأثير النقر */
+        .image-card:active {
+            transform: scale(0.95);
+            transition: transform 0.1s;
         }
         
-        /* تأثيرات إضافية */
-        .glow {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(106, 17, 203, 0.1), transparent 70%);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .image-card:hover .glow {
+        /* توهج إضافي عند hover */
+        .image-card:hover .glow-effect {
             opacity: 1;
+            filter: blur(25px);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* النجوم في الخلفية */
+        @keyframes floatStars {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
         }
         
         /* تصميم متجاوب */
+        @media (max-width: 1200px) {
+            .gallery {
+                gap: 30px;
+            }
+            .image-card {
+                width: 240px;
+                height: 240px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .gallery {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
+                flex-direction: column;
+                gap: 40px;
+                padding: 20px;
             }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
             .image-card {
-                height: 300px;
-            }
-            
-            .image-container {
-                height: 200px;
+                width: 220px;
+                height: 220px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>معرض العملات الرقمية</h1>
-            <p class="subtitle">انقر على أي صورة للانتقال إلى صفحة التفاصيل</p>
-        </header>
+    <!-- النجوم في الخلفية -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- معرض الصور -->
+    <div class="gallery">
+        <!-- الصورة الأولى (er) - خلفية خضراء -->
+        <div class="image-card" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index.html">
+            <div class="glow-effect"></div>
+            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/750-currency-er.jpg" alt="ER">
+        </div>
         
-        <main>
-            <div class="gallery">
-                <!-- الصورة الأولى -->
-                <div class="image-card floating" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index.html">
-                    <div class="glow"></div>
-                    <div class="image-container">
-                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/750-currency-er.jpg" alt="عملة Euro">
-                    </div>
-                    <div class="image-info">
-                        <h3>اليورو</h3>
-                        <p>العملة الأوروبية الموحدة</p>
-                    </div>
-                </div>
-                
-                <!-- الصورة الثانية -->
-                <div class="image-card floating floating-delay-1" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index-v2.html">
-                    <div class="glow"></div>
-                    <div class="image-container">
-                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/751-currency-go.jpg" alt="عملة Gold">
-                    </div>
-                    <div class="image-info">
-                        <h3>الذهب</h3>
-                        <p>الاستثمار الآمن التقليدي</p>
-                    </div>
-                </div>
-                
-                <!-- الصورة الثالثة -->
-                <div class="image-card floating floating-delay-2" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index-v3.html">
-                    <div class="glow"></div>
-                    <div class="image-container">
-                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/752-currency-ch.jpg" alt="عملة فرنك سويسري">
-                    </div>
-                    <div class="image-info">
-                        <h3>الفرنك السويسري</h3>
-                        <p>عملة الملاذ الآمن</p>
-                    </div>
-                </div>
-                
-                <!-- الصورة الرابعة -->
-                <div class="image-card floating floating-delay-3" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index.html">
-                    <div class="glow"></div>
-                    <div class="image-container">
-                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/200-currency-usdt.png" alt="عملة USDT">
-                    </div>
-                    <div class="image-info">
-                        <h3>USDT</h3>
-                        <p>عملة مستقرة مرتبطة بالدولار</p>
-                    </div>
-                </div>
-            </div>
-        </main>
+        <!-- الصورة الثانية (go) - خلفية صفراء -->
+        <div class="image-card" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index-v2.html">
+            <div class="glow-effect"></div>
+            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/751-currency-go.jpg" alt="GO">
+        </div>
         
-        <footer>
-            <p>© 2023 معرض العملات التفاعلي | جميع الصور من مستودع GitHub</p>
-        </footer>
+        <!-- الصورة الثالثة (ch) - خلفية بنفسجية -->
+        <div class="image-card" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index-v3.html">
+            <div class="glow-effect"></div>
+            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/752-currency-ch.jpg" alt="CH">
+        </div>
+        
+        <!-- الصورة الرابعة (usdt) - خلفية زرقاء -->
+        <div class="image-card" data-link="https://jamalkatabeuro-sketch.github.io/My-website/index.html">
+            <div class="glow-effect"></div>
+            <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/200-currency-usdt.png" alt="USDT">
+        </div>
     </div>
 
     <script>
-        // إضافة حدث النقر على البطاقات
+        // إنشاء النجوم في الخلفية
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // أحجام عشوائية للنجوم
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // مواقع عشوائية
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // تأخيرات مختلفة للوميض
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // إضافة النقر على الصور للانتقال للروابط
         document.querySelectorAll('.image-card').forEach(card => {
             card.addEventListener('click', function() {
                 const link = this.getAttribute('data-link');
@@ -251,10 +273,10 @@
             });
         });
         
-        // إضافة تأثيرات صوتية افتراضية (يمكن إزالتها إذا لم تكن مرغوبة)
+        // تأثيرات صوتية خفيفة عند hover
         document.querySelectorAll('.image-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                // تأثير صوتي خفيف (يمكن استبداله بصوت حقيقي)
+                // إنشاء صوت خفيف
                 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 const oscillator = audioContext.createOscillator();
                 const gainNode = audioContext.createGain();
@@ -262,9 +284,13 @@
                 oscillator.connect(gainNode);
                 gainNode.connect(audioContext.destination);
                 
-                oscillator.frequency.value = 800;
+                // ترددات مختلفة بناءً على اللون
+                const cardIndex = Array.from(document.querySelectorAll('.image-card')).indexOf(this);
+                const frequencies = [523.25, 392.00, 659.25, 440.00]; // C5, G4, E5, A4
+                
+                oscillator.frequency.value = frequencies[cardIndex % frequencies.length];
                 oscillator.type = 'sine';
-                gainNode.gain.value = 0.1;
+                gainNode.gain.value = 0.05;
                 
                 oscillator.start();
                 gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
@@ -272,16 +298,20 @@
             });
         });
         
-        // إضافة تأثيرات عند تحميل الصفحة
+        // تأثيرات ظهور عند تحميل الصفحة
         window.addEventListener('load', function() {
-            document.querySelectorAll('.image-card').forEach((card, index) => {
+            createStars();
+            
+            // ظهور الصور بتتابع
+            const cards = document.querySelectorAll('.image-card');
+            cards.forEach((card, index) => {
                 card.style.opacity = '0';
-                card.style.transform = 'translateY(50px)';
+                card.style.transform = 'scale(0.5) rotateY(90deg)';
                 
                 setTimeout(() => {
                     card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
                     card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
+                    card.style.transform = 'scale(1) rotateY(0deg)';
                 }, index * 200);
             });
         });
