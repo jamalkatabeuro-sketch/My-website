@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -95,6 +94,23 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .usdt-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .usdt-card.loading::before {
+            animation: slideLoading 1.5s ease-in-out;
         }
         
         .usdt-content {
@@ -200,17 +216,22 @@
             background: #000;
             transition: all 0.3s ease;
             position: relative;
-            opacity: 0;
-            transform: translateY(10px);
+            overflow: hidden;
         }
         
-        .currency-item.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .currency-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
+            transform: translateX(-100%);
         }
         
-        .currency-item:hover {
-            background: #151515;
+        .currency-item.loading::before {
+            animation: slideLoading 1.5s ease-in-out;
         }
         
         .currency-info {
@@ -359,6 +380,19 @@
             font-size: 18px;
         }
         
+        /* تأثير التحميل من اليمين إلى اليسار */
+        @keyframes slideLoading {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
         /* تحسينات للشاشات المختلفة */
         @media (max-width: 360px) {
             .currency-platform {
@@ -439,7 +473,7 @@
             </div>
             
             <!-- بطاقة USDT تحت Last Update -->
-            <div class="usdt-card">
+            <div class="usdt-card" id="usdt-card-eur">
                 <div class="usdt-content">
                     <div class="usdt-logo">
                         <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/200-currency-usdt.png" alt="USDT">
@@ -479,7 +513,7 @@
             </div>
             
             <!-- بطاقة USDT تحت Last Update -->
-            <div class="usdt-card">
+            <div class="usdt-card" id="usdt-card-usd">
                 <div class="usdt-content">
                     <div class="usdt-logo">
                         <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/200-currency-usdt.png" alt="USDT">
@@ -602,11 +636,27 @@
             return item;
         }
 
-        // دالة لإنشاء قائمة العملات مع تأثير الظهور البسيط
+        // دالة لتشغيل تأثير التحميل
+        function startLoadingAnimation(elements) {
+            elements.forEach((element, index) => {
+                setTimeout(() => {
+                    if (element) {
+                        element.classList.add('loading');
+                        setTimeout(() => {
+                            element.classList.remove('loading');
+                        }, 1500);
+                    }
+                }, 300 * index);
+            });
+        }
+
+        // دالة لإنشاء قائمة العملات مع تأثير التحميل
         function createCurrencyList() {
             const eurCurrencyList = document.getElementById('eur-currency-list');
             const usdCurrencyList = document.getElementById('usd-currency-list');
             const loadingProgress = document.getElementById('loadingProgress');
+            const usdtCardEur = document.getElementById('usdt-card-eur');
+            const usdtCardUsd = document.getElementById('usdt-card-usd');
             
             eurCurrencyList.innerHTML = '';
             usdCurrencyList.innerHTML = '';
@@ -627,22 +677,23 @@
                 usdCurrencyList.appendChild(item);
             });
             
-            // إظهار العناصر بتسلسل سريع ومتوازن
+            // بدء تأثير التحميل بعد تأخير بسيط
             setTimeout(() => {
+                // بدء تأثير التحميل لبطاقات USDT
+                startLoadingAnimation([usdtCardEur, usdtCardUsd]);
+                
+                // الحصول على جميع عناصر العملات
                 const eurItems = document.querySelectorAll('#eur-currency-list .currency-item');
                 const usdItems = document.querySelectorAll('#usd-currency-list .currency-item');
                 
-                eurItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, 50 * index);
-                });
+                // بدء تأثير التحميل للعملات بتسلسل
+                setTimeout(() => {
+                    startLoadingAnimation(Array.from(eurItems));
+                }, 800);
                 
-                usdItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, 50 * index);
-                });
+                setTimeout(() => {
+                    startLoadingAnimation(Array.from(usdItems));
+                }, 800);
                 
                 // إخفاء شريط التحميل بعد اكتمال الظهور
                 setTimeout(() => {
@@ -653,8 +704,8 @@
                             document.querySelector('.loading-bar').style.display = 'none';
                         }, 300);
                     }, 200);
-                }, 50 * Math.max(eurItems.length, usdItems.length));
-            }, 100);
+                }, 1500);
+            }, 500);
         }
 
         // دالة للتبديل بين التبويبات
