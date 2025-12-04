@@ -81,6 +81,10 @@
             margin-bottom: 8px;
         }
         
+        .header-silver h1 {
+            color: #c0c0c0;
+        }
+        
         .update-header {
             font-size: 14px;
             color: #fff;
@@ -186,9 +190,10 @@
             flex: 1;
         }
         
+        /* تكبير حجم الصور */
         .metal-icon {
-            width: 35px;
-            height: 35px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             margin-right: 12px;
             border: 2px solid;
@@ -270,8 +275,9 @@
             color: #000;
         }
         
+        /* تغيير لون مستطيلات الفضة إلى أبيض */
         .silver-rate-box {
-            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
             color: #000;
         }
         
@@ -311,18 +317,13 @@
             <div class="ounce-prices">
                 <div class="ounce-card">
                     <div class="ounce-item gold-ounce">
-                        <!-- لا يوجد صور هنا - تم حذفها -->
                         <div class="ounce-details">
                             <div class="ounce-price-row">
-                                <!-- السهم على اليسار -->
                                 <div class="ounce-trending" id="gold-ounce-trending">
                                     <!-- سيتم ملؤه تلقائياً -->
                                 </div>
-                                <!-- السعر -->
                                 <div class="ounce-value">4065$</div>
                             </div>
-                            
-                            <!-- النص -->
                             <div class="metal-code-small">GOLD OUNCE</div>
                         </div>
                     </div>
@@ -330,18 +331,13 @@
                 
                 <div class="ounce-card">
                     <div class="ounce-item silver-ounce">
-                        <!-- لا يوجد صور هنا - تم حذفها -->
                         <div class="ounce-details">
                             <div class="ounce-price-row">
-                                <!-- السهم على اليسار -->
                                 <div class="ounce-trending" id="silver-ounce-trending">
                                     <!-- سيتم ملؤه تلقائياً -->
                                 </div>
-                                <!-- السعر -->
                                 <div class="ounce-value">50.36$</div>
                             </div>
-                            
-                            <!-- النص -->
                             <div class="metal-code-small">SILVER OUNCE</div>
                         </div>
                     </div>
@@ -349,13 +345,13 @@
             </div>
             
             <div class="metal-list" id="gold-metal-list">
-                <!-- سيتم ملء الذهب تلقائياً بواسطة JavaScript -->
+                <!-- سيتم ملء الذهب فقط تلقائياً بواسطة JavaScript -->
             </div>
         </div>
         
         <!-- Silver Tab Content -->
         <div class="tab-content" id="silverContent">
-            <div class="header">
+            <div class="header header-silver">
                 <h1>SILVER</h1>
                 <div class="update-header">Last Update: November 27, 2025</div>
             </div>
@@ -363,18 +359,13 @@
             <div class="ounce-prices">
                 <div class="ounce-card">
                     <div class="ounce-item gold-ounce">
-                        <!-- لا يوجد صور هنا - تم حذفها -->
                         <div class="ounce-details">
                             <div class="ounce-price-row">
-                                <!-- السهم على اليسار -->
                                 <div class="ounce-trending" id="gold-ounce-trending-silver-tab">
                                     <!-- سيتم ملؤه تلقائياً -->
                                 </div>
-                                <!-- السعر -->
                                 <div class="ounce-value">4065$</div>
                             </div>
-                            
-                            <!-- النص -->
                             <div class="metal-code-small">GOLD OUNCE</div>
                         </div>
                     </div>
@@ -382,18 +373,13 @@
                 
                 <div class="ounce-card">
                     <div class="ounce-item silver-ounce">
-                        <!-- لا يوجد صور هنا - تم حذفها -->
                         <div class="ounce-details">
                             <div class="ounce-price-row">
-                                <!-- السهم على اليسار -->
                                 <div class="ounce-trending" id="silver-ounce-trending-silver-tab">
                                     <!-- سيتم ملؤه تلقائياً -->
                                 </div>
-                                <!-- السعر -->
                                 <div class="ounce-value">50.36$</div>
                             </div>
-                            
-                            <!-- النص -->
                             <div class="metal-code-small">SILVER OUNCE</div>
                         </div>
                     </div>
@@ -401,7 +387,7 @@
             </div>
             
             <div class="metal-list" id="silver-metal-list">
-                <!-- سيتم ملء الفضة تلقائياً بواسطة JavaScript -->
+                <!-- سيتم ملء الفضة فقط تلقائياً بواسطة JavaScript -->
             </div>
         </div>
         
@@ -458,7 +444,7 @@
             }
         ];
 
-        // بيانات الفضة
+        // بيانات الفضة (تم وضعها تحت الذهب حسب الطلب)
         const silverPrices = [
             { 
                 code: 'SILVER 999', 
@@ -566,7 +552,7 @@
             }
         }
 
-        // دالة لإنشاء قائمة المعادن
+        // دالة لإنشاء قائمة المعادن لكل تبويب
         function createMetalList() {
             const goldMetalList = document.getElementById('gold-metal-list');
             const silverMetalList = document.getElementById('silver-metal-list');
@@ -574,13 +560,13 @@
             goldMetalList.innerHTML = '';
             silverMetalList.innerHTML = '';
             
-            // إنشاء عناصر الذهب
+            // إنشاء عناصر الذهب فقط في تبويب الذهب
             goldPrices.forEach((metal) => {
                 const item = createMetalItem(metal);
                 goldMetalList.appendChild(item);
             });
             
-            // إنشاء عناصر الفضة
+            // إنشاء عناصر الفضة فقط في تبويب الفضة
             silverPrices.forEach((metal) => {
                 const item = createMetalItem(metal);
                 silverMetalList.appendChild(item);
