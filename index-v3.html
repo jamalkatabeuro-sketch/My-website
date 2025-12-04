@@ -80,12 +80,6 @@
             margin-bottom: 8px;
         }
         
-        .update-header {
-            font-size: 14px;
-            color: #fff;
-            font-weight: 600;
-        }
-        
         /* بطاقة USDT تحت Last Update */
         .usdt-card {
             padding: 15px;
@@ -392,6 +386,107 @@
                 transform: translateX(100%);
             }
         }
+
+        /* لوحة تحرير المطور */
+        .dev-panel {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #4caf50;
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 10000;
+            width: 300px;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+            display: none;
+        }
+
+        .dev-panel.active {
+            display: block;
+        }
+
+        .dev-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+
+        .dev-section {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .dev-section:last-child {
+            border-bottom: none;
+        }
+
+        .dev-section h3 {
+            color: #4caf50;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .rate-input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 6px;
+            align-items: center;
+        }
+
+        .rate-input-group label {
+            font-size: 12px;
+            color: #888;
+            min-width: 60px;
+        }
+
+        .dev-input {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            width: 100%;
+        }
+
+        .dev-button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 8px;
+            transition: background 0.3s;
+        }
+
+        .dev-button:hover {
+            background: #45a049;
+        }
+
+        .dev-note {
+            font-size: 10px;
+            color: #888;
+            margin-top: 5px;
+            font-style: italic;
+        }
         
         /* تحسينات للشاشات المختلفة */
         @media (max-width: 360px) {
@@ -428,6 +523,11 @@
             .usdt-value {
                 font-size: 16px;
             }
+
+            .dev-panel {
+                width: 280px;
+                right: 5px;
+            }
         }
 
         @media (min-width: 768px) {
@@ -459,6 +559,84 @@
         <div class="loading-progress" id="loadingProgress"></div>
     </div>
     
+    <!-- زر التبديل لوحة المطور -->
+    <button class="dev-toggle" id="devToggle">⚙️</button>
+    
+    <!-- لوحة تحرير المطور -->
+    <div class="dev-panel" id="devPanel">
+        <div class="dev-section">
+            <h3>USDT Rates (EUR)</h3>
+            <div class="rate-input-group">
+                <label>Min:</label>
+                <input type="text" class="dev-input" id="usdtEurMin" value="256">
+            </div>
+            <div class="rate-input-group">
+                <label>Max:</label>
+                <input type="text" class="dev-input" id="usdtEurMax" value="257">
+            </div>
+            <button class="dev-button" onclick="updateUsdtEur()">Update EUR USDT</button>
+        </div>
+
+        <div class="dev-section">
+            <h3>USDT Rates (USD)</h3>
+            <div class="rate-input-group">
+                <label>Min:</label>
+                <input type="text" class="dev-input" id="usdtUsdMin" value="256">
+            </div>
+            <div class="rate-input-group">
+                <label>Max:</label>
+                <input type="text" class="dev-input" id="usdtUsdMax" value="257">
+            </div>
+            <button class="dev-button" onclick="updateUsdtUsd()">Update USD USDT</button>
+        </div>
+
+        <div class="dev-section">
+            <h3>WISE Rates</h3>
+            <div class="rate-input-group">
+                <label>EUR Min:</label>
+                <input type="text" class="dev-input" id="wiseEurMin" value="257">
+            </div>
+            <div class="rate-input-group">
+                <label>EUR Max:</label>
+                <input type="text" class="dev-input" id="wiseEurMax" value="258">
+            </div>
+            <div class="rate-input-group">
+                <label>USD Min:</label>
+                <input type="text" class="dev-input" id="wiseUsdMin" value="279">
+            </div>
+            <div class="rate-input-group">
+                <label>USD Max:</label>
+                <input type="text" class="dev-input" id="wiseUsdMax" value="280">
+            </div>
+            <button class="dev-button" onclick="updateWise()">Update WISE</button>
+        </div>
+
+        <div class="dev-section">
+            <h3>PAYSERA Rates</h3>
+            <div class="rate-input-group">
+                <label>EUR Min:</label>
+                <input type="text" class="dev-input" id="payseraEurMin" value="255">
+            </div>
+            <div class="rate-input-group">
+                <label>EUR Max:</label>
+                <input type="text" class="dev-input" id="payseraEurMax" value="256">
+            </div>
+            <div class="rate-input-group">
+                <label>USD Min:</label>
+                <input type="text" class="dev-input" id="payseraUsdMin" value="282">
+            </div>
+            <div class="rate-input-group">
+                <label>USD Max:</label>
+                <input type="text" class="dev-input" id="payseraUsdMax" value="283">
+            </div>
+            <button class="dev-button" onclick="updatePaysera()">Update PAYSERA</button>
+        </div>
+
+        <div class="dev-note">
+            Note: Changes are saved in browser memory only. Refresh will reset.
+        </div>
+    </div>
+    
     <div class="container">
         <div class="tab-buttons">
             <button class="tab-button eur-tab active" id="eurTab">EUR</button>
@@ -469,7 +647,6 @@
         <div class="tab-content active" id="eurContent">
             <div class="header">
                 <h1>EUR</h1>
-                <div class="update-header">Last Update: 2025-11-18</div>
             </div>
             
             <!-- بطاقة USDT تحت Last Update -->
@@ -491,11 +668,11 @@
                 <div class="usdt-rates">
                     <div class="usdt-rate-box">
                         <div class="usdt-rate-label">Min</div>
-                        <div class="usdt-rate-value">256</div>
+                        <div class="usdt-rate-value" id="usdt-eur-min">256</div>
                     </div>
                     <div class="usdt-rate-box">
                         <div class="usdt-rate-label">Max</div>
-                        <div class="usdt-rate-value">257</div>
+                        <div class="usdt-rate-value" id="usdt-eur-max">257</div>
                     </div>
                 </div>
             </div>
@@ -509,7 +686,6 @@
         <div class="tab-content" id="usdContent">
             <div class="header">
                 <h1>USD</h1>
-                <div class="update-header">Last Update: 2025-11-18</div>
             </div>
             
             <!-- بطاقة USDT تحت Last Update -->
@@ -531,11 +707,11 @@
                 <div class="usdt-rates">
                     <div class="usdt-rate-box">
                         <div class="usdt-rate-label">Min</div>
-                        <div class="usdt-rate-value">256</div>
+                        <div class="usdt-rate-value" id="usdt-usd-min">256</div>
                     </div>
                     <div class="usdt-rate-box">
                         <div class="usdt-rate-label">Max</div>
-                        <div class="usdt-rate-value">257</div>
+                        <div class="usdt-rate-value" id="usdt-usd-max">257</div>
                     </div>
                 </div>
             </div>
@@ -551,7 +727,7 @@
     </div>
 
     <script>
-        // بيانات العملات الرقمية المحدثة مع تصنيف EUR و USD (حذفت PayPal)
+        // بيانات العملات الرقمية المحدثة مع تصنيف EUR و USD
         const cryptoRates = [
             {
                 platform: ' WISE',
@@ -594,6 +770,163 @@
                 ]
             }
         ];
+
+        // حفظ البيانات في localStorage لاستعادتها لاحقاً
+        function saveToLocalStorage() {
+            localStorage.setItem('cryptoRates', JSON.stringify(cryptoRates));
+            localStorage.setItem('usdtEurMin', document.getElementById('usdt-eur-min').textContent);
+            localStorage.setItem('usdtEurMax', document.getElementById('usdt-eur-max').textContent);
+            localStorage.setItem('usdtUsdMin', document.getElementById('usdt-usd-min').textContent);
+            localStorage.setItem('usdtUsdMax', document.getElementById('usdt-usd-max').textContent);
+        }
+
+        // استعادة البيانات من localStorage
+        function loadFromLocalStorage() {
+            const savedRates = localStorage.getItem('cryptoRates');
+            if (savedRates) {
+                const parsed = JSON.parse(savedRates);
+                cryptoRates.length = 0;
+                cryptoRates.push(...parsed);
+            }
+            
+            // استعادة قيم USDT
+            const usdtEurMin = localStorage.getItem('usdtEurMin');
+            const usdtEurMax = localStorage.getItem('usdtEurMax');
+            const usdtUsdMin = localStorage.getItem('usdtUsdMin');
+            const usdtUsdMax = localStorage.getItem('usdtUsdMax');
+            
+            if (usdtEurMin) {
+                document.getElementById('usdt-eur-min').textContent = usdtEurMin;
+                document.getElementById('usdtEurMin').value = usdtEurMin;
+            }
+            if (usdtEurMax) {
+                document.getElementById('usdt-eur-max').textContent = usdtEurMax;
+                document.getElementById('usdtEurMax').value = usdtEurMax;
+            }
+            if (usdtUsdMin) {
+                document.getElementById('usdt-usd-min').textContent = usdtUsdMin;
+                document.getElementById('usdtUsdMin').value = usdtUsdMin;
+            }
+            if (usdtUsdMax) {
+                document.getElementById('usdt-usd-max').textContent = usdtUsdMax;
+                document.getElementById('usdtUsdMax').value = usdtUsdMax;
+            }
+            
+            // تحديث قيم الحقول في لوحة المطور
+            updateDevPanelValues();
+        }
+
+        // تحديث قيم الحقول في لوحة المطور من البيانات الحالية
+        function updateDevPanelValues() {
+            // تحديث قيم WISE
+            const wiseEur = cryptoRates.find(c => c.platform === ' WISE' && c.currency === 'EUR');
+            const wiseUsd = cryptoRates.find(c => c.platform === ' WISE' && c.currency === 'USD');
+            
+            if (wiseEur && wiseEur.rates[0]) {
+                document.getElementById('wiseEurMin').value = wiseEur.rates[0].value;
+            }
+            if (wiseEur && wiseEur.rates[1]) {
+                document.getElementById('wiseEurMax').value = wiseEur.rates[1].value;
+            }
+            if (wiseUsd && wiseUsd.rates[0]) {
+                document.getElementById('wiseUsdMin').value = wiseUsd.rates[0].value;
+            }
+            if (wiseUsd && wiseUsd.rates[1]) {
+                document.getElementById('wiseUsdMax').value = wiseUsd.rates[1].value;
+            }
+            
+            // تحديث قيم PAYSERA
+            const payseraEur = cryptoRates.find(c => c.platform === ' PAYSERA' && c.currency === 'EUR');
+            const payseraUsd = cryptoRates.find(c => c.platform === ' PAYSERA' && c.currency === 'USD');
+            
+            if (payseraEur && payseraEur.rates[0]) {
+                document.getElementById('payseraEurMin').value = payseraEur.rates[0].value;
+            }
+            if (payseraEur && payseraEur.rates[1]) {
+                document.getElementById('payseraEurMax').value = payseraEur.rates[1].value;
+            }
+            if (payseraUsd && payseraUsd.rates[0]) {
+                document.getElementById('payseraUsdMin').value = payseraUsd.rates[0].value;
+            }
+            if (payseraUsd && payseraUsd.rates[1]) {
+                document.getElementById('payseraUsdMax').value = payseraUsd.rates[1].value;
+            }
+        }
+
+        // دوال تحديث الأسعار
+        function updateUsdtEur() {
+            const min = document.getElementById('usdtEurMin').value;
+            const max = document.getElementById('usdtEurMax').value;
+            
+            document.getElementById('usdt-eur-min').textContent = min;
+            document.getElementById('usdt-eur-max').textContent = max;
+            
+            saveToLocalStorage();
+            showUpdateAnimation('usdt-card-eur');
+        }
+
+        function updateUsdtUsd() {
+            const min = document.getElementById('usdtUsdMin').value;
+            const max = document.getElementById('usdtUsdMax').value;
+            
+            document.getElementById('usdt-usd-min').textContent = min;
+            document.getElementById('usdt-usd-max').textContent = max;
+            
+            saveToLocalStorage();
+            showUpdateAnimation('usdt-card-usd');
+        }
+
+        function updateWise() {
+            // تحديث WISE EUR
+            const wiseEurIndex = cryptoRates.findIndex(c => c.platform === ' WISE' && c.currency === 'EUR');
+            if (wiseEurIndex !== -1) {
+                cryptoRates[wiseEurIndex].rates[0].value = document.getElementById('wiseEurMin').value;
+                cryptoRates[wiseEurIndex].rates[1].value = document.getElementById('wiseEurMax').value;
+            }
+            
+            // تحديث WISE USD
+            const wiseUsdIndex = cryptoRates.findIndex(c => c.platform === ' WISE' && c.currency === 'USD');
+            if (wiseUsdIndex !== -1) {
+                cryptoRates[wiseUsdIndex].rates[0].value = document.getElementById('wiseUsdMin').value;
+                cryptoRates[wiseUsdIndex].rates[1].value = document.getElementById('wiseUsdMax').value;
+            }
+            
+            saveToLocalStorage();
+            createCurrencyList();
+            showUpdateAnimation('eur-currency-list, #usd-currency-list');
+        }
+
+        function updatePaysera() {
+            // تحديث PAYSERA EUR
+            const payseraEurIndex = cryptoRates.findIndex(c => c.platform === ' PAYSERA' && c.currency === 'EUR');
+            if (payseraEurIndex !== -1) {
+                cryptoRates[payseraEurIndex].rates[0].value = document.getElementById('payseraEurMin').value;
+                cryptoRates[payseraEurIndex].rates[1].value = document.getElementById('payseraEurMax').value;
+            }
+            
+            // تحديث PAYSERA USD
+            const payseraUsdIndex = cryptoRates.findIndex(c => c.platform === ' PAYSERA' && c.currency === 'USD');
+            if (payseraUsdIndex !== -1) {
+                cryptoRates[payseraUsdIndex].rates[0].value = document.getElementById('payseraUsdMin').value;
+                cryptoRates[payseraUsdIndex].rates[1].value = document.getElementById('payseraUsdMax').value;
+            }
+            
+            saveToLocalStorage();
+            createCurrencyList();
+            showUpdateAnimation('eur-currency-list, #usd-currency-list');
+        }
+
+        function showUpdateAnimation(selector) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                if (element) {
+                    element.classList.add('loading');
+                    setTimeout(() => {
+                        element.classList.remove('loading');
+                    }, 1500);
+                }
+            });
+        }
 
         // دالة لإنشاء عنصر عملة
         function createCurrencyItem(currency) {
@@ -724,25 +1057,4 @@
             if (tabName === 'eur') {
                 document.getElementById('eurContent').classList.add('active');
                 document.getElementById('eurTab').classList.add('active');
-            } else if (tabName === 'usd') {
-                document.getElementById('usdContent').classList.add('active');
-                document.getElementById('usdTab').classList.add('active');
-            }
-        }
-
-        // تشغيل الدالة عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            createCurrencyList();
-            
-            // إضافة مستمعي الأحداث للأزرار
-            document.getElementById('eurTab').addEventListener('click', function() {
-                switchTab('eur');
-            });
-            
-            document.getElementById('usdTab').addEventListener('click', function() {
-                switchTab('usd');
-            });
-        });
-    </script>
-</body>
-</html>
+            } else if (tabName === 'usd')
