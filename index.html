@@ -29,7 +29,7 @@
             display: none; /* إخفاء المحتوى حتى يتم تحميل الصور */
         }
         
-        /* شاشة التحميل مع السهم الدائري */
+        /* شاشة التحميل مع السهم الدائري الأخضر */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -45,35 +45,31 @@
             transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
+        /* الدائرة الخضراء - كما في الكود السابق */
+        .loading-circle {
+            width: 80px;
+            height: 80px;
             position: relative;
             margin-bottom: 20px;
         }
         
-        .spinner-arrow {
+        .circle-base {
+            position: absolute;
             width: 100%;
             height: 100%;
-            border: 4px solid rgba(255, 255, 255, 0.1);
+            border: 4px solid rgba(76, 217, 100, 0.1);
+            border-radius: 50%;
+        }
+        
+        .circle-spinner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
             border-top: 4px solid #4cd964;
             border-right: 4px solid #4cd964;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            position: relative;
-        }
-        
-        .spinner-arrow::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-bottom: 12px solid #4cd964;
         }
         
         .loading-text {
@@ -134,7 +130,6 @@
             position: relative;
         }
         
-        /* إضافة الخط العمودي في المنتصف */
         .usd-rates-container::after {
             content: '';
             position: absolute;
@@ -424,10 +419,11 @@
     </style>
 </head>
 <body>
-    <!-- شاشة التحميل مع السهم الدائري -->
+    <!-- شاشة التحميل مع الدائرة الخضراء -->
     <div class="loading-screen" id="loadingScreen">
-        <div class="loading-spinner">
-            <div class="spinner-arrow"></div>
+        <div class="loading-circle">
+            <div class="circle-base"></div>
+            <div class="circle-spinner"></div>
         </div>
         <div class="loading-text">Loading currency images...</div>
         <div class="loading-progress" id="loadingProgress">0%</div>
