@@ -341,7 +341,8 @@
             min-height: 35px;
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            justify-content: center;
+            align-items: center;
         }
         
         .rate-label {
@@ -581,14 +582,14 @@
             { code: 'AED', buy: 37.15, sell: 39.8, trending: false, arrow: 'none', fullName: 'UAE Dirham' }
         ];
 
-        // بيانات العملات المحدثة مع العملات الجديدة (Official)
+        // بيانات العملات المحدثة مع العملات الجديدة (Official) - معدل
         const officialExchangeRates = [
-            { code: 'EUR', bank: 151 },
-            { code: 'USD', Bank: 130 },
-            { code: 'CAD', Bank: 93 },
-            { code: 'GBP', Bank: 171 },
-            { code: 'CHF', Bank: 148 },
-            { code: 'AUD', Bank: 87 }
+            { code: 'EUR', rate: 151.89 },
+            { code: 'USD', rate: 129.48 },
+            { code: 'CAD', rate: 93.46 },
+            { code: 'GBP', rate: 173.85 },
+            { code: 'CHF', rate: 162.30 },
+            { code: 'AUD', rate: 85.61 }
         ];
 
         // روابط الصور من المستودع الصحيح: My-website
@@ -798,7 +799,6 @@
                 <div class="currency-rates">
                     <div class="rate-box official-rate-box">
                         <div class="rate-box-value">${currency.rate}</div>
-                        <div class="rate-label">Rate</div>
                     </div>
                 </div>
             `;
@@ -848,7 +848,3 @@
     </script>
 </body>
 </html>
-
-
-
-
