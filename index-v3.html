@@ -28,20 +28,135 @@
         }
         
         .header {
-            padding: 20px 15px;
+            padding: 15px;
             background: #000;
             border-bottom: 1px solid #333;
             text-align: center;
         }
         
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #4caf50;
-            margin-bottom: 8px;
+        .update-header {
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
         }
         
-        /* بطاقة مثل USDT */
+        /* بطاقة USDT */
+        .usdt-card {
+            padding: 15px;
+            background: #000;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .usdt-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .usdt-card.loading::before {
+            animation: slideLoading 1.5s ease-in-out;
+        }
+        
+        .usdt-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .usdt-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a1a1a;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid #4caf50;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .usdt-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .usdt-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+        }
+        
+        .usdt-value {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .usdt-label {
+            color: #888;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .usdt-rates {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .usdt-rate-box {
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: 800;
+            min-width: 70px;
+            text-align: center;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            line-height: 1;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+        }
+        
+        .usdt-rate-label {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            font-size: 10px;
+            color: #00ff88;
+            text-align: center;
+            white-space: nowrap;
+            background: #111111;
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid #00ff8840;
+            font-weight: 600;
+        }
+        
+        .usdt-rate-value {
+            font-size: 16px;
+            font-weight: 900;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* بطاقات العملات */
         .currency-card {
             padding: 15px;
             background: #000;
@@ -106,9 +221,6 @@
             color: #fff;
             font-size: 18px;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
         
         .currency-label {
@@ -157,6 +269,19 @@
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
         
+        /* سهم USDT فقط - بجانب الكلمة */
+        .usdt-trending {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .usdt-up-arrow {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
         .copyright {
             position: absolute;
             bottom: 0;
@@ -189,19 +314,6 @@
             transition: width 0.3s ease;
         }
         
-        /* سهم - بجانب الكلمة */
-        .trending {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .up-arrow {
-            color: #10b981;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
         /* تأثير التحميل من اليمين إلى اليسار */
         @keyframes slideLoading {
             0% {
@@ -214,179 +326,36 @@
                 transform: translateX(100%);
             }
         }
-
-        /* لوحة تحرير المطور */
-        .dev-panel {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.95);
-            border: 1px solid #4caf50;
-            border-radius: 10px;
-            padding: 15px;
-            z-index: 10000;
-            width: 320px;
-            box-shadow: 0 0 25px rgba(76, 175, 80, 0.4);
-            display: none;
-            backdrop-filter: blur(10px);
-        }
-
-        .dev-panel.active {
-            display: block;
-        }
-
-        .dev-toggle {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 22px;
-            cursor: pointer;
-            z-index: 10001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-            transition: transform 0.3s;
-        }
-
-        .dev-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .dev-section {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #333;
-        }
-
-        .dev-section:last-child {
-            border-bottom: none;
-        }
-
-        .dev-section h3 {
-            color: #4caf50;
-            font-size: 14px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .dev-section h3 img {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-        }
-
-        .rate-input-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .rate-input-group label {
-            font-size: 12px;
-            color: #888;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .rate-input-group label span {
-            color: #00ff88;
-            font-weight: 600;
-        }
-
-        .dev-input {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: white;
-            padding: 8px 10px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: 'Courier New', monospace;
-            text-align: center;
-            transition: border 0.3s;
-        }
-
-        .dev-input:focus {
-            border-color: #4caf50;
-            outline: none;
-        }
-
-        .dev-button {
-            background: linear-gradient(135deg, #4caf50, #45a049);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            transition: all 0.3s;
-            letter-spacing: 0.5px;
-        }
-
-        .dev-button:hover {
-            background: linear-gradient(135deg, #45a049, #3d8b40);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
-        }
-
-        .dev-note {
-            font-size: 11px;
-            color: #888;
-            margin-top: 10px;
-            font-style: italic;
-            text-align: center;
-            border-top: 1px solid #333;
-            padding-top: 10px;
-        }
         
         /* تحسينات للشاشات المختلفة */
         @media (max-width: 360px) {
-            .currency-card {
+            .currency-card, .usdt-card {
                 padding: 12px 15px;
             }
             
-            .currency-logo {
+            .currency-logo, .usdt-logo {
                 width: 45px;
                 height: 45px;
             }
             
-            .currency-value {
+            .currency-value, .usdt-value {
                 font-size: 16px;
             }
-
-            .dev-panel {
-                width: 280px;
-                right: 5px;
-                top: 5px;
-            }
             
-            .rate-box {
+            .rate-box, .usdt-rate-box {
                 min-width: 65px;
                 padding: 8px 12px;
             }
         }
 
         @media (min-width: 768px) {
-            .rate-value {
+            .rate-value, .usdt-rate-value {
                 font-size: 18px;
             }
         }
 
         @media (min-width: 1024px) {
-            .rate-value {
+            .rate-value, .usdt-rate-value {
                 font-size: 20px;
             }
         }
@@ -397,75 +366,37 @@
         <div class="loading-progress" id="loadingProgress"></div>
     </div>
     
-    <!-- زر التبديل لوحة المطور -->
-    <button class="dev-toggle" id="devToggle">⚙️</button>
-    
-    <!-- لوحة تحرير المطور -->
-    <div class="dev-panel" id="devPanel">
-        <div class="dev-section">
-            <h3>
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
-                WISE EUR
-            </h3>
-            <div class="rate-input-group">
-                <label><span>Min:</span></label>
-                <input type="text" class="dev-input" id="wiseEurMin" value="257">
-                <label><span>Max:</span></label>
-                <input type="text" class="dev-input" id="wiseEurMax" value="258">
-            </div>
-            <button class="dev-button" onclick="updateWiseEur()">Update WISE EUR</button>
-        </div>
-
-        <div class="dev-section">
-            <h3>
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
-                WISE USD
-            </h3>
-            <div class="rate-input-group">
-                <label><span>Min:</span></label>
-                <input type="text" class="dev-input" id="wiseUsdMin" value="279">
-                <label><span>Max:</span></label>
-                <input type="text" class="dev-input" id="wiseUsdMax" value="280">
-            </div>
-            <button class="dev-button" onclick="updateWiseUsd()">Update WISE USD</button>
-        </div>
-
-        <div class="dev-section">
-            <h3>
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
-                PAYSERA EUR
-            </h3>
-            <div class="rate-input-group">
-                <label><span>Min:</span></label>
-                <input type="text" class="dev-input" id="payseraEurMin" value="255">
-                <label><span>Max:</span></label>
-                <input type="text" class="dev-input" id="payseraEurMax" value="256">
-            </div>
-            <button class="dev-button" onclick="updatePayseraEur()">Update PAYSERA EUR</button>
-        </div>
-
-        <div class="dev-section">
-            <h3>
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
-                PAYSERA USD
-            </h3>
-            <div class="rate-input-group">
-                <label><span>Min:</span></label>
-                <input type="text" class="dev-input" id="payseraUsdMin" value="282">
-                <label><span>Max:</span></label>
-                <input type="text" class="dev-input" id="payseraUsdMax" value="283">
-            </div>
-            <button class="dev-button" onclick="updatePayseraUsd()">Update PAYSERA USD</button>
-        </div>
-
-        <div class="dev-note">
-            Changes are saved in browser memory. Refresh to reset.
-        </div>
-    </div>
-    
     <div class="container">
         <div class="header">
-            <h1>Digital Currency Rates</h1>
+            <div class="update-header">Last Update 2025-12-4</div>
+        </div>
+        
+        <!-- بطاقة USDT -->
+        <div class="usdt-card" id="usdt-card">
+            <div class="usdt-content">
+                <div class="usdt-logo">
+                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/200-currency-usdt.png" alt="USDT">
+                </div>
+                <div class="usdt-info">
+                    <div class="usdt-value">
+                        USDT
+                        <div class="usdt-trending">
+                            <span class="usdt-up-arrow">▲</span>
+                        </div>
+                    </div>
+                    <div class="usdt-label">TETHER</div>
+                </div>
+            </div>
+            <div class="usdt-rates">
+                <div class="usdt-rate-box">
+                    <div class="usdt-rate-label">Min</div>
+                    <div class="usdt-rate-value">256</div>
+                </div>
+                <div class="usdt-rate-box">
+                    <div class="usdt-rate-label">Max</div>
+                    <div class="usdt-rate-value">257</div>
+                </div>
+            </div>
         </div>
         
         <!-- WISE EUR Card -->
@@ -475,23 +406,18 @@
                     <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
                 </div>
                 <div class="currency-info">
-                    <div class="currency-value">
-                        WISE EUR
-                        <div class="trending">
-                            <span class="up-arrow">▲</span>
-                        </div>
-                    </div>
+                    <div class="currency-value">WISE EUR</div>
                     <div class="currency-label">EURO</div>
                 </div>
             </div>
             <div class="currency-rates">
                 <div class="rate-box">
                     <div class="rate-label">Min</div>
-                    <div class="rate-value" id="wise-eur-min">257</div>
+                    <div class="rate-value">257</div>
                 </div>
                 <div class="rate-box">
                     <div class="rate-label">Max</div>
-                    <div class="rate-value" id="wise-eur-max">258</div>
+                    <div class="rate-value">258</div>
                 </div>
             </div>
         </div>
@@ -503,23 +429,18 @@
                     <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
                 </div>
                 <div class="currency-info">
-                    <div class="currency-value">
-                        WISE USD
-                        <div class="trending">
-                            <span class="up-arrow">▲</span>
-                        </div>
-                    </div>
+                    <div class="currency-value">WISE USD</div>
                     <div class="currency-label">DOLLAR</div>
                 </div>
             </div>
             <div class="currency-rates">
                 <div class="rate-box">
                     <div class="rate-label">Min</div>
-                    <div class="rate-value" id="wise-usd-min">279</div>
+                    <div class="rate-value">279</div>
                 </div>
                 <div class="rate-box">
                     <div class="rate-label">Max</div>
-                    <div class="rate-value" id="wise-usd-max">280</div>
+                    <div class="rate-value">280</div>
                 </div>
             </div>
         </div>
@@ -531,23 +452,18 @@
                     <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
                 </div>
                 <div class="currency-info">
-                    <div class="currency-value">
-                        PAYSERA EUR
-                        <div class="trending">
-                            <span class="up-arrow">▲</span>
-                        </div>
-                    </div>
+                    <div class="currency-value">PAYSERA EUR</div>
                     <div class="currency-label">EURO</div>
                 </div>
             </div>
             <div class="currency-rates">
                 <div class="rate-box">
                     <div class="rate-label">Min</div>
-                    <div class="rate-value" id="paysera-eur-min">255</div>
+                    <div class="rate-value">255</div>
                 </div>
                 <div class="rate-box">
                     <div class="rate-label">Max</div>
-                    <div class="rate-value" id="paysera-eur-max">256</div>
+                    <div class="rate-value">256</div>
                 </div>
             </div>
         </div>
@@ -559,23 +475,18 @@
                     <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
                 </div>
                 <div class="currency-info">
-                    <div class="currency-value">
-                        PAYSERA USD
-                        <div class="trending">
-                            <span class="up-arrow">▲</span>
-                        </div>
-                    </div>
+                    <div class="currency-value">PAYSERA USD</div>
                     <div class="currency-label">DOLLAR</div>
                 </div>
             </div>
             <div class="currency-rates">
                 <div class="rate-box">
                     <div class="rate-label">Min</div>
-                    <div class="rate-value" id="paysera-usd-min">282</div>
+                    <div class="rate-value">282</div>
                 </div>
                 <div class="rate-box">
                     <div class="rate-label">Max</div>
-                    <div class="rate-value" id="paysera-usd-max">283</div>
+                    <div class="rate-value">283</div>
                 </div>
             </div>
         </div>
@@ -586,110 +497,6 @@
     </div>
 
     <script>
-        // حفظ البيانات في localStorage لاستعادتها لاحقاً
-        function saveToLocalStorage() {
-            const data = {
-                wiseEurMin: document.getElementById('wise-eur-min').textContent,
-                wiseEurMax: document.getElementById('wise-eur-max').textContent,
-                wiseUsdMin: document.getElementById('wise-usd-min').textContent,
-                wiseUsdMax: document.getElementById('wise-usd-max').textContent,
-                payseraEurMin: document.getElementById('paysera-eur-min').textContent,
-                payseraEurMax: document.getElementById('paysera-eur-max').textContent,
-                payseraUsdMin: document.getElementById('paysera-usd-min').textContent,
-                payseraUsdMax: document.getElementById('paysera-usd-max').textContent
-            };
-            localStorage.setItem('currencyRates', JSON.stringify(data));
-        }
-
-        // استعادة البيانات من localStorage
-        function loadFromLocalStorage() {
-            const savedData = localStorage.getItem('currencyRates');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                
-                // تحديث القيم في الصفحة
-                document.getElementById('wise-eur-min').textContent = data.wiseEurMin || '257';
-                document.getElementById('wise-eur-max').textContent = data.wiseEurMax || '258';
-                document.getElementById('wise-usd-min').textContent = data.wiseUsdMin || '279';
-                document.getElementById('wise-usd-max').textContent = data.wiseUsdMax || '280';
-                document.getElementById('paysera-eur-min').textContent = data.payseraEurMin || '255';
-                document.getElementById('paysera-eur-max').textContent = data.payseraEurMax || '256';
-                document.getElementById('paysera-usd-min').textContent = data.payseraUsdMin || '282';
-                document.getElementById('paysera-usd-max').textContent = data.payseraUsdMax || '283';
-                
-                // تحديث قيم الحقول في لوحة المطور
-                updateDevPanelValues();
-            }
-        }
-
-        // تحديث قيم الحقول في لوحة المطور
-        function updateDevPanelValues() {
-            document.getElementById('wiseEurMin').value = document.getElementById('wise-eur-min').textContent;
-            document.getElementById('wiseEurMax').value = document.getElementById('wise-eur-max').textContent;
-            document.getElementById('wiseUsdMin').value = document.getElementById('wise-usd-min').textContent;
-            document.getElementById('wiseUsdMax').value = document.getElementById('wise-usd-max').textContent;
-            document.getElementById('payseraEurMin').value = document.getElementById('paysera-eur-min').textContent;
-            document.getElementById('payseraEurMax').value = document.getElementById('paysera-eur-max').textContent;
-            document.getElementById('payseraUsdMin').value = document.getElementById('paysera-usd-min').textContent;
-            document.getElementById('payseraUsdMax').value = document.getElementById('paysera-usd-max').textContent;
-        }
-
-        // دوال تحديث الأسعار
-        function updateWiseEur() {
-            const min = document.getElementById('wiseEurMin').value;
-            const max = document.getElementById('wiseEurMax').value;
-            
-            document.getElementById('wise-eur-min').textContent = min;
-            document.getElementById('wise-eur-max').textContent = max;
-            
-            saveToLocalStorage();
-            showUpdateAnimation('wise-eur-card');
-        }
-
-        function updateWiseUsd() {
-            const min = document.getElementById('wiseUsdMin').value;
-            const max = document.getElementById('wiseUsdMax').value;
-            
-            document.getElementById('wise-usd-min').textContent = min;
-            document.getElementById('wise-usd-max').textContent = max;
-            
-            saveToLocalStorage();
-            showUpdateAnimation('wise-usd-card');
-        }
-
-        function updatePayseraEur() {
-            const min = document.getElementById('payseraEurMin').value;
-            const max = document.getElementById('payseraEurMax').value;
-            
-            document.getElementById('paysera-eur-min').textContent = min;
-            document.getElementById('paysera-eur-max').textContent = max;
-            
-            saveToLocalStorage();
-            showUpdateAnimation('paysera-eur-card');
-        }
-
-        function updatePayseraUsd() {
-            const min = document.getElementById('payseraUsdMin').value;
-            const max = document.getElementById('payseraUsdMax').value;
-            
-            document.getElementById('paysera-usd-min').textContent = min;
-            document.getElementById('paysera-usd-max').textContent = max;
-            
-            saveToLocalStorage();
-            showUpdateAnimation('paysera-usd-card');
-        }
-
-        // عرض تأثير التحديث
-        function showUpdateAnimation(cardId) {
-            const card = document.getElementById(cardId);
-            if (card) {
-                card.classList.add('loading');
-                setTimeout(() => {
-                    card.classList.remove('loading');
-                }, 1500);
-            }
-        }
-
         // دالة لتشغيل تأثير التحميل
         function startLoadingAnimation(elements) {
             elements.forEach((element, index) => {
@@ -707,7 +514,7 @@
         // تطبيق تأثير التحميل
         function applyLoadingEffects() {
             const loadingProgress = document.getElementById('loadingProgress');
-            const cards = document.querySelectorAll('.currency-card');
+            const cards = document.querySelectorAll('.currency-card, .usdt-card');
             
             setTimeout(() => {
                 startLoadingAnimation(Array.from(cards));
@@ -724,35 +531,10 @@
             }, 500);
         }
 
-        // التحكم في لوحة المطور
-        function toggleDevPanel() {
-            const panel = document.getElementById('devPanel');
-            panel.classList.toggle('active');
-            updateDevPanelValues();
-        }
-
         // تشغيل الدالة عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
-            // تحميل البيانات المحفوظة
-            loadFromLocalStorage();
-            
             // تطبيق تأثيرات التحميل
             applyLoadingEffects();
-            
-            // إضافة مستمعي الأحداث
-            document.getElementById('devToggle').addEventListener('click', toggleDevPanel);
-            
-            // إغلاق لوحة المطور عند النقر خارجها
-            document.addEventListener('click', function(event) {
-                const panel = document.getElementById('devPanel');
-                const toggle = document.getElementById('devToggle');
-                
-                if (panel.classList.contains('active') && 
-                    !panel.contains(event.target) && 
-                    !toggle.contains(event.target)) {
-                    panel.classList.remove('active');
-                }
-            });
         });
     </script>
 </body>
