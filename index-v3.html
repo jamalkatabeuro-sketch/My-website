@@ -83,8 +83,9 @@
             background: #1a1a1a;
             overflow: hidden;
             flex-shrink: 0;
-            border: 2px solid #4caf50;
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+            /* إزالة الحواف الخضراء */
+            border: 2px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         
         .usdt-logo img {
@@ -199,8 +200,9 @@
             background: #1a1a1a;
             overflow: hidden;
             flex-shrink: 0;
-            border: 2px solid #4caf50;
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+            /* إزالة الحواف الخضراء */
+            border: 2px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         
         .currency-logo img {
@@ -403,8 +405,13 @@
                     <div class="usdt-value">
                         USDT
                         <div class="usdt-trending" id="usdtTrend">
-                            <span class="usdt-up-arrow" id="usdtArrow">↑</span>
-                            <span class="usdt-trend-text trend-up" id="usdtText">UP</span>
+                            <!-- 
+                                للتعديل اليدوي: 
+                                - غير "down" إلى "up" للسهم للأعلى
+                                - غير السهم من ▼ إلى ▲
+                            -->
+                            <span class="usdt-down-arrow" id="usdtArrow">▼</span>
+                            <span class="usdt-trend-text trend-down" id="usdtText">DOWN</span>
                         </div>
                     </div>
                     <div class="usdt-label">Tether USD</div>
@@ -534,30 +541,6 @@
             });
         }
 
-        // دالة لتغيير سهم USDT بين UP و DOWN
-        function toggleUSDTTrend() {
-            const trendArrow = document.getElementById('usdtArrow');
-            const trendText = document.getElementById('usdtText');
-            const trendContainer = document.getElementById('usdtTrend');
-            
-            // تغيير العشوائي بين UP و DOWN
-            const isUp = Math.random() > 0.5;
-            
-            if (isUp) {
-                // UP
-                trendArrow.textContent = '↑';
-                trendArrow.className = 'usdt-up-arrow';
-                trendText.textContent = 'UP';
-                trendText.className = 'usdt-trend-text trend-up';
-            } else {
-                // DOWN
-                trendArrow.textContent = '↓';
-                trendArrow.className = 'usdt-down-arrow';
-                trendText.textContent = 'DOWN';
-                trendText.className = 'usdt-trend-text trend-down';
-            }
-        }
-
         // تطبيق تأثير التحميل
         function applyLoadingEffects() {
             const loadingProgress = document.getElementById('loadingProgress');
@@ -582,12 +565,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             // تطبيق تأثيرات التحميل
             applyLoadingEffects();
-            
-            // تغيير اتجاه USDT كل 5 ثوان (يمكن إزالة هذا إذا كنت تريد ثابت)
-            setInterval(toggleUSDTTrend, 5000);
-            
-            // تغيير عشوائي أولي
-            setTimeout(toggleUSDTTrend, 1000);
         });
     </script>
 </body>
