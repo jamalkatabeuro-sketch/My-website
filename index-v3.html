@@ -83,7 +83,6 @@
             background: #1a1a1a;
             overflow: hidden;
             flex-shrink: 0;
-            /* إزالة الحواف الخضراء */
             border: 2px solid #333;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
@@ -200,7 +199,6 @@
             background: #1a1a1a;
             overflow: hidden;
             flex-shrink: 0;
-            /* إزالة الحواف الخضراء */
             border: 2px solid #333;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
@@ -271,39 +269,31 @@
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
         
-        /* سهم USDT فقط - بجانب الكلمة */
+        /* سهم USDT فقط - بدون كلمة */
         .usdt-trending {
             display: flex;
             align-items: center;
             gap: 6px;
         }
         
-        .usdt-up-arrow {
+        /* للتعديل: اختر واحداً فقط من الاثنين */
+        
+        /* خيار 1: للسهم UP (للأعلى) - إلغ التعليق واستخدم هذا */
+        /*
+        .usdt-arrow {
             color: #10b981;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 20px;
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
         }
+        */
         
-        .usdt-down-arrow {
+        /* خيار 2: للسهم DOWN (للأسفل) - هذا هو المفعّل حالياً */
+        .usdt-arrow {
             color: #ef4444;
             font-weight: bold;
-            font-size: 16px;
-        }
-        
-        .usdt-trend-text {
-            font-size: 12px;
-            font-weight: 600;
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .trend-up {
-            color: #10b981;
-        }
-        
-        .trend-down {
-            color: #ef4444;
+            font-size: 20px;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
         }
         
         .copyright {
@@ -370,17 +360,29 @@
                 min-width: 65px;
                 padding: 8px 12px;
             }
+            
+            .usdt-arrow {
+                font-size: 18px;
+            }
         }
 
         @media (min-width: 768px) {
             .rate-value, .usdt-rate-value {
                 font-size: 18px;
             }
+            
+            .usdt-arrow {
+                font-size: 22px;
+            }
         }
 
         @media (min-width: 1024px) {
             .rate-value, .usdt-rate-value {
                 font-size: 20px;
+            }
+            
+            .usdt-arrow {
+                font-size: 24px;
             }
         }
     </style>
@@ -404,14 +406,19 @@
                 <div class="usdt-info">
                     <div class="usdt-value">
                         USDT
-                        <div class="usdt-trending" id="usdtTrend">
+                        <div class="usdt-trending">
                             <!-- 
-                                للتعديل اليدوي: 
-                                - غير "down" إلى "up" للسهم للأعلى
-                                - غير السهم من ▼ إلى ▲
+                                ==============================================
+                                للتعديل اليدوي (للمطور فقط):
+                                
+                                خيار 1: للسهم UP (للأعلى)
+                                غير السهم من ▼ إلى ▲
+                                
+                                خيار 2: للسهم DOWN (للأسفل)
+                                اتركه كما هو ▼
+                                ==============================================
                             -->
-                            <span class="usdt-down-arrow" id="usdtArrow">▼</span>
-                            <span class="usdt-trend-text trend-down" id="usdtText">DOWN</span>
+                            <span class="usdt-arrow">▼</span>
                         </div>
                     </div>
                     <div class="usdt-label">Tether USD</div>
