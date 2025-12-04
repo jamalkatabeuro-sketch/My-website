@@ -17,285 +17,180 @@
             color: #fff;
             min-height: 100vh;
             line-height: 1.2;
+            padding: 20px;
         }
         
         .container {
-            width: 100%;
-            background: #0a0a0a;
-            min-height: 100vh;
-            position: relative;
-            padding-bottom: 60px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
         .header {
-            padding: 15px;
-            background: #000;
+            padding: 20px;
+            background: #1a1a1a;
             border-bottom: 1px solid #333;
             text-align: center;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
         }
         
         .update-header {
             font-size: 14px;
-            color: #fff;
-            font-weight: 600;
+            color: #888;
+            font-weight: 500;
         }
         
-        /* بطاقة USDT */
-        .usdt-card {
-            padding: 15px;
-            background: #000;
-            border-bottom: 1px solid #333;
+        /* تنسيقات بطاقات العملات - نفس شكل الصورة */
+        .currency-item {
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
-            overflow: hidden;
+            border-bottom: 1px solid #222;
+            background: #000;
+            transition: background-color 0.2s ease;
         }
         
-        .usdt-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
-            transform: translateX(-100%);
+        .currency-item:hover {
+            background: #111;
         }
         
-        .usdt-card.loading::before {
-            animation: slideLoading 1.5s ease-in-out;
+        .currency-item:last-child {
+            border-bottom: none;
         }
         
-        .usdt-content {
+        .currency-left {
             display: flex;
             align-items: center;
             gap: 15px;
+            flex: 1;
         }
         
-        .usdt-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #1a1a1a;
+        .flag-container {
+            width: 60px;
+            height: 40px;
+            border-radius: 6px;
             overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
             flex-shrink: 0;
-            border: 2px solid #4caf50;
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
         }
         
-        .usdt-logo img {
+        .flag-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
         }
         
-        .usdt-info {
+        .currency-name {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 4px;
+            gap: 5px;
         }
         
-        .usdt-value {
-            color: #fff;
+        .currency-code {
             font-size: 18px;
             font-weight: 700;
+            color: #fff;
+        }
+        
+        .currency-fullname {
+            font-size: 14px;
+            color: #aaa;
+            font-weight: 500;
+        }
+        
+        .currency-right {
             display: flex;
+            gap: 25px;
+        }
+        
+        .rate-column {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 8px;
         }
         
-        .usdt-label {
-            color: #888;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        .usdt-rates {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .usdt-rate-box {
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: 800;
-            min-width: 70px;
-            text-align: center;
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: white;
-            line-height: 1;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
-        }
-        
-        .usdt-rate-label {
-            position: absolute;
-            top: -10px;
-            left: 0;
-            right: 0;
-            font-size: 10px;
-            color: #00ff88;
-            text-align: center;
-            white-space: nowrap;
-            background: #111111;
-            padding: 2px 6px;
-            border-radius: 3px;
-            border: 1px solid #00ff8840;
-            font-weight: 600;
-        }
-        
-        .usdt-rate-value {
-            font-size: 16px;
-            font-weight: 900;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        
-        /* بطاقات العملات */
-        .currency-card {
-            padding: 15px;
-            background: #000;
-            border-bottom: 1px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .currency-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
-            transform: translateX(-100%);
-        }
-        
-        .currency-card.loading::before {
-            animation: slideLoading 1.5s ease-in-out;
-        }
-        
-        .currency-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .currency-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #1a1a1a;
-            overflow: hidden;
-            flex-shrink: 0;
-            border: 2px solid #4caf50;
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
-        }
-        
-        .currency-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        .currency-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 4px;
-        }
-        
-        .currency-value {
-            color: #fff;
-            font-size: 18px;
-            font-weight: 700;
-        }
-        
-        .currency-label {
-            color: #888;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        .currency-rates {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .rate-box {
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: 800;
-            min-width: 70px;
-            text-align: center;
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: white;
-            line-height: 1;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
-        }
-        
         .rate-label {
-            position: absolute;
-            top: -10px;
-            left: 0;
-            right: 0;
-            font-size: 10px;
-            color: #00ff88;
-            text-align: center;
-            white-space: nowrap;
-            background: #111111;
-            padding: 2px 6px;
-            border-radius: 3px;
-            border: 1px solid #00ff8840;
-            font-weight: 600;
+            font-size: 12px;
+            color: #888;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .rate-value {
-            font-size: 16px;
-            font-weight: 900;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        /* سهم USDT فقط - بجانب الكلمة */
-        .usdt-trending {
+        /* تنسيقات USDT خاصة */
+        .usdt-item {
+            background: linear-gradient(to right, #000, #0a200a);
+            border-left: 4px solid #26a269;
+        }
+        
+        .usdt-trend {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            margin-top: 5px;
         }
         
-        .usdt-up-arrow {
-            color: #10b981;
+        .trend-up {
+            color: #26a269;
             font-weight: bold;
-            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+        }
+        
+        .trend-down {
+            color: #c01c28;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+        }
+        
+        .trend-icon {
+            font-size: 16px;
         }
         
         .copyright {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
-            font-size: 11px;
+            font-size: 12px;
             color: #666;
             border-top: 1px solid #333;
             background: #1a1a1a;
+            margin-top: 20px;
         }
         
-        /* شريط التحميل */
+        /* تلوين الأسعار */
+        .rate-value.eur { color: #3584e4; }
+        .rate-value.usd { color: #c64600; }
+        .rate-value.gbp { color: #e5a50a; }
+        .rate-value.cad { color: #c01c28; }
+        .rate-value.aud { color: #26a269; }
+        .rate-value.chf { color: #9141ac; }
+        
+        /* تأثيرات تحميل */
         .loading-bar {
             position: fixed;
             top: 0;
@@ -309,54 +204,44 @@
         
         .loading-progress {
             height: 100%;
-            background: linear-gradient(90deg, #dc2626, #b91c1c);
+            background: linear-gradient(90deg, #26a269, #2ec27e);
             width: 0%;
             transition: width 0.3s ease;
         }
         
-        /* تأثير التحميل من اليمين إلى اليسار */
-        @keyframes slideLoading {
-            0% {
-                transform: translateX(-100%);
-            }
-            50% {
-                transform: translateX(0%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-        
         /* تحسينات للشاشات المختلفة */
-        @media (max-width: 360px) {
-            .currency-card, .usdt-card {
-                padding: 12px 15px;
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
             }
             
-            .currency-logo, .usdt-logo {
-                width: 45px;
-                height: 45px;
+            .currency-right {
+                gap: 15px;
             }
             
-            .currency-value, .usdt-value {
+            .rate-value {
+                font-size: 18px;
+            }
+            
+            .currency-code {
                 font-size: 16px;
             }
             
-            .rate-box, .usdt-rate-box {
-                min-width: 65px;
-                padding: 8px 12px;
+            .flag-container {
+                width: 50px;
+                height: 35px;
             }
         }
-
-        @media (min-width: 768px) {
-            .rate-value, .usdt-rate-value {
-                font-size: 18px;
+        
+        @media (max-width: 400px) {
+            .currency-right {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-end;
             }
-        }
-
-        @media (min-width: 1024px) {
-            .rate-value, .usdt-rate-value {
-                font-size: 20px;
+            
+            .rate-column {
+                align-items: flex-end;
             }
         }
     </style>
@@ -368,173 +253,221 @@
     
     <div class="container">
         <div class="header">
-            <div class="update-header">Last Update 2025-12-4</div>
+            <div class="title">Currency Exchange Rates</div>
+            <div class="update-header">Last Update: 2025-12-4</div>
         </div>
         
-        <!-- بطاقة USDT -->
-        <div class="usdt-card" id="usdt-card">
-            <div class="usdt-content">
-                <div class="usdt-logo">
-                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/200-currency-usdt.png" alt="USDT">
+        <!-- EURO -->
+        <div class="currency-item">
+            <div class="currency-left">
+                <div class="flag-container">
+                    <img src="https://flagcdn.com/w320/eu.png" alt="EU Flag">
                 </div>
-                <div class="usdt-info">
-                    <div class="usdt-value">
-                        USDT
-                        <div class="usdt-trending">
-                            <span class="usdt-down-arrow">▼</span>
+                <div class="currency-name">
+                    <div class="currency-code">EURO</div>
+                    <div class="currency-fullname">European Union Euro</div>
+                </div>
+            </div>
+            <div class="currency-right">
+                <div class="rate-column">
+                    <div class="rate-label">Buy</div>
+                    <div class="rate-value eur">284</div>
+                </div>
+                <div class="rate-column">
+                    <div class="rate-label">Sell</div>
+                    <div class="rate-value eur">277</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- US Dollar -->
+        <div class="currency-item">
+            <div class="currency-left">
+                <div class="flag-container">
+                    <img src="https://flagcdn.com/w320/us.png" alt="US Flag">
+                </div>
+                <div class="currency-name">
+                    <div class="currency-code">USD</div>
+                    <div class="currency-fullname">US Dollar</div>
+                </div>
+            </div>
+            <div class="currency-right">
+                <div class="rate-column">
+                    <div class="rate-label">Buy</div>
+                    <div class="rate-value usd">244</div>
+                </div>
+                <div class="rate-column">
+                    <div class="rate-label">Sell</div>
+                    <div class="rate-value usd">246</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pound -->
+        <div class="currency-item">
+            <div class="currency-left">
+                <div class="flag-container">
+                    <img src="https://flagcdn.com/w320/gb.png" alt="UK Flag">
+                </div>
+                <div class="currency-name">
+                    <div class="currency-code">GBP</div>
+                    <div class="currency-fullname">British Pound</div>
+                </div>
+            </div>
+            <div class="currency-right">
+                <div class="rate-column">
+                    <div class="rate-label">Buy</div>
+                    <div class="rate-value gbp">315</div>
+                </div>
+                <div class="rate-column">
+                    <div class="rate-label">Sell</div>
+                    <div class="rate-value gbp">318</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Can Dollar -->
+        <div class="currency-item">
+            <div class="currency-left">
+                <div class="flag-container">
+                    <img src="https://flagcdn.com/w320/ca.png" alt="Canada Flag">
+                </div>
+                <div class="currency-name">
+                    <div class="currency-code">CAD</div>
+                    <div class="currency-fullname">Canadian Dollar</div>
+                </div>
+            </div>
+            <div class="currency-right">
+                <div class="rate-column">
+                    <div class="rate-label">Buy</div>
+                    <div class="rate-value cad">161</div>
+                </div>
+                <div class="rate-column">
+                    <div class="rate-label">Sell</div>
+                    <div class="rate-value cad">164</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Aus Dollar -->
+        <div class="currency-item">
+            <div class="currency-left">
+                <div class="flag-container">
+                    <img src="https://flagcdn.com/w320/au.png" alt="Australia Flag">
+                </div>
+                <div class="currency-name">
+                    <div class="currency-code">AUD</div>
+                    <div class="currency-fullname">Australian Dollar</div>
+                </div>
+            </div>
+            <div class="currency-right">
+                <div class="rate-column">
+                    <div class="rate-label">Buy</div>
+                    <div class="rate-value aud">158</div>
+                </div>
+                <div class="rate-column">
+                    <div class="rate-label">Sell</div>
+                    <div class="rate-value aud">155</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Swiss Franc -->
+        <div class="currency-item">
+            <div class="currency-left">
+                <div class="flag-container">
+                    <img src="https://flagcdn.com/w320/ch.png" alt="Switzerland Flag">
+                </div>
+                <div class="currency-name">
+                    <div class="currency-code">CHF</div>
+                    <div class="currency-fullname">Swiss Franc</div>
+                </div>
+            </div>
+            <div class="currency-right">
+                <div class="rate-column">
+                    <div class="rate-label">Buy</div>
+                    <div class="rate-value chf">297</div>
+                </div>
+                <div class="rate-column">
+                    <div class="rate-label">Sell</div>
+                    <div class="rate-value chf">295</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- USDT (معدل) -->
+        <div class="currency-item usdt-item">
+            <div class="currency-left">
+                <div class="flag-container">
+                    <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT Logo" style="background: white; padding: 5px;">
+                </div>
+                <div class="currency-name">
+                    <div class="currency-code">USDT</div>
+                    <div class="currency-fullname">Tether (US Dollar Stablecoin)</div>
+                    <div class="usdt-trend">
+                        <div class="trend-up" id="usdtTrend">
+                            <span class="trend-icon">↑</span>
+                            <span class="trend-text">UP</span>
                         </div>
                     </div>
-                    <div class="usdt-label"></div>
                 </div>
             </div>
-            <div class="usdt-rates">
-                <div class="usdt-rate-box">
-                    <div class="usdt-rate-label">Min</div>
-                    <div class="usdt-rate-value">256</div>
+            <div class="currency-right">
+                <div class="rate-column">
+                    <div class="rate-label">Buy</div>
+                    <div class="rate-value" style="color: #26a269;">256</div>
                 </div>
-                <div class="usdt-rate-box">
-                    <div class="usdt-rate-label">Max</div>
-                    <div class="usdt-rate-value">257</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- WISE EUR Card -->
-        <div class="currency-card" id="wise-eur-card">
-            <div class="currency-content">
-                <div class="currency-logo">
-                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
-                </div>
-                <div class="currency-info">
-                    <div class="currency-value">WISE EUR</div>
-                    <div class="currency-label"></div>
-                </div>
-            </div>
-            <div class="currency-rates">
-                <div class="rate-box">
-                    <div class="rate-label">Min</div>
-                    <div class="rate-value">257</div>
-                </div>
-                <div class="rate-box">
-                    <div class="rate-label">Max</div>
-                    <div class="rate-value">258</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- WISE USD Card -->
-        <div class="currency-card" id="wise-usd-card">
-            <div class="currency-content">
-                <div class="currency-logo">
-                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
-                </div>
-                <div class="currency-info">
-                    <div class="currency-value">WISE USD</div>
-                    <div class="currency-label"></div>
-                </div>
-            </div>
-            <div class="currency-rates">
-                <div class="rate-box">
-                    <div class="rate-label">Min</div>
-                    <div class="rate-value">279</div>
-                </div>
-                <div class="rate-box">
-                    <div class="rate-label">Max</div>
-                    <div class="rate-value">280</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- PAYSERA EUR Card -->
-        <div class="currency-card" id="paysera-eur-card">
-            <div class="currency-content">
-                <div class="currency-logo">
-                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
-                </div>
-                <div class="currency-info">
-                    <div class="currency-value">PAYSERA EUR</div>
-                    <div class="currency-label"></div>
-                </div>
-            </div>
-            <div class="currency-rates">
-                <div class="rate-box">
-                    <div class="rate-label">Min</div>
-                    <div class="rate-value">255</div>
-                </div>
-                <div class="rate-box">
-                    <div class="rate-label">Max</div>
-                    <div class="rate-value">256</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- PAYSERA USD Card -->
-        <div class="currency-card" id="paysera-usd-card">
-            <div class="currency-content">
-                <div class="currency-logo">
-                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
-                </div>
-                <div class="currency-info">
-                    <div class="currency-value">PAYSERA USD</div>
-                    <div class="currency-label"></div>
-                </div>
-            </div>
-            <div class="currency-rates">
-                <div class="rate-box">
-                    <div class="rate-label">Min</div>
-                    <div class="rate-value">282</div>
-                </div>
-                <div class="rate-box">
-                    <div class="rate-label">Max</div>
-                    <div class="rate-value">283</div>
+                <div class="rate-column">
+                    <div class="rate-label">Sell</div>
+                    <div class="rate-value" style="color: #26a269;">257</div>
                 </div>
             </div>
         </div>
         
         <div class="copyright">
-            © 2025 Square Market 
+            © 2025 Currency Exchange Rates | Market Data
         </div>
     </div>
 
     <script>
-        // دالة لتشغيل تأثير التحميل
-        function startLoadingAnimation(elements) {
-            elements.forEach((element, index) => {
-                setTimeout(() => {
-                    if (element) {
-                        element.classList.add('loading');
-                        setTimeout(() => {
-                            element.classList.remove('loading');
-                        }, 1500);
-                    }
-                }, 300 * index);
-            });
+        // دالة لتغيير سهم USDT بين UP و DOWN
+        function toggleUSDTTrend() {
+            const trendElement = document.getElementById('usdtTrend');
+            const trendIcon = trendElement.querySelector('.trend-icon');
+            const trendText = trendElement.querySelector('.trend-text');
+            
+            // تغيير العشوائي بين UP و DOWN
+            const isUp = Math.random() > 0.5;
+            
+            if (isUp) {
+                trendElement.className = 'trend-up';
+                trendIcon.textContent = '↑';
+                trendText.textContent = 'UP';
+            } else {
+                trendElement.className = 'trend-down';
+                trendIcon.textContent = '↓';
+                trendText.textContent = 'DOWN';
+            }
         }
-
-        // تطبيق تأثير التحميل
-        function applyLoadingEffects() {
+        
+        // تشغيل تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحميل شريط التقدم
             const loadingProgress = document.getElementById('loadingProgress');
-            const cards = document.querySelectorAll('.currency-card, .usdt-card');
+            loadingProgress.style.width = '100%';
             
             setTimeout(() => {
-                startLoadingAnimation(Array.from(cards));
-                
+                document.querySelector('.loading-bar').style.opacity = '0';
                 setTimeout(() => {
-                    loadingProgress.style.width = '100%';
-                    setTimeout(() => {
-                        document.querySelector('.loading-bar').style.opacity = '0';
-                        setTimeout(() => {
-                            document.querySelector('.loading-bar').style.display = 'none';
-                        }, 300);
-                    }, 200);
-                }, 1500);
-            }, 500);
-        }
-
-        // تشغيل الدالة عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            // تطبيق تأثيرات التحميل
-            applyLoadingEffects();
+                    document.querySelector('.loading-bar').style.display = 'none';
+                }, 300);
+            }, 1000);
+            
+            // تغيير اتجاه USDT كل 5 ثوان (يمكن إزالة هذا إذا كنت تريد ثابت)
+            setInterval(toggleUSDTTrend, 5000);
+            
+            // تغيير عشوائي أولي
+            setTimeout(toggleUSDTTrend, 1500);
         });
     </script>
 </body>
