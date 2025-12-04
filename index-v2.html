@@ -28,45 +28,6 @@
             padding-bottom: 60px;
         }
         
-        .tab-buttons {
-            display: flex;
-            background: #000;
-            border-bottom: 1px solid #333;
-        }
-        
-        .tab-button {
-            flex: 1;
-            padding: 12px;
-            text-align: center;
-            background: #000;
-            color: #fff;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .tab-button.active {
-            background: #151515;
-        }
-        
-        .gold-tab.active {
-            color: #ffd700;
-        }
-        
-        .silver-tab.active {
-            color: #c0c0c0;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
         .header {
             padding: 15px;
             background: #000;
@@ -79,10 +40,6 @@
             font-weight: 700;
             color: #ffd700;
             margin-bottom: 8px;
-        }
-        
-        .header-silver h1 {
-            color: #c0c0c0;
         }
         
         .update-header {
@@ -286,6 +243,22 @@
             font-weight: 800;
         }
         
+        /* عنوان الفضة */
+        .silver-header {
+            padding: 15px;
+            background: #000;
+            border-bottom: 1px solid #333;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+        
+        .silver-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #c0c0c0;
+            margin-bottom: 5px;
+        }
+        
         .copyright {
             position: absolute;
             bottom: 0;
@@ -302,93 +275,52 @@
 </head>
 <body>
     <div class="container">
-        <div class="tab-buttons">
-            <button class="tab-button gold-tab active" id="goldTab">GOLD</button>
-            <button class="tab-button silver-tab" id="silverTab">SILVER</button>
+        <div class="header">
+            <h1>GOLD</h1>
+            <div class="update-header">Last Update: November 27, 2025</div>
         </div>
         
-        <!-- Gold Tab Content -->
-        <div class="tab-content active" id="goldContent">
-            <div class="header">
-                <h1>GOLD</h1>
-                <div class="update-header">Last Update: November 27, 2025</div>
-            </div>
-            
-            <div class="ounce-prices">
-                <div class="ounce-card">
-                    <div class="ounce-item gold-ounce">
-                        <div class="ounce-details">
-                            <div class="ounce-price-row">
-                                <div class="ounce-trending" id="gold-ounce-trending">
-                                    <!-- سيتم ملؤه تلقائياً -->
-                                </div>
-                                <div class="ounce-value">4065$</div>
+        <div class="ounce-prices">
+            <div class="ounce-card">
+                <div class="ounce-item gold-ounce">
+                    <div class="ounce-details">
+                        <div class="ounce-price-row">
+                            <div class="ounce-trending" id="gold-ounce-trending">
+                                <!-- سيتم ملؤه تلقائياً -->
                             </div>
-                            <div class="metal-code-small">GOLD OUNCE</div>
+                            <div class="ounce-value">4065$</div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="ounce-card">
-                    <div class="ounce-item silver-ounce">
-                        <div class="ounce-details">
-                            <div class="ounce-price-row">
-                                <div class="ounce-trending" id="silver-ounce-trending">
-                                    <!-- سيتم ملؤه تلقائياً -->
-                                </div>
-                                <div class="ounce-value">50.36$</div>
-                            </div>
-                            <div class="metal-code-small">SILVER OUNCE</div>
-                        </div>
+                        <div class="metal-code-small">GOLD OUNCE</div>
                     </div>
                 </div>
             </div>
             
-            <div class="metal-list" id="gold-metal-list">
-                <!-- سيتم ملء الذهب فقط تلقائياً بواسطة JavaScript -->
+            <div class="ounce-card">
+                <div class="ounce-item silver-ounce">
+                    <div class="ounce-details">
+                        <div class="ounce-price-row">
+                            <div class="ounce-trending" id="silver-ounce-trending">
+                                <!-- سيتم ملؤه تلقائياً -->
+                            </div>
+                            <div class="ounce-value">50.36$</div>
+                        </div>
+                        <div class="metal-code-small">SILVER OUNCE</div>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <!-- Silver Tab Content -->
-        <div class="tab-content" id="silverContent">
-            <div class="header header-silver">
-                <h1>SILVER</h1>
-                <div class="update-header">Last Update: November 27, 2025</div>
-            </div>
-            
-            <div class="ounce-prices">
-                <div class="ounce-card">
-                    <div class="ounce-item gold-ounce">
-                        <div class="ounce-details">
-                            <div class="ounce-price-row">
-                                <div class="ounce-trending" id="gold-ounce-trending-silver-tab">
-                                    <!-- سيتم ملؤه تلقائياً -->
-                                </div>
-                                <div class="ounce-value">4065$</div>
-                            </div>
-                            <div class="metal-code-small">GOLD OUNCE</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ounce-card">
-                    <div class="ounce-item silver-ounce">
-                        <div class="ounce-details">
-                            <div class="ounce-price-row">
-                                <div class="ounce-trending" id="silver-ounce-trending-silver-tab">
-                                    <!-- سيتم ملؤه تلقائياً -->
-                                </div>
-                                <div class="ounce-value">50.36$</div>
-                            </div>
-                            <div class="metal-code-small">SILVER OUNCE</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="metal-list" id="silver-metal-list">
-                <!-- سيتم ملء الفضة فقط تلقائياً بواسطة JavaScript -->
-            </div>
+        <div class="metal-list" id="gold-metal-list">
+            <!-- سيتم ملء الذهب تلقائياً بواسطة JavaScript -->
+        </div>
+        
+        <div class="silver-header">
+            <h2>SILVER</h2>
+            <div class="update-header">Silver Prices</div>
+        </div>
+        
+        <div class="metal-list" id="silver-metal-list">
+            <!-- سيتم ملء الفضة تلقائياً بواسطة JavaScript -->
         </div>
         
         <div class="copyright">
@@ -444,7 +376,7 @@
             }
         ];
 
-        // بيانات الفضة (تم وضعها تحت الذهب حسب الطلب)
+        // بيانات الفضة
         const silverPrices = [
             { 
                 code: 'SILVER 999', 
@@ -519,7 +451,6 @@
             const goldOunceDirection = priceDirections["GOLD OUNCE"];
             const silverOunceDirection = priceDirections["SILVER OUNCE"];
             
-            // تحديث تبويب الذهب
             const goldOunceTrending = document.getElementById('gold-ounce-trending');
             const silverOunceTrending = document.getElementById('silver-ounce-trending');
             
@@ -534,25 +465,9 @@
             } else if (silverOunceDirection === 'down') {
                 silverOunceTrending.innerHTML = '<span class="ounce-down-arrow">▼</span>';
             }
-            
-            // تحديث تبويب الفضة
-            const goldOunceTrendingSilverTab = document.getElementById('gold-ounce-trending-silver-tab');
-            const silverOunceTrendingSilverTab = document.getElementById('silver-ounce-trending-silver-tab');
-            
-            if (goldOunceDirection === 'up') {
-                goldOunceTrendingSilverTab.innerHTML = '<span class="ounce-up-arrow">▲</span>';
-            } else if (goldOunceDirection === 'down') {
-                goldOunceTrendingSilverTab.innerHTML = '<span class="ounce-down-arrow">▼</span>';
-            }
-            
-            if (silverOunceDirection === 'up') {
-                silverOunceTrendingSilverTab.innerHTML = '<span class="ounce-up-arrow">▲</span>';
-            } else if (silverOunceDirection === 'down') {
-                silverOunceTrendingSilverTab.innerHTML = '<span class="ounce-down-arrow">▼</span>';
-            }
         }
 
-        // دالة لإنشاء قائمة المعادن لكل تبويب
+        // دالة لإنشاء قائمة المعادن
         function createMetalList() {
             const goldMetalList = document.getElementById('gold-metal-list');
             const silverMetalList = document.getElementById('silver-metal-list');
@@ -560,50 +475,23 @@
             goldMetalList.innerHTML = '';
             silverMetalList.innerHTML = '';
             
-            // إنشاء عناصر الذهب فقط في تبويب الذهب
+            // إنشاء عناصر الذهب
             goldPrices.forEach((metal) => {
                 const item = createMetalItem(metal);
                 goldMetalList.appendChild(item);
             });
             
-            // إنشاء عناصر الفضة فقط في تبويب الفضة
+            // إنشاء عناصر الفضة
             silverPrices.forEach((metal) => {
                 const item = createMetalItem(metal);
                 silverMetalList.appendChild(item);
             });
         }
 
-        // دالة للتبديل بين التبويبات
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            if (tabName === 'gold') {
-                document.getElementById('goldContent').classList.add('active');
-                document.getElementById('goldTab').classList.add('active');
-            } else if (tabName === 'silver') {
-                document.getElementById('silverContent').classList.add('active');
-                document.getElementById('silverTab').classList.add('active');
-            }
-        }
-
         // تشغيل الدالة عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             createMetalList();
             updateOunceTrendings();
-            
-            document.getElementById('goldTab').addEventListener('click', function() {
-                switchTab('gold');
-            });
-            
-            document.getElementById('silverTab').addEventListener('click', function() {
-                switchTab('silver');
-            });
         });
     </script>
 </body>
