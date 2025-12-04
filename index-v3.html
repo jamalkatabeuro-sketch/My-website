@@ -41,63 +41,19 @@
             margin-bottom: 8px;
         }
         
-        /* حاوية البطاقات المزدوجة */
-        .double-cards-container {
+        /* بطاقة مثل USDT */
+        .currency-card {
             padding: 15px;
             background: #000;
-        }
-        
-        .currency-section {
-            margin-bottom: 25px;
-        }
-        
-        .currency-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #4caf50;
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #111;
-            border-radius: 8px;
+            border-bottom: 1px solid #333;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            border: 1px solid #333;
-        }
-        
-        .section-title img {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: 2px solid #4caf50;
-        }
-        
-        .double-cards {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        
-        .card-item {
-            flex: 1;
-            min-width: calc(50% - 6px);
-            background: #111;
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
+            justify-content: space-between;
             position: relative;
             overflow: hidden;
         }
         
-        .card-item::before {
+        .currency-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -108,86 +64,97 @@
             transform: translateX(-100%);
         }
         
-        .card-item.loading::before {
+        .currency-card.loading::before {
             animation: slideLoading 1.5s ease-in-out;
         }
         
-        .card-item:hover {
-            transform: translateY(-3px);
-            border-color: #4caf50;
-            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
+        .currency-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
-        .card-header {
+        .currency-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        
-        .currency-flag {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
+            background: #1a1a1a;
             overflow: hidden;
             flex-shrink: 0;
             border: 2px solid #4caf50;
             box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
-            background: #1a1a1a;
+        }
+        
+        .currency-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .currency-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+        }
+        
+        .currency-value {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 8px;
         }
         
-        .currency-flag img {
-            width: 35px;
-            height: 35px;
-            object-fit: contain;
+        .currency-label {
+            color: #888;
+            font-size: 12px;
+            font-weight: 500;
         }
         
-        .card-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-        
-        .card-rates {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .currency-rates {
+            display: flex;
             gap: 10px;
         }
         
-        .card-rate-box {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            border-radius: 8px;
-            padding: 15px 10px;
+        .rate-box {
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: 800;
+            min-width: 70px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card-rate-box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.5);
-        }
-        
-        .card-rate-label {
-            font-size: 12px;
-            color: #00ff88;
-            font-weight: 600;
-            margin-bottom: 5px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        
-        .card-rate-value {
-            font-size: 22px;
-            font-weight: 900;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
             color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-            font-family: 'Courier New', monospace;
+            line-height: 1;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+        }
+        
+        .rate-label {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            font-size: 10px;
+            color: #00ff88;
+            text-align: center;
+            white-space: nowrap;
+            background: #111111;
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid #00ff8840;
+            font-weight: 600;
+        }
+        
+        .rate-value {
+            font-size: 16px;
+            font-weight: 900;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .copyright {
@@ -222,6 +189,19 @@
             transition: width 0.3s ease;
         }
         
+        /* سهم - بجانب الكلمة */
+        .trending {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .up-arrow {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
         /* تأثير التحميل من اليمين إلى اليسار */
         @keyframes slideLoading {
             0% {
@@ -234,7 +214,7 @@
                 transform: translateX(100%);
             }
         }
-        
+
         /* لوحة تحرير المطور */
         .dev-panel {
             position: fixed;
@@ -374,16 +354,17 @@
         
         /* تحسينات للشاشات المختلفة */
         @media (max-width: 360px) {
-            .double-cards {
-                flex-direction: column;
+            .currency-card {
+                padding: 12px 15px;
             }
             
-            .card-item {
-                min-width: 100%;
+            .currency-logo {
+                width: 45px;
+                height: 45px;
             }
             
-            .card-rate-value {
-                font-size: 20px;
+            .currency-value {
+                font-size: 16px;
             }
 
             .dev-panel {
@@ -391,21 +372,22 @@
                 right: 5px;
                 top: 5px;
             }
+            
+            .rate-box {
+                min-width: 65px;
+                padding: 8px 12px;
+            }
         }
 
         @media (min-width: 768px) {
-            .card-rate-value {
-                font-size: 24px;
-            }
-            
-            .card-title {
-                font-size: 22px;
+            .rate-value {
+                font-size: 18px;
             }
         }
 
         @media (min-width: 1024px) {
-            .card-rate-value {
-                font-size: 26px;
+            .rate-value {
+                font-size: 20px;
             }
         }
     </style>
@@ -423,37 +405,57 @@
         <div class="dev-section">
             <h3>
                 <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
-                WISE Rates
+                WISE EUR
             </h3>
             <div class="rate-input-group">
-                <label><span>EUR</span> Min:</label>
+                <label><span>Min:</span></label>
                 <input type="text" class="dev-input" id="wiseEurMin" value="257">
-                <label><span>EUR</span> Max:</label>
+                <label><span>Max:</span></label>
                 <input type="text" class="dev-input" id="wiseEurMax" value="258">
-                <label><span>USD</span> Min:</label>
+            </div>
+            <button class="dev-button" onclick="updateWiseEur()">Update WISE EUR</button>
+        </div>
+
+        <div class="dev-section">
+            <h3>
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
+                WISE USD
+            </h3>
+            <div class="rate-input-group">
+                <label><span>Min:</span></label>
                 <input type="text" class="dev-input" id="wiseUsdMin" value="279">
-                <label><span>USD</span> Max:</label>
+                <label><span>Max:</span></label>
                 <input type="text" class="dev-input" id="wiseUsdMax" value="280">
             </div>
-            <button class="dev-button" onclick="updateWise()">Update WISE Rates</button>
+            <button class="dev-button" onclick="updateWiseUsd()">Update WISE USD</button>
         </div>
 
         <div class="dev-section">
             <h3>
                 <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
-                PAYSERA Rates
+                PAYSERA EUR
             </h3>
             <div class="rate-input-group">
-                <label><span>EUR</span> Min:</label>
+                <label><span>Min:</span></label>
                 <input type="text" class="dev-input" id="payseraEurMin" value="255">
-                <label><span>EUR</span> Max:</label>
+                <label><span>Max:</span></label>
                 <input type="text" class="dev-input" id="payseraEurMax" value="256">
-                <label><span>USD</span> Min:</label>
+            </div>
+            <button class="dev-button" onclick="updatePayseraEur()">Update PAYSERA EUR</button>
+        </div>
+
+        <div class="dev-section">
+            <h3>
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
+                PAYSERA USD
+            </h3>
+            <div class="rate-input-group">
+                <label><span>Min:</span></label>
                 <input type="text" class="dev-input" id="payseraUsdMin" value="282">
-                <label><span>USD</span> Max:</label>
+                <label><span>Max:</span></label>
                 <input type="text" class="dev-input" id="payseraUsdMax" value="283">
             </div>
-            <button class="dev-button" onclick="updatePaysera()">Update PAYSERA Rates</button>
+            <button class="dev-button" onclick="updatePayseraUsd()">Update PAYSERA USD</button>
         </div>
 
         <div class="dev-note">
@@ -466,99 +468,114 @@
             <h1>Digital Currency Rates</h1>
         </div>
         
-        <!-- حاوية البطاقات المزدوجة -->
-        <div class="double-cards-container">
-            <!-- قسم WISE -->
-            <div class="currency-section">
-                <div class="section-title">
+        <!-- WISE EUR Card -->
+        <div class="currency-card" id="wise-eur-card">
+            <div class="currency-content">
+                <div class="currency-logo">
                     <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
-                    WISE
                 </div>
-                <div class="double-cards">
-                    <div class="card-item" id="wise-eur-card">
-                        <div class="card-header">
-                            <div class="currency-flag">
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png" alt="EUR">
-                            </div>
-                            <div class="card-title">EUR</div>
-                        </div>
-                        <div class="card-rates">
-                            <div class="card-rate-box">
-                                <div class="card-rate-label">Min</div>
-                                <div class="card-rate-value" id="wise-eur-min">257</div>
-                            </div>
-                            <div class="card-rate-box">
-                                <div class="card-rate-label">Max</div>
-                                <div class="card-rate-value" id="wise-eur-max">258</div>
-                            </div>
+                <div class="currency-info">
+                    <div class="currency-value">
+                        WISE EUR
+                        <div class="trending">
+                            <span class="up-arrow">▲</span>
                         </div>
                     </div>
-                    
-                    <div class="card-item" id="wise-usd-card">
-                        <div class="card-header">
-                            <div class="currency-flag">
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png" alt="USD">
-                            </div>
-                            <div class="card-title">USD</div>
-                        </div>
-                        <div class="card-rates">
-                            <div class="card-rate-box">
-                                <div class="card-rate-label">Min</div>
-                                <div class="card-rate-value" id="wise-usd-min">279</div>
-                            </div>
-                            <div class="card-rate-box">
-                                <div class="card-rate-label">Max</div>
-                                <div class="card-rate-value" id="wise-usd-max">280</div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="currency-label">EURO</div>
                 </div>
             </div>
-            
-            <!-- قسم PAYSERA -->
-            <div class="currency-section">
-                <div class="section-title">
-                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
-                    PAYSERA
+            <div class="currency-rates">
+                <div class="rate-box">
+                    <div class="rate-label">Min</div>
+                    <div class="rate-value" id="wise-eur-min">257</div>
                 </div>
-                <div class="double-cards">
-                    <div class="card-item" id="paysera-eur-card">
-                        <div class="card-header">
-                            <div class="currency-flag">
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png" alt="EUR">
-                            </div>
-                            <div class="card-title">EUR</div>
-                        </div>
-                        <div class="card-rates">
-                            <div class="card-rate-box">
-                                <div class="card-rate-label">Min</div>
-                                <div class="card-rate-value" id="paysera-eur-min">255</div>
-                            </div>
-                            <div class="card-rate-box">
-                                <div class="card-rate-label">Max</div>
-                                <div class="card-rate-value" id="paysera-eur-max">256</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card-item" id="paysera-usd-card">
-                        <div class="card-header">
-                            <div class="currency-flag">
-                                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png" alt="USD">
-                            </div>
-                            <div class="card-title">USD</div>
-                        </div>
-                        <div class="card-rates">
-                            <div class="card-rate-box">
-                                <div class="card-rate-label">Min</div>
-                                <div class="card-rate-value" id="paysera-usd-min">282</div>
-                            </div>
-                            <div class="card-rate-box">
-                                <div class="card-rate-label">Max</div>
-                                <div class="card-rate-value" id="paysera-usd-max">283</div>
-                            </div>
+                <div class="rate-box">
+                    <div class="rate-label">Max</div>
+                    <div class="rate-value" id="wise-eur-max">258</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- WISE USD Card -->
+        <div class="currency-card" id="wise-usd-card">
+            <div class="currency-content">
+                <div class="currency-logo">
+                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/201-currency-wise.png" alt="WISE">
+                </div>
+                <div class="currency-info">
+                    <div class="currency-value">
+                        WISE USD
+                        <div class="trending">
+                            <span class="up-arrow">▲</span>
                         </div>
                     </div>
+                    <div class="currency-label">DOLLAR</div>
+                </div>
+            </div>
+            <div class="currency-rates">
+                <div class="rate-box">
+                    <div class="rate-label">Min</div>
+                    <div class="rate-value" id="wise-usd-min">279</div>
+                </div>
+                <div class="rate-box">
+                    <div class="rate-label">Max</div>
+                    <div class="rate-value" id="wise-usd-max">280</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PAYSERA EUR Card -->
+        <div class="currency-card" id="paysera-eur-card">
+            <div class="currency-content">
+                <div class="currency-logo">
+                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
+                </div>
+                <div class="currency-info">
+                    <div class="currency-value">
+                        PAYSERA EUR
+                        <div class="trending">
+                            <span class="up-arrow">▲</span>
+                        </div>
+                    </div>
+                    <div class="currency-label">EURO</div>
+                </div>
+            </div>
+            <div class="currency-rates">
+                <div class="rate-box">
+                    <div class="rate-label">Min</div>
+                    <div class="rate-value" id="paysera-eur-min">255</div>
+                </div>
+                <div class="rate-box">
+                    <div class="rate-label">Max</div>
+                    <div class="rate-value" id="paysera-eur-max">256</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PAYSERA USD Card -->
+        <div class="currency-card" id="paysera-usd-card">
+            <div class="currency-content">
+                <div class="currency-logo">
+                    <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/202-currency-paysera.png" alt="PAYSERA">
+                </div>
+                <div class="currency-info">
+                    <div class="currency-value">
+                        PAYSERA USD
+                        <div class="trending">
+                            <span class="up-arrow">▲</span>
+                        </div>
+                    </div>
+                    <div class="currency-label">DOLLAR</div>
+                </div>
+            </div>
+            <div class="currency-rates">
+                <div class="rate-box">
+                    <div class="rate-label">Min</div>
+                    <div class="rate-value" id="paysera-usd-min">282</div>
+                </div>
+                <div class="rate-box">
+                    <div class="rate-label">Max</div>
+                    <div class="rate-value" id="paysera-usd-max">283</div>
                 </div>
             </div>
         </div>
@@ -618,47 +635,59 @@
         }
 
         // دوال تحديث الأسعار
-        function updateWise() {
-            const eurMin = document.getElementById('wiseEurMin').value;
-            const eurMax = document.getElementById('wiseEurMax').value;
-            const usdMin = document.getElementById('wiseUsdMin').value;
-            const usdMax = document.getElementById('wiseUsdMax').value;
+        function updateWiseEur() {
+            const min = document.getElementById('wiseEurMin').value;
+            const max = document.getElementById('wiseEurMax').value;
             
-            document.getElementById('wise-eur-min').textContent = eurMin;
-            document.getElementById('wise-eur-max').textContent = eurMax;
-            document.getElementById('wise-usd-min').textContent = usdMin;
-            document.getElementById('wise-usd-max').textContent = usdMax;
+            document.getElementById('wise-eur-min').textContent = min;
+            document.getElementById('wise-eur-max').textContent = max;
             
             saveToLocalStorage();
-            showUpdateAnimation(['wise-eur-card', 'wise-usd-card']);
+            showUpdateAnimation('wise-eur-card');
         }
 
-        function updatePaysera() {
-            const eurMin = document.getElementById('payseraEurMin').value;
-            const eurMax = document.getElementById('payseraEurMax').value;
-            const usdMin = document.getElementById('payseraUsdMin').value;
-            const usdMax = document.getElementById('payseraUsdMax').value;
+        function updateWiseUsd() {
+            const min = document.getElementById('wiseUsdMin').value;
+            const max = document.getElementById('wiseUsdMax').value;
             
-            document.getElementById('paysera-eur-min').textContent = eurMin;
-            document.getElementById('paysera-eur-max').textContent = eurMax;
-            document.getElementById('paysera-usd-min').textContent = usdMin;
-            document.getElementById('paysera-usd-max').textContent = usdMax;
+            document.getElementById('wise-usd-min').textContent = min;
+            document.getElementById('wise-usd-max').textContent = max;
             
             saveToLocalStorage();
-            showUpdateAnimation(['paysera-eur-card', 'paysera-usd-card']);
+            showUpdateAnimation('wise-usd-card');
+        }
+
+        function updatePayseraEur() {
+            const min = document.getElementById('payseraEurMin').value;
+            const max = document.getElementById('payseraEurMax').value;
+            
+            document.getElementById('paysera-eur-min').textContent = min;
+            document.getElementById('paysera-eur-max').textContent = max;
+            
+            saveToLocalStorage();
+            showUpdateAnimation('paysera-eur-card');
+        }
+
+        function updatePayseraUsd() {
+            const min = document.getElementById('payseraUsdMin').value;
+            const max = document.getElementById('payseraUsdMax').value;
+            
+            document.getElementById('paysera-usd-min').textContent = min;
+            document.getElementById('paysera-usd-max').textContent = max;
+            
+            saveToLocalStorage();
+            showUpdateAnimation('paysera-usd-card');
         }
 
         // عرض تأثير التحديث
-        function showUpdateAnimation(cardIds) {
-            cardIds.forEach(id => {
-                const card = document.getElementById(id);
-                if (card) {
-                    card.classList.add('loading');
-                    setTimeout(() => {
-                        card.classList.remove('loading');
-                    }, 1500);
-                }
-            });
+        function showUpdateAnimation(cardId) {
+            const card = document.getElementById(cardId);
+            if (card) {
+                card.classList.add('loading');
+                setTimeout(() => {
+                    card.classList.remove('loading');
+                }, 1500);
+            }
         }
 
         // دالة لتشغيل تأثير التحميل
@@ -678,7 +707,7 @@
         // تطبيق تأثير التحميل
         function applyLoadingEffects() {
             const loadingProgress = document.getElementById('loadingProgress');
-            const cards = document.querySelectorAll('.card-item');
+            const cards = document.querySelectorAll('.currency-card');
             
             setTimeout(() => {
                 startLoadingAnimation(Array.from(cards));
