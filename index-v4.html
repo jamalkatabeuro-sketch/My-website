@@ -24,7 +24,7 @@
         
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             background-color: transparent;
             border-radius: 15px;
             overflow: hidden;
@@ -39,7 +39,7 @@
         
         .header h1 {
             color: #00ff80;
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 10px;
         }
         
@@ -49,8 +49,8 @@
         
         .currency-box {
             background-color: #111;
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 20px;
             margin-bottom: 20px;
             border: 1px solid #333;
             opacity: 0;
@@ -74,19 +74,20 @@
         }
         
         .flag {
-            width: 40px;
-            height: 40px;
+            width: 60px;  /* كبر حجم الصورة */
+            height: 60px; /* كبر حجم الصورة */
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 15px;
             background-size: cover;
             background-position: center;
-            border: 2px solid #00ff80;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
             overflow: hidden;
             flex-shrink: 0;
+            /* إزالة الحواف الخضراء */
+            border: none;
         }
         
         .flag img {
@@ -98,7 +99,7 @@
         
         .currency-name {
             flex-grow: 1;
-            font-size: 14px;
+            font-size: 16px;
             color: #aaa;
         }
         
@@ -107,17 +108,21 @@
             align-items: center;
             cursor: pointer;
             flex-shrink: 0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(0, 255, 128, 0.1);
         }
         
         .currency-code {
             font-weight: bold;
             color: #00ff80;
-            margin-right: 5px;
+            margin-right: 8px;
+            font-size: 18px;
         }
         
         .dropdown-arrow {
             color: #00ff80;
-            font-size: 14px;
+            font-size: 12px;
             transition: transform 0.3s;
         }
         
@@ -130,7 +135,7 @@
             align-items: center;
             justify-content: space-between;
             position: relative;
-            min-height: 40px;
+            min-height: 50px;
         }
         
         .amount-container {
@@ -138,11 +143,11 @@
             align-items: center;
             width: 100%;
             justify-content: flex-end;
-            gap: 15px; /* مسافة أكبر بين الرقم والرمز */
+            gap: 20px;
         }
         
         .amount {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             color: #00ff80;
             background: transparent;
@@ -155,15 +160,15 @@
         }
         
         .currency-symbol {
-            font-size: 18px;
+            font-size: 22px;
             color: #00ff80;
-            width: 40px; /* عرض ثابت للرمز */
+            width: 50px;
             text-align: left;
             flex-shrink: 0;
         }
         
         .amount-display {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             color: #00ff80;
             text-align: right;
@@ -194,7 +199,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -211,8 +216,8 @@
         
         .selection {
             background-color: #111;
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 15px;
+            padding: 20px;
             margin: 20px;
             max-height: 80vh;
             overflow-y: auto;
@@ -229,14 +234,14 @@
         
         .selection h2 {
             color: #00ff80;
-            font-size: 18px;
-            margin-bottom: 15px;
+            font-size: 20px;
+            margin-bottom: 20px;
             text-align: center;
         }
         
         .close-modal {
             position: absolute;
-            top: 10px;
+            top: 15px;
             right: 15px;
             color: #ff4444;
             font-size: 24px;
@@ -247,20 +252,15 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            transition: background 0.3s;
-        }
-        
-        .close-modal:hover {
-            background: rgba(255, 68, 68, 0.2);
         }
         
         .currency-option {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 10px;
             background-color: #222;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
             opacity: 0;
@@ -278,7 +278,23 @@
         
         .currency-option.active {
             background-color: #004d26;
-            border: 1px solid #00ff80;
+        }
+        
+        .option-flag {
+            width: 50px;  /* كبر حجم الصورة في القائمة */
+            height: 50px; /* كبر حجم الصورة في القائمة */
+            border-radius: 50%;
+            margin-right: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: none; /* إزالة الحواف الخضراء */
+        }
+        
+        .option-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
         
         .currency-info {
@@ -289,7 +305,8 @@
         }
         
         .currency-rate {
-            color: #aaa;
+            color: #00ff80;
+            font-weight: bold;
         }
         
         /* شريط التحميل */
@@ -306,7 +323,7 @@
         
         .page-loading-progress {
             height: 100%;
-            background: linear-gradient(90deg, #00ff80, #00cc66);
+            background: #00ff80;
             width: 0%;
             transition: width 0.3s ease;
         }
@@ -326,7 +343,7 @@
             <div class="currency-box" id="from-currency-box">
                 <div class="currency-header">
                     <div class="flag" id="from-flag">
-                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png" alt="EUR" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png" alt="EUR">
                     </div>
                     <div class="currency-name" id="from-currency-name">Euro</div>
                     <div class="currency-selector" id="currency-selector">
@@ -349,7 +366,7 @@
             <div class="currency-box" id="to-currency-box">
                 <div class="currency-header">
                     <div class="flag">
-                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/2000-currency-alg.png" alt="DZD" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/2000-currency-alg.png" alt="DZD">
                     </div>
                     <div class="currency-name">Algerian Dinar</div>
                     <div class="currency-code">DZD</div>
@@ -378,102 +395,44 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // =============================================
-            // منطقة الأسعار - سهلة التعديل للمطور
+            // منطقة الأسعار - العملات التي تظهر فقط
             // =============================================
             const exchangeRates = {
                 "EUR": 274,
                 "USD": 237,
                 "GBP": 305,
-                "CAD": 175,
-                "AUD": 155,
-                "CHF": 265,
-                "DKK": 36,
-                "SEK": 25,
-                "NOK": 26,
-                "ISK": 1.7,
-                "TRY": 7.2,
-                "CNY": 33,
-                "RUB": 2.5,
                 "JPY": 1.6,
                 "KRW": 0.18,
                 "INR": 2.8,
-                "MYR": 50,
-                "ZAR": 13,
-                "BRL": 45,
-                "MXN": 12,
-                "ARS": 2.8,
-                "MAD": 24,
-                "TND": 85,
-                "EGP": 7.6,
-                "SAR": 63,
-                "QAR": 65,
-                "AED": 64
+                "DZD": 1
             };
             
             // =============================================
-            // روابط الصور للعملات (GitHub Raw)
+            // روابط الصور للعملات المحددة فقط
             // =============================================
+            const baseImagePath = "https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/";
+            
             const flagImages = {
-                'EUR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png',
-                'USD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png',
-                'GBP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png',
-                'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-cad.png',
-                'AUD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-aud.png',
-                'CHF': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-chf.png',
-                'DKK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-dkk.png',
-                'SEK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-sek.png',
-                'NOK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-nok.png',
-                'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-isk.png',
-                'TRY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/110-currency-try.png',
-                'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-cny.png',
-                'RUB': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/112-currency-rub.png',
-                'JPY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-jpy.png',
-                'KRW': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-krw.png',
-                'INR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/115-currency-inr.png',
-                'MYR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/116-currency-myr.png',
-                'ZAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/117-currency-zar.png',
-                'BRL': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-brl.png',
-                'MXN': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/119-currency-mxn.png',
-                'ARS': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/120-currency-ars.png',
-                'MAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/121-currency-mad.png',
-                'TND': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/122-currency-tnd.png',
-                'EGP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/123-currency-egp.png',
-                'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/124-currency-sar.png',
-                'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/125-currency-qar.png',
-                'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/126-currency-aed.png'
+                'EUR': baseImagePath + '100-currency-eur.png',
+                'USD': baseImagePath + '101-currency-usd.png',
+                'GBP': baseImagePath + '102-currency-gbp.png',
+                'JPY': baseImagePath + '113-currency-jpy.png',
+                'KRW': baseImagePath + '114-currency-krw.png',
+                'INR': baseImagePath + '115-currency-inr.png',
+                'DZD': baseImagePath + '2000-currency-alg.png'
             };
             
             // =============================================
-            // بيانات العملات مع الأسماء والرموز
+            // بيانات العملات المحددة فقط
             // =============================================
             const currencies = {
                 "EUR": { name: "Euro", symbol: "€", rate: exchangeRates.EUR },
                 "USD": { name: "US Dollar", symbol: "$", rate: exchangeRates.USD },
                 "GBP": { name: "British Pound", symbol: "£", rate: exchangeRates.GBP },
-                "CAD": { name: "Canadian Dollar", symbol: "C$", rate: exchangeRates.CAD },
-                "AUD": { name: "Australian Dollar", symbol: "A$", rate: exchangeRates.AUD },
-                "CHF": { name: "Swiss Franc", symbol: "CHF", rate: exchangeRates.CHF },
-                "DKK": { name: "Danish Krone", symbol: "kr", rate: exchangeRates.DKK },
-                "SEK": { name: "Swedish Krona", symbol: "kr", rate: exchangeRates.SEK },
-                "NOK": { name: "Norwegian Krone", symbol: "kr", rate: exchangeRates.NOK },
-                "ISK": { name: "Icelandic Króna", symbol: "kr", rate: exchangeRates.ISK },
-                "TRY": { name: "Turkish Lira", symbol: "₺", rate: exchangeRates.TRY },
-                "CNY": { name: "Chinese Yuan", symbol: "¥", rate: exchangeRates.CNY },
-                "RUB": { name: "Russian Ruble", symbol: "₽", rate: exchangeRates.RUB },
                 "JPY": { name: "Japanese Yen", symbol: "¥", rate: exchangeRates.JPY },
                 "KRW": { name: "South Korean Won", symbol: "₩", rate: exchangeRates.KRW },
                 "INR": { name: "Indian Rupee", symbol: "₹", rate: exchangeRates.INR },
-                "MYR": { name: "Malaysian Ringgit", symbol: "RM", rate: exchangeRates.MYR },
-                "ZAR": { name: "South African Rand", symbol: "R", rate: exchangeRates.ZAR },
-                "BRL": { name: "Brazilian Real", symbol: "R$", rate: exchangeRates.BRL },
-                "MXN": { name: "Mexican Peso", symbol: "$", rate: exchangeRates.MXN },
-                "ARS": { name: "Argentine Peso", symbol: "$", rate: exchangeRates.ARS },
-                "MAD": { name: "Moroccan Dirham", symbol: "د.م.", rate: exchangeRates.MAD },
-                "TND": { name: "Tunisian Dinar", symbol: "د.ت", rate: exchangeRates.TND },
-                "EGP": { name: "Egyptian Pound", symbol: "E£", rate: exchangeRates.EGP },
-                "SAR": { name: "Saudi Riyal", symbol: "﷼", rate: exchangeRates.SAR },
-                "QAR": { name: "Qatari Riyal", symbol: "QR", rate: exchangeRates.QAR },
-                "AED": { name: "UAE Dirham", symbol: "د.إ", rate: exchangeRates.AED }
+                "DZD": { name: "Algerian Dinar", symbol: "DA", rate: exchangeRates.DZD }
             };
 
             const fromAmountInput = document.getElementById('from-amount');
@@ -496,12 +455,8 @@
             function populateCurrencyOptions() {
                 currencyOptionsContainer.innerHTML = '';
                 
-                // ترتيب العملات حسب الطلب
-                const currencyOrder = [
-                    "EUR", "USD", "GBP", "CAD", "AUD", "CHF", "DKK", "SEK", "NOK", "ISK",
-                    "TRY", "CNY", "RUB", "JPY", "KRW", "INR", "MYR", "ZAR", "BRL", "MXN",
-                    "ARS", "MAD", "TND", "EGP", "SAR", "QAR", "AED"
-                ];
+                // ترتيب العملات المحددة فقط
+                const currencyOrder = ["EUR", "USD", "GBP", "JPY", "KRW", "INR"];
                 
                 currencyOrder.forEach(code => {
                     if (currencies[code]) {
@@ -513,11 +468,14 @@
                         currencyOption.setAttribute('data-rate', data.rate);
                         
                         currencyOption.innerHTML = `
-                            <div class="flag">
-                                <img src="${flagImages[code]}" alt="${code}" loading="lazy">
+                            <div class="option-flag">
+                                <img src="${flagImages[code]}" alt="${code}">
                             </div>
                             <div class="currency-info">
-                                <div class="currency-code">${code}</div>
+                                <div>
+                                    <div style="color: #00ff80; font-weight: bold; font-size: 18px;">${code}</div>
+                                    <div style="color: #aaa; font-size: 14px;">${data.name}</div>
+                                </div>
                                 <div class="currency-rate">${data.rate} DZD</div>
                             </div>
                         `;
@@ -541,7 +499,7 @@
                         currentCurrency = currency;
                         
                         // تحديث العملة في الأعلى
-                        fromFlag.innerHTML = `<img src="${flagImages[currency]}" alt="${currency}" loading="lazy">`;
+                        fromFlag.innerHTML = `<img src="${flagImages[currency]}" alt="${currency}">`;
                         document.querySelector('.currency-selector .currency-code').textContent = currency;
                         fromCurrencyName.textContent = currencies[currency].name;
                         fromSymbol.textContent = currencies[currency].symbol;
@@ -572,7 +530,6 @@
             
             // تبديل العملات
             swapArrows.addEventListener('click', function() {
-                // هذا سيكون مفيدًا إذا أضفنا إمكانية تغيير العملة الهدف أيضًا
                 alert("Currency swap functionality can be added here");
             });
             
