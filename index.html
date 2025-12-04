@@ -145,6 +145,9 @@
             justify-content: space-between;
             background: #000;
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         
         .currency-item:hover {
@@ -240,6 +243,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            z-index: 2;
         }
         
         .rate-box-value {
@@ -326,6 +331,46 @@
             color: #666;
             border-top: 1px solid #333;
             background: #1a1a1a;
+        }
+        
+        /* الخط الضبابي المتحرك */
+        .foggy-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .foggy-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 20%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0.05) 80%,
+                transparent 100%
+            );
+            animation: foggyLine 20s linear infinite;
+        }
+        
+        @keyframes foggyLine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
         }
         
         @media (min-width: 768px) {
@@ -562,11 +607,11 @@
                 const item = createSquareCurrencyItem(currency, index);
                 squareList.appendChild(item);
                 
-                // إضافة تأثير الظهور التدريجي
+                // إضافة تأثير الظهور التدريجي (من أعلى إلى أسفل مع تأخير)
                 setTimeout(() => {
                     item.style.opacity = '1';
                     item.style.transform = 'translateY(0)';
-                }, index * 50);
+                }, index * 50); // تأخير 50ms بين كل بطاقة
             });
             
             // إنشاء قائمة Official
@@ -574,11 +619,11 @@
                 const item = createOfficialCurrencyItem(currency, index);
                 officialList.appendChild(item);
                 
-                // إضافة تأثير الظهور التدريجي
+                // إضافة تأثير الظهور التدريجي (من أعلى إلى أسفل مع تأخير)
                 setTimeout(() => {
                     item.style.opacity = '1';
                     item.style.transform = 'translateY(0)';
-                }, index * 50);
+                }, index * 50); // تأخير 50ms بين كل بطاقة
             });
         }
 
@@ -588,7 +633,7 @@
             item.className = 'currency-item';
             item.style.opacity = '0';
             item.style.transform = 'translateY(10px)';
-            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             
             const imageUrl = flagImages[currency.code] || flagImages['USD'];
             const isSpecialCurrency = specialCurrencies.includes(currency.code);
@@ -615,9 +660,11 @@
                     <div class="currency-rates">
                         <div class="rate-box sell-box">
                             <div class="rate-box-value">${currency.sell}</div>
+                            <div class="foggy-line"></div>
                         </div>
                         <div class="rate-box buy-box">
                             <div class="rate-box-value">${currency.buy}</div>
+                            <div class="foggy-line"></div>
                         </div>
                     </div>
                 `;
@@ -626,6 +673,7 @@
                     <div class="currency-rates">
                         <div class="rate-box single-red-box">
                             <div class="rate-box-value">${currency.sell}</div>
+                            <div class="foggy-line"></div>
                         </div>
                     </div>
                 `;
@@ -653,7 +701,7 @@
             item.className = 'currency-item';
             item.style.opacity = '0';
             item.style.transform = 'translateY(10px)';
-            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             
             const imageUrl = flagImages[currency.code] || flagImages['USD'];
             
@@ -676,6 +724,7 @@
                     <div class="rate-box official-rate-box">
                         <div class="rate-box-value">${currency.rate}</div>
                         <div class="rate-label">Rate</div>
+                        <div class="foggy-line"></div>
                     </div>
                 </div>
             `;
