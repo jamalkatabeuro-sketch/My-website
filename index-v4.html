@@ -20,17 +20,15 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #000000 0%, #001a00 100%);
         }
         
         .container {
             width: 100%;
-            max-width: 420px;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 20px;
+            max-width: 450px;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
             overflow: hidden;
-            border: 1px solid #00ff80;
-            box-shadow: 0 10px 30px rgba(0, 255, 128, 0.1);
+            border: 1px solid #333;
         }
         
         .header {
@@ -38,51 +36,28 @@
             text-align: center;
             position: relative;
             margin-bottom: 10px;
-            background: linear-gradient(to right, rgba(0, 255, 128, 0.1), rgba(0, 255, 128, 0.05));
+            background: rgba(0, 0, 0, 0.7);
         }
         
         .header h1 {
             color: #00ff80;
             font-size: 28px;
             margin-bottom: 5px;
-            text-shadow: 0 2px 10px rgba(0, 255, 128, 0.3);
-        }
-        
-        .header p {
-            color: #aaa;
-            font-size: 12px;
         }
         
         .converter {
-            padding: 20px;
+            padding: 25px;
         }
         
         .currency-box {
-            background: linear-gradient(145deg, #0a0a0a, #111111);
-            border-radius: 15px;
+            background-color: #111;
+            border-radius: 12px;
             padding: 20px;
             margin-bottom: 20px;
             border: 1px solid #222;
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .currency-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 128, 0.1), transparent);
-            transition: left 0.7s;
-        }
-        
-        .currency-box:hover::before {
-            left: 100%;
+            transition: all 0.5s ease;
         }
         
         .currency-box.visible {
@@ -91,9 +66,7 @@
         }
         
         .currency-box:hover {
-            border-color: #00ff80;
-            box-shadow: 0 5px 20px rgba(0, 255, 128, 0.2);
-            transform: translateY(-5px);
+            background: #151515;
         }
         
         .currency-header {
@@ -103,48 +76,43 @@
         }
         
         .flag {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 15px;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 20px;
             background-size: cover;
             background-position: center;
-            border: 2px solid #00ff80;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 24px;
             overflow: hidden;
             flex-shrink: 0;
             background-color: #222;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            position: relative;
         }
         
         .flag img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
-            transition: transform 0.3s;
-        }
-        
-        .flag:hover img {
-            transform: scale(1.1);
+            border-radius: 6px;
         }
         
         .flag .fallback {
             color: #00ff80;
             font-weight: bold;
-            font-size: 16px;
-            text-transform: uppercase;
+            font-size: 24px;
+        }
+        
+        .currency-info {
+            flex-grow: 1;
         }
         
         .currency-name {
-            flex-grow: 1;
-            font-size: 16px;
+            font-size: 18px;
             color: #ccc;
             font-weight: 500;
+            margin-bottom: 5px;
         }
         
         .currency-selector {
@@ -152,23 +120,22 @@
             align-items: center;
             cursor: pointer;
             flex-shrink: 0;
-            padding: 8px 12px;
+            padding: 10px 15px;
             border-radius: 8px;
             transition: all 0.3s;
             background: rgba(0, 255, 128, 0.1);
-            border: 1px solid rgba(0, 255, 128, 0.3);
+            border: 1px solid rgba(0, 255, 128, 0.2);
         }
         
         .currency-selector:hover {
             background: rgba(0, 255, 128, 0.2);
-            transform: scale(1.05);
         }
         
         .currency-code {
             font-weight: bold;
             color: #00ff80;
             margin-right: 8px;
-            font-size: 18px;
+            font-size: 20px;
         }
         
         .dropdown-arrow {
@@ -186,7 +153,7 @@
             align-items: center;
             justify-content: space-between;
             position: relative;
-            min-height: 60px;
+            min-height: 70px;
         }
         
         .amount-container {
@@ -194,11 +161,11 @@
             align-items: center;
             width: 100%;
             justify-content: flex-end;
-            gap: 20px;
+            gap: 25px;
         }
         
         .amount {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
             color: #00ff80;
             background: transparent;
@@ -208,47 +175,37 @@
             width: auto;
             flex-grow: 1;
             min-width: 0;
-            padding: 5px 10px;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        
-        .amount:focus {
-            background: rgba(0, 255, 128, 0.1);
-            box-shadow: 0 0 0 2px rgba(0, 255, 128, 0.3);
+            padding: 10px;
         }
         
         .currency-symbol {
-            font-size: 24px;
+            font-size: 28px;
             color: #00ff80;
-            width: 60px;
+            width: 70px;
             text-align: left;
             flex-shrink: 0;
             font-weight: bold;
         }
         
         .amount-display {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
             color: #00ff80;
             text-align: right;
             flex-grow: 1;
             min-width: 0;
             word-break: break-all;
-            padding: 5px 10px;
-            border-radius: 8px;
-            background: rgba(0, 255, 128, 0.05);
+            padding: 10px;
         }
         
         .swap-container {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
-            position: relative;
+            margin: 25px 0;
         }
         
         .swap-btn {
-            background: linear-gradient(145deg, #00ff80, #00cc66);
+            background: #00ff80;
             color: #000;
             border: none;
             width: 60px;
@@ -260,46 +217,21 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(0, 255, 128, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .swap-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .swap-btn:hover::before {
-            left: 100%;
+            font-weight: bold;
         }
         
         .swap-btn:hover {
-            background: linear-gradient(145deg, #00cc66, #00ff80);
-            transform: scale(1.1) rotate(180deg);
-            box-shadow: 0 8px 20px rgba(0, 255, 128, 0.4);
-        }
-        
-        .swap-btn:active {
-            transform: scale(0.95);
+            background: #00cc66;
         }
         
         .rate-info {
             text-align: center;
             color: #aaa;
-            font-size: 12px;
-            margin-top: 10px;
-            padding: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+            padding: 10px;
             background: rgba(0, 255, 128, 0.05);
             border-radius: 8px;
-            border: 1px solid rgba(0, 255, 128, 0.1);
         }
         
         .rate-info span {
@@ -321,8 +253,7 @@
             z-index: 1000;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
         
         .currency-selection-modal.active {
@@ -331,23 +262,22 @@
         }
         
         .selection {
-            background: linear-gradient(145deg, #0a0a0a, #111111);
-            border-radius: 20px;
+            background-color: #111;
+            border-radius: 15px;
             padding: 25px;
             margin: 20px;
             max-height: 80vh;
             overflow-y: auto;
             width: 90%;
-            max-width: 450px;
-            transform: translateY(30px) scale(0.9);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 500px;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
             position: relative;
-            border: 1px solid #00ff80;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
         }
         
         .currency-selection-modal.active .selection {
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
         
         .selection h2 {
@@ -355,9 +285,6 @@
             font-size: 24px;
             margin-bottom: 25px;
             text-align: center;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(0, 255, 128, 0.3);
-            text-shadow: 0 2px 10px rgba(0, 255, 128, 0.3);
         }
         
         .close-modal {
@@ -373,15 +300,29 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            transition: all 0.3s;
-            z-index: 1001;
-            background: rgba(255, 68, 68, 0.1);
-            border: 1px solid rgba(255, 68, 68, 0.3);
         }
         
         .close-modal:hover {
             background: rgba(255, 68, 68, 0.2);
-            transform: rotate(90deg) scale(1.1);
+        }
+        
+        .search-container {
+            margin-bottom: 25px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-input:focus {
+            border-color: #00ff80;
         }
         
         .currency-option {
@@ -389,30 +330,12 @@
             align-items: center;
             padding: 15px;
             margin-bottom: 10px;
-            background: linear-gradient(145deg, #1a1a1a, #222222);
-            border-radius: 12px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s;
             opacity: 0;
-            transform: translateY(15px);
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .currency-option::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 128, 0.1), transparent);
-            transition: left 0.5s;
-        }
-        
-        .currency-option:hover::before {
-            left: 100%;
+            transform: translateY(10px);
         }
         
         .currency-option.visible {
@@ -421,60 +344,66 @@
         }
         
         .currency-option:hover {
-            background: linear-gradient(145deg, #222222, #2a2a2a);
-            border-color: #00ff80;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 255, 128, 0.2);
+            background-color: #222;
         }
         
         .currency-option.active {
-            background: linear-gradient(145deg, #004d26, #006633);
-            border: 2px solid #00ff80;
-            box-shadow: 0 5px 20px rgba(0, 255, 128, 0.3);
+            background-color: #003d1a;
+            border: 1px solid #00ff80;
         }
         
-        .currency-info {
+        .option-flag {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            margin-right: 15px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: #222;
+        }
+        
+        .option-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        
+        .option-flag .fallback {
+            color: #00ff80;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .option-info {
             flex-grow: 1;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        .currency-rate {
+        .option-code {
             color: #00ff80;
             font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .option-rate {
+            color: #00ff80;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .no-results {
+            text-align: center;
+            color: #ff4444;
+            padding: 30px;
             font-size: 16px;
-            background: rgba(0, 255, 128, 0.1);
-            padding: 5px 10px;
-            border-radius: 6px;
-            border: 1px solid rgba(0, 255, 128, 0.3);
-        }
-        
-        /* شريط التحميل */
-        .page-loading-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 255, 128, 0.1);
-            z-index: 1000;
-            overflow: hidden;
-            transition: opacity 0.5s;
-        }
-        
-        .page-loading-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #00ff80, #00cc66, #00ff80);
-            width: 0%;
-            transition: width 0.4s ease;
-            background-size: 200% 100%;
-            animation: loadingAnimation 2s linear infinite;
-        }
-        
-        @keyframes loadingAnimation {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
         }
         
         /* تحسينات للوضع المحمول */
@@ -482,95 +411,40 @@
             .container {
                 max-width: 100%;
                 margin: 10px;
-                border-radius: 15px;
-            }
-            
-            .header h1 {
-                font-size: 24px;
-            }
-            
-            .amount, .amount-display {
-                font-size: 28px;
-            }
-            
-            .currency-name {
-                font-size: 14px;
             }
             
             .flag {
-                width: 45px;
-                height: 45px;
+                width: 70px;
+                height: 70px;
             }
             
-            .currency-symbol {
-                font-size: 20px;
-                width: 50px;
+            .option-flag {
+                width: 60px;
+                height: 60px;
             }
             
-            .swap-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
+            .amount, .amount-display {
+                font-size: 32px;
             }
-        }
-        
-        /* شريط البحث */
-        .search-container {
-            margin-bottom: 20px;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(0, 255, 128, 0.1);
-            border: 1px solid rgba(0, 255, 128, 0.3);
-            border-radius: 10px;
-            color: #00ff80;
-            font-size: 16px;
-            outline: none;
-            transition: all 0.3s;
-        }
-        
-        .search-input:focus {
-            background: rgba(0, 255, 128, 0.15);
-            box-shadow: 0 0 0 2px rgba(0, 255, 128, 0.3);
-        }
-        
-        .search-input::placeholder {
-            color: rgba(0, 255, 128, 0.5);
-        }
-        
-        /* رسالة عندما لا توجد نتائج */
-        .no-results {
-            text-align: center;
-            color: #ff4444;
-            padding: 20px;
-            font-size: 16px;
-            background: rgba(255, 68, 68, 0.1);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 68, 68, 0.3);
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="page-loading-bar">
-        <div class="page-loading-progress" id="pageLoadingProgress"></div>
-    </div>
-    
     <div class="container">
         <div class="header">
-            <h1>🌍 Currency Converter</h1>
-            <p>Convert currencies to Algerian Dinar</p>
+            <h1>💱 Currency Converter</h1>
+            <p style="color: #aaa; font-size: 12px;">Convert to Algerian Dinar (DZD)</p>
         </div>
         
         <div class="converter">
             <div class="currency-box" id="from-currency-box">
                 <div class="currency-header">
                     <div class="flag" id="from-flag">
-                        <div class="fallback">€</div>
+                        <!-- سيتم تعبئته بالجافاسكريبت -->
                     </div>
-                    <div class="currency-name" id="from-currency-name">Euro</div>
+                    <div class="currency-info">
+                        <div class="currency-name" id="from-currency-name">Euro</div>
+                    </div>
                     <div class="currency-selector" id="currency-selector">
                         <div class="currency-code">EUR</div>
                         <div class="dropdown-arrow">▼</div>
@@ -578,22 +452,24 @@
                 </div>
                 <div class="currency-amount">
                     <div class="amount-container">
-                        <input type="number" class="amount" id="from-amount" value="50" min="0" step="0.01" inputmode="decimal">
+                        <input type="number" class="amount" id="from-amount" value="50" min="0" step="0.01">
                         <span class="currency-symbol" id="from-symbol">€</span>
                     </div>
                 </div>
             </div>
             
             <div class="swap-container">
-                <button class="swap-btn" id="swap-btn" title="Swap currencies">⇅</button>
+                <button class="swap-btn" id="swap-btn">⇄</button>
             </div>
             
             <div class="currency-box" id="to-currency-box">
                 <div class="currency-header">
                     <div class="flag" id="to-flag">
-                        <div class="fallback">DZ</div>
+                        <!-- سيتم تعبئته بالجافاسكريبت -->
                     </div>
-                    <div class="currency-name" id="to-currency-name">Algerian Dinar</div>
+                    <div class="currency-info">
+                        <div class="currency-name" id="to-currency-name">Algerian Dinar</div>
+                    </div>
                     <div class="currency-code">DZD</div>
                 </div>
                 <div class="currency-amount">
@@ -605,7 +481,7 @@
             </div>
             
             <div class="rate-info">
-                Current rate: <span id="current-rate">1 EUR = 274 DZD</span>
+                Rate: <span id="current-rate">1 EUR = 274 DZD</span>
             </div>
         </div>
     </div>
@@ -617,7 +493,7 @@
             <h2>Select Currency</h2>
             
             <div class="search-container">
-                <input type="text" class="search-input" id="currency-search" placeholder="Search currency (EUR, USD, etc.)">
+                <input type="text" class="search-input" id="currency-search" placeholder="Search currency...">
             </div>
             
             <div id="currency-options-container">
@@ -625,7 +501,7 @@
             </div>
             
             <div id="no-results-message" class="no-results" style="display: none;">
-                No currencies found matching your search.
+                No currencies found
             </div>
         </div>
     </div>
@@ -633,7 +509,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // =============================================
-            // منطقة الأسعار - تم تحديثها بناءً على الصورة المرفقة
+            // منطقة الأسعار
             // =============================================
             const exchangeRates = {
                 "EUR": 274,
@@ -667,9 +543,9 @@
             };
             
             // =============================================
-            // روابط الصور للعملات على GitHub
+            // روابط الصور باستخدام raw.githubusercontent.com مباشرة
             // =============================================
-            const baseImagePath = "https://jamalkatabeuro-sketch.github.io/My-website/";
+            const baseImagePath = "https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/";
             
             const flagImages = {
                 'EUR': baseImagePath + '100-currency-eur.png',
@@ -699,7 +575,7 @@
                 'SAR': baseImagePath + '124-currency-sar.png',
                 'QAR': baseImagePath + '125-currency-qar.png',
                 'AED': baseImagePath + '126-currency-aed.png',
-                'DZD': baseImagePath + '101-currency-dzd.png'  // نفس اسم USD لكن رقم مختلف
+                'DZD': baseImagePath + '2000-currency-alg.png'  // العلم الجزائري
             };
             
             // =============================================
@@ -747,7 +623,6 @@
             const toFlag = document.getElementById('to-flag');
             const fromSymbol = document.getElementById('from-symbol');
             const currentRateElement = document.getElementById('current-rate');
-            const pageLoadingProgress = document.getElementById('pageLoadingProgress');
             const currencySelector = document.getElementById('currency-selector');
             const dropdownArrow = document.querySelector('.dropdown-arrow');
             const currencySelectionModal = document.getElementById('currency-selection-modal');
@@ -758,27 +633,25 @@
             // متغيرات حالة
             let currentRate = currencies.EUR.rate;
             let currentCurrency = 'EUR';
-            let toCurrency = 'DZD';
             
-            // دالة لتحميل صورة العلم
-            function loadFlagImage(flagElement, currencyCode) {
+            // دالة بسيطة لتحميل صورة العلم
+            function loadFlagImage(flagElement, currencyCode, isLarge = true) {
                 const img = new Image();
+                
                 img.onload = function() {
                     flagElement.innerHTML = '';
                     const imgElement = document.createElement('img');
                     imgElement.src = this.src;
                     imgElement.alt = currencyCode;
-                    imgElement.loading = 'lazy';
                     flagElement.appendChild(imgElement);
                 };
+                
                 img.onerror = function() {
                     // إذا فشل تحميل الصورة، استخدم النص البديل
                     const fallbackText = currencies[currencyCode]?.symbol || currencyCode.substring(0, 2);
                     flagElement.innerHTML = `<div class="fallback">${fallbackText}</div>`;
-                    
-                    // يمكنك إضافة رسالة في الكونسول للتصحيح
-                    console.warn(`Failed to load flag for ${currencyCode}: ${flagImages[currencyCode]}`);
                 };
+                
                 img.src = flagImages[currencyCode];
             }
             
@@ -786,7 +659,6 @@
             function populateCurrencyOptions(searchTerm = '') {
                 currencyOptionsContainer.innerHTML = '';
                 
-                // ترتيب العملات حسب الطلب
                 const currencyOrder = [
                     "EUR", "USD", "GBP", "CAD", "AUD", "CHF", "DKK", "SEK", "NOK", "ISK",
                     "TRY", "CNY", "RUB", "JPY", "KRW", "INR", "MYR", "ZAR", "BRL", "MXN",
@@ -796,7 +668,7 @@
                 let hasResults = false;
                 let visibleCount = 0;
                 
-                currencyOrder.forEach((code, index) => {
+                currencyOrder.forEach((code) => {
                     if (currencies[code]) {
                         const data = currencies[code];
                         
@@ -815,25 +687,24 @@
                         currencyOption.className = 'currency-option';
                         if (code === currentCurrency) currencyOption.classList.add('active');
                         currencyOption.setAttribute('data-currency', code);
-                        currencyOption.setAttribute('data-rate', data.rate);
                         
                         const flagContainer = document.createElement('div');
-                        flagContainer.className = 'flag';
-                        loadFlagImage(flagContainer, code);
+                        flagContainer.className = 'option-flag';
+                        loadFlagImage(flagContainer, code, false);
                         
                         currencyOption.appendChild(flagContainer);
                         
-                        const currencyInfo = document.createElement('div');
-                        currencyInfo.className = 'currency-info';
-                        currencyInfo.innerHTML = `
-                            <div style="display: flex; flex-direction: column;">
-                                <div class="currency-code" style="color: #00ff80; font-weight: bold; font-size: 18px;">${code}</div>
-                                <div style="color: #ccc; font-size: 13px;">${data.name}</div>
+                        const optionInfo = document.createElement('div');
+                        optionInfo.className = 'option-info';
+                        optionInfo.innerHTML = `
+                            <div>
+                                <div class="option-code">${code}</div>
+                                <div style="color: #aaa; font-size: 14px;">${data.name}</div>
                             </div>
-                            <div class="currency-rate">${data.rate.toLocaleString()} DZD</div>
+                            <div class="option-rate">${data.rate} DZD</div>
                         `;
                         
-                        currencyOption.appendChild(currencyInfo);
+                        currencyOption.appendChild(optionInfo);
                         currencyOptionsContainer.appendChild(currencyOption);
                         
                         // إضافة مستمع الحدث
@@ -848,7 +719,6 @@
                     }
                 });
                 
-                // إظهار أو إخفاء رسالة عدم وجود نتائج
                 noResultsMessage.style.display = hasResults ? 'none' : 'block';
             }
             
@@ -868,7 +738,7 @@
                 document.querySelector('.currency-selector .currency-code').textContent = currency;
                 fromCurrencyName.textContent = currencies[currency].name;
                 fromSymbol.textContent = currencies[currency].symbol;
-                currentRateElement.textContent = `1 ${currency} = ${rate.toLocaleString()} DZD`;
+                currentRateElement.textContent = `1 ${currency} = ${rate} DZD`;
                 
                 // تحديث النتيجة
                 updateResult();
@@ -882,10 +752,6 @@
                 currencySelectionModal.classList.add('active');
                 dropdownArrow.classList.add('open');
                 document.body.style.overflow = 'hidden';
-                // التركيز على حقل البحث عند الفتح
-                setTimeout(() => {
-                    currencySearch.focus();
-                }, 300);
             }
             
             // إغلاق نافذة اختيار العملات
@@ -893,7 +759,6 @@
                 currencySelectionModal.classList.remove('active');
                 dropdownArrow.classList.remove('open');
                 document.body.style.overflow = 'auto';
-                // مسح البحث عند الإغلاق
                 currencySearch.value = '';
                 populateCurrencyOptions();
             }
@@ -905,44 +770,47 @@
                 toAmountElement.textContent = Math.round(result).toLocaleString();
             }
             
-            // دالة تبديل العملات
-            function swapCurrencies() {
-                // حفظ القيم الحالية
-                const tempAmount = parseFloat(fromAmountInput.value) || 0;
-                const tempCurrency = currentCurrency;
-                const tempRate = currentRate;
-                
-                // إذا كان الهدف هو DZD، غير إلى عملة أخرى
-                if (toCurrency === 'DZD') {
-                    // احسب المبلغ الجديد
-                    const newAmount = tempAmount * tempRate;
-                    fromAmountInput.value = newAmount.toFixed(2);
-                    
-                    // غير العملة إلى DZD
-                    selectCurrency('DZD', 1);
-                    toCurrency = tempCurrency;
-                    
-                    // تحديث واجهة العملة الهدف
-                    toCurrencyName.textContent = currencies[tempCurrency].name;
-                    document.querySelector('#to-currency-box .currency-code').textContent = tempCurrency;
-                    loadFlagImage(toFlag, tempCurrency);
-                    
-                    // احسب النتيجة الجديدة
-                    const result = parseFloat(fromAmountInput.value) * 1;
-                    toAmountElement.textContent = Math.round(result).toLocaleString();
-                    currentRateElement.textContent = `1 DZD = ${(1/tempRate).toFixed(4)} ${tempCurrency}`;
-                }
-            }
+            // إضافة مستمعي الأحداث
+            fromAmountInput.addEventListener('input', updateResult);
             
-            // دالة لإضافة تأثير الظهور التدريجي
-            function animateElements() {
-                // تفعيل ظهور مربعات العملات
-                setTimeout(() => {
-                    document.getElementById('from-currency-box').classList.add('visible');
-                }, 200);
-                
-                setTimeout(() => {
-                    document.getElementById('to-currency-box').classList.add('visible');
-                }, 400);
-                
-                // تحديث شريط الت
+            swapBtn.addEventListener('click', function() {
+                alert("Swap feature would be implemented here");
+            });
+            
+            currencySelector.addEventListener('click', openCurrencySelectionModal);
+            
+            closeModal.addEventListener('click', closeCurrencySelectionModal);
+            
+            currencySelectionModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeCurrencySelectionModal();
+                }
+            });
+            
+            currencySearch.addEventListener('input', function() {
+                populateCurrencyOptions(this.value);
+            });
+            
+            // تهيئة أولية
+            loadFlagImage(fromFlag, 'EUR');
+            loadFlagImage(toFlag, 'DZD');
+            populateCurrencyOptions();
+            updateResult();
+            
+            // إظهار العناصر تدريجياً
+            setTimeout(() => {
+                document.getElementById('from-currency-box').classList.add('visible');
+            }, 100);
+            
+            setTimeout(() => {
+                document.getElementById('to-currency-box').classList.add('visible');
+            }, 200);
+            
+            // تحديث سعر الصرف تلقائياً
+            setInterval(() => {
+                updateResult();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
