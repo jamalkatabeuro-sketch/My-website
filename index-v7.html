@@ -13,120 +13,189 @@
         }
         
         body {
-            background-color: #ffffff;
-            color: #333;
+            background-color: #000000;
+            color: #ffffff;
             padding: 20px;
             direction: ltr;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
         }
         
         header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 30px;
         }
         
         h1 {
-            color: #2c3e50;
-            font-size: 2rem;
-            margin-bottom: 10px;
+            color: #ffffff;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
         
-        .exchange-rates {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
+        .subtitle {
+            color: #aaaaaa;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
         }
         
-        .rate-item {
-            display: flex;
-            align-items: center;
-            padding: 15px 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+        .separator {
+            height: 1px;
+            background-color: #27ae60;
+            margin: 20px 0;
         }
         
-        .rate-item:hover {
-            transform: translateY(-3px);
+        .exchange-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            margin-bottom: 30px;
         }
         
-        .flag-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 15px;
+        .rate-card {
+            background-color: #111111;
+            padding: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
+            border-right: 1px solid #27ae60;
+            border-bottom: 1px solid #27ae60;
+            transition: background-color 0.2s;
+        }
+        
+        .rate-card:nth-child(odd) {
+            border-left: 1px solid #27ae60;
+        }
+        
+        .rate-card:nth-child(1), .rate-card:nth-child(2) {
+            border-top: 1px solid #27ae60;
+        }
+        
+        .rate-card:hover {
+            background-color: #1a1a1a;
         }
         
         .currency-info {
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
         
         .currency-pair {
-            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .currency-number {
+            color: #27ae60;
+            font-size: 1rem;
             font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 3px;
+            margin-right: 5px;
+        }
+        
+        .currency-code {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .equals {
+            color: #aaaaaa;
+            font-size: 0.9rem;
+            margin: 0 8px;
         }
         
         .exchange-rate {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #27ae60;
+            display: flex;
+            align-items: center;
         }
         
-        .currency-name {
-            color: #27ae60;
+        .rate-value {
+            color: #ffffff;
+            font-size: 1.1rem;
             font-weight: 600;
         }
         
-        /* ألوان أعلام الدول */
-        .flag-eur {
-            background: linear-gradient(to bottom, #003399, #ffcc00);
-            color: white;
+        .rate-currency {
+            color: #27ae60;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-left: 8px;
         }
         
-        .flag-usd {
-            background: linear-gradient(to bottom, #3c3b6e, #b22234, #ffffff);
-            color: white;
+        .additional-title {
+            color: #ffffff;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
         }
         
-        .flag-chf {
-            background: linear-gradient(to bottom, #d52b1e, #ffffff);
-            color: #d52b1e;
+        .additional-rates {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+        }
+        
+        .additional-card {
+            background-color: #111111;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid #27ae60;
+            border-bottom: 1px solid #27ae60;
+        }
+        
+        .additional-card:nth-child(odd) {
+            border-left: 1px solid #27ae60;
+        }
+        
+        .additional-card:nth-child(1), .additional-card:nth-child(2) {
+            border-top: 1px solid #27ae60;
+        }
+        
+        .additional-pair {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        
+        .additional-rate {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .additional-currency {
+            color: #27ae60;
+            font-size: 0.85rem;
         }
         
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
-            color: #7f8c8d;
-            font-size: 0.9rem;
+            border-top: 1px solid #333333;
+            color: #666666;
+            font-size: 0.8rem;
         }
         
-        @media (max-width: 768px) {
-            .exchange-rates {
-                flex-direction: column;
-                align-items: center;
+        @media (max-width: 600px) {
+            .exchange-container, .additional-rates {
+                grid-template-columns: 1fr;
             }
             
-            .rate-item {
-                width: 100%;
-                max-width: 350px;
+            .rate-card, .additional-card {
+                border-left: 1px solid #27ae60 !important;
+                border-right: 1px solid #27ae60 !important;
+            }
+            
+            .rate-card:nth-child(1), .additional-card:nth-child(1) {
+                border-top: 1px solid #27ae60;
             }
         }
     </style>
@@ -135,143 +204,202 @@
     <div class="container">
         <header>
             <h1>أسعار صرف العملات</h1>
-            <p>أسعار الصرف المباشرة - محدثة لحظياً</p>
+            <p class="subtitle">أسعار الصرف المباشرة - محدثة لحظياً</p>
         </header>
         
-        <div class="exchange-rates">
+        <div class="separator"></div>
+        
+        <div class="exchange-container">
             <!-- اليورو إلى الدولار -->
-            <div class="rate-item">
-                <div class="flag-icon flag-eur">
-                    €
-                </div>
+            <div class="rate-card">
                 <div class="currency-info">
-                    <div class="currency-pair">1 <span class="currency-name">EUR</span> = </div>
-                    <div class="exchange-rate">1.1516 <span class="currency-name">USD</span></div>
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">EUR</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">1.1515</span>
+                        <span class="rate-currency">USD</span>
+                    </div>
                 </div>
             </div>
             
             <!-- الدولار إلى اليورو -->
-            <div class="rate-item">
-                <div class="flag-icon flag-usd">
-                    $
-                </div>
+            <div class="rate-card">
                 <div class="currency-info">
-                    <div class="currency-pair">1 <span class="currency-name">USD</span> = </div>
-                    <div class="exchange-rate">0.8563 <span class="currency-name">EUR</span></div>
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">0.8562</span>
+                        <span class="rate-currency">EUR</span>
+                    </div>
                 </div>
             </div>
             
             <!-- الفرنك السويسري إلى الدولار -->
-            <div class="rate-item">
-                <div class="flag-icon flag-chf">
-                    Fr
-                </div>
+            <div class="rate-card">
                 <div class="currency-info">
-                    <div class="currency-pair">1 <span class="currency-name">CHF</span> = </div>
-                    <div class="exchange-rate">1.0838 <span class="currency-name">USD</span></div>
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">CHF</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">1.0838</span>
+                        <span class="rate-currency">USD</span>
+                    </div>
                 </div>
             </div>
             
             <!-- الدولار إلى الفرنك السويسري -->
-            <div class="rate-item">
-                <div class="flag-icon flag-usd">
-                    $
-                </div>
+            <div class="rate-card">
                 <div class="currency-info">
-                    <div class="currency-pair">1 <span class="currency-name">USD</span> = </div>
-                    <div class="exchange-rate">0.9228 <span class="currency-name">CHF</span></div>
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">0.9228</span>
+                        <span class="rate-currency">CHF</span>
+                    </div>
                 </div>
             </div>
         </div>
         
+        <div class="separator"></div>
+        
+        <h2 class="additional-title">أسعار إضافية</h2>
+        
         <div class="additional-rates">
-            <h2 style="text-align: center; margin-bottom: 20px; color: #2c3e50;">أسعار إضافية</h2>
-            <div class="exchange-rates">
-                <!-- الجنيه الإسترليني -->
-                <div class="rate-item">
-                    <div class="flag-icon" style="background: linear-gradient(to bottom, #012169, #c8102e, #ffffff); color: #012169;">
-                        £
-                    </div>
-                    <div class="currency-info">
-                        <div class="currency-pair">1 <span class="currency-name">GBP</span> = </div>
-                        <div class="exchange-rate">1.3236 <span class="currency-name">USD</span></div>
-                    </div>
+            <!-- الجنيه الإسترليني -->
+            <div class="additional-card">
+                <div class="currency-info">
+                    <div class="additional-pair">1 GBP =</div>
+                    <div class="additional-rate">1.3236 <span class="additional-currency">USD</span></div>
                 </div>
-                
-                <!-- الدولار الكندي -->
-                <div class="rate-item">
-                    <div class="flag-icon" style="background: linear-gradient(to right, #ff0000, #ffffff, #ff0000); color: #ff0000;">
-                        C$
-                    </div>
-                    <div class="currency-info">
-                        <div class="currency-pair">1 <span class="currency-name">CAD</span> = </div>
-                        <div class="exchange-rate">0.7654 <span class="currency-name">USD</span></div>
-                    </div>
+            </div>
+            
+            <!-- الدولار الكندي -->
+            <div class="additional-card">
+                <div class="currency-info">
+                    <div class="additional-pair">1 CAD =</div>
+                    <div class="additional-rate">0.7654 <span class="additional-currency">USD</span></div>
                 </div>
-                
-                <!-- الين الياباني -->
-                <div class="rate-item">
-                    <div class="flag-icon" style="background: #ffffff; color: #bc002d;">
-                        ¥
-                    </div>
-                    <div class="currency-info">
-                        <div class="currency-pair">1 <span class="currency-name">JPY</span> = </div>
-                        <div class="exchange-rate">0.0072 <span class="currency-name">USD</span></div>
-                    </div>
+            </div>
+            
+            <!-- الين الياباني -->
+            <div class="additional-card">
+                <div class="currency-info">
+                    <div class="additional-pair">1 JPY =</div>
+                    <div class="additional-rate">0.0072 <span class="additional-currency">USD</span></div>
                 </div>
-                
-                <!-- اليوان الصيني -->
-                <div class="rate-item">
-                    <div class="flag-icon" style="background: #de2910; color: #ffde00;">
-                        ¥
-                    </div>
-                    <div class="currency-info">
-                        <div class="currency-pair">1 <span class="currency-name">CNY</span> = </div>
-                        <div class="exchange-rate">0.1543 <span class="currency-name">USD</span></div>
-                    </div>
+            </div>
+            
+            <!-- اليوان الصيني -->
+            <div class="additional-card">
+                <div class="currency-info">
+                    <div class="additional-pair">1 CNY =</div>
+                    <div class="additional-rate">0.1543 <span class="additional-currency">USD</span></div>
+                </div>
+            </div>
+            
+            <!-- الدولار الأسترالي -->
+            <div class="additional-card">
+                <div class="currency-info">
+                    <div class="additional-pair">1 AUD =</div>
+                    <div class="additional-rate">0.7345 <span class="additional-currency">USD</span></div>
+                </div>
+            </div>
+            
+            <!-- الدولار النيوزيلندي -->
+            <div class="additional-card">
+                <div class="currency-info">
+                    <div class="additional-pair">1 NZD =</div>
+                    <div class="additional-rate">0.6821 <span class="additional-currency">USD</span></div>
                 </div>
             </div>
         </div>
         
         <footer>
             <p>© 2023 أسعار صرف العملات | الأسعار عرضية وقد تختلف عن الأسعار الحقيقية</p>
-            <p>مصمم خصيصاً حسب الطلب - بدون خلفية داكنة وألوان خضراء للأسماء والأسعار</p>
         </footer>
     </div>
 
     <script>
-        // تصحيح القيم بناءً على البيانات الأصلية (في المثال الأصلي كانت هناك أخطاء في أرقام الفرنك السويسري)
-        // 1 CHF = 1.0838 USD تقريباً (وليس 83828)
-        // 1 USD = 0.9228 CHF تقريباً (وليس 8738)
+        // تأثير تحديث الأسعار
+        function updateRateValue(element, baseValue) {
+            // تغيير بسيط عشوائي (+/- 0.0002)
+            const change = (Math.random() - 0.5) * 0.0004;
+            const newValue = Math.max(0.0001, baseValue + change);
+            
+            // تحديث القيمة
+            element.textContent = newValue.toFixed(4);
+            
+            // تأثير لوني مؤقت
+            element.style.color = change > 0 ? '#2ecc71' : '#e74c3c';
+            setTimeout(() => {
+                element.style.color = '#ffffff';
+            }, 800);
+        }
         
-        // محاكاة تحديث الأسعار كل 10 ثواني (للتأثير فقط)
+        // قيم أساسية للأسعار
+        const baseRates = {
+            'eur-usd': 1.1515,
+            'usd-eur': 0.8562,
+            'chf-usd': 1.0838,
+            'usd-chf': 0.9228,
+            'gbp-usd': 1.3236,
+            'cad-usd': 0.7654,
+            'jpy-usd': 0.0072,
+            'cny-usd': 0.1543,
+            'aud-usd': 0.7345,
+            'nzd-usd': 0.6821
+        };
+        
+        // محاكاة تحديث الأسعار كل 8 ثواني
         setInterval(() => {
-            const rates = document.querySelectorAll('.exchange-rate');
-            rates.forEach(rateElement => {
-                // فقط في بعض الأحيان نغير القيمة (30% من الوقت)
-                if (Math.random() > 0.7) {
-                    const currentText = rateElement.textContent;
-                    const match = currentText.match(/(\d+\.\d+)/);
-                    
-                    if (match) {
-                        const currentValue = parseFloat(match[1]);
-                        // تغيير بسيط عشوائي (+/- 0.0005)
-                        const change = (Math.random() - 0.5) * 0.001;
-                        const newValue = Math.max(0.0001, currentValue + change);
-                        
-                        // تحديث النص بالقيمة الجديدة
-                        const newText = currentText.replace(/\d+\.\d+/, newValue.toFixed(4));
-                        rateElement.textContent = newText;
-                        
-                        // تأثير لوني مؤقت
-                        rateElement.style.color = change > 0 ? '#2ecc71' : '#e74c3c';
-                        setTimeout(() => {
-                            rateElement.style.color = '#27ae60';
-                        }, 1000);
+            // تحديث الأسعار الرئيسية
+            const mainRates = document.querySelectorAll('.rate-value');
+            mainRates.forEach((rateElement, index) => {
+                if (Math.random() > 0.6) {
+                    const keys = Object.keys(baseRates);
+                    if (index < keys.length) {
+                        updateRateValue(rateElement, baseRates[keys[index]]);
                     }
                 }
             });
-        }, 10000);
+            
+            // تحديث الأسعار الإضافية
+            const additionalRates = document.querySelectorAll('.additional-rate');
+            additionalRates.forEach((rateElement, index) => {
+                if (Math.random() > 0.7) {
+                    const keys = Object.keys(baseRates);
+                    const keyIndex = index + 4; // بدء من الفهرس 4 (بعد الأسعار الرئيسية)
+                    if (keyIndex < keys.length) {
+                        const rateText = rateElement.textContent;
+                        const valueElement = rateElement.firstChild;
+                        const baseValue = baseRates[keys[keyIndex]];
+                        
+                        // تحديث القيمة فقط (الجزء الرقمي)
+                        if (valueElement && valueElement.nodeType === 3) {
+                            const newValue = Math.max(0.0001, baseValue + ((Math.random() - 0.5) * 0.0004));
+                            valueElement.textContent = newValue.toFixed(4);
+                            
+                            // تأثير لوني مؤقت
+                            rateElement.style.color = '#2ecc71';
+                            setTimeout(() => {
+                                rateElement.style.color = '#ffffff';
+                            }, 800);
+                        }
+                    }
+                }
+            });
+        }, 8000);
     </script>
 </body>
 </html>
