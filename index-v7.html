@@ -16,7 +16,7 @@
             background-color: #000000;
             color: #ffffff;
             padding: 20px;
-            direction: ltr;
+            direction: rtl;
         }
         
         .container {
@@ -26,7 +26,7 @@
         
         header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         h1 {
@@ -42,23 +42,16 @@
             margin-bottom: 15px;
         }
         
-        .separator {
-            height: 1px;
-            background-color: #333333;
-            margin: 25px 0;
-            width: 100%;
-        }
-        
         .rates-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-bottom: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
         }
         
         .rate-item {
             background-color: #111111;
-            padding: 15px 20px;
+            padding: 20px;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -72,7 +65,7 @@
         .currency-icon {
             width: 40px;
             height: 40px;
-            margin-right: 15px;
+            margin-left: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -88,33 +81,33 @@
             display: flex;
             align-items: center;
             flex-grow: 1;
+            justify-content: space-between;
         }
         
         .currency-pair {
             display: flex;
             align-items: center;
-            flex-grow: 1;
         }
         
         .currency-number {
             color: #27ae60;
             font-size: 1rem;
             font-weight: 600;
-            margin-right: 5px;
+            margin-left: 5px;
         }
         
         .currency-code {
             color: #27ae60;
             font-size: 1rem;
             font-weight: 600;
-            margin-right: 10px;
+            margin-left: 10px;
         }
         
         .equals {
             color: #ff3333;
             font-size: 1rem;
             font-weight: 600;
-            margin: 0 10px;
+            margin: 0 15px;
         }
         
         .exchange-rate {
@@ -126,86 +119,12 @@
             color: #27ae60;
             font-size: 1.1rem;
             font-weight: 600;
-            margin-right: 5px;
+            margin-left: 5px;
         }
         
         .rate-currency {
             color: #27ae60;
             font-size: 1rem;
-            font-weight: 600;
-        }
-        
-        .additional-title {
-            color: #ffffff;
-            font-size: 1.4rem;
-            text-align: center;
-            margin: 20px 0 15px 0;
-            font-weight: 600;
-        }
-        
-        .additional-rates {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        
-        .additional-item {
-            background-color: #111111;
-            padding: 12px 15px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .additional-details {
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
-        }
-        
-        .additional-pair {
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
-        }
-        
-        .additional-number {
-            color: #27ae60;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-right: 5px;
-        }
-        
-        .additional-code {
-            color: #27ae60;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-right: 8px;
-        }
-        
-        .additional-equals {
-            color: #ff3333;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin: 0 8px;
-        }
-        
-        .additional-rate {
-            display: flex;
-            align-items: center;
-        }
-        
-        .additional-value {
-            color: #27ae60;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-right: 5px;
-        }
-        
-        .additional-currency {
-            color: #27ae60;
-            font-size: 0.95rem;
             font-weight: 600;
         }
         
@@ -219,20 +138,16 @@
         }
         
         @media (max-width: 600px) {
-            .additional-rates {
+            .rates-grid {
                 grid-template-columns: 1fr;
             }
             
-            .rate-item, .additional-item {
-                padding: 12px 15px;
+            .rate-item {
+                padding: 15px;
             }
             
             h1 {
                 font-size: 1.6rem;
-            }
-            
-            .additional-title {
-                font-size: 1.2rem;
             }
         }
         
@@ -257,8 +172,6 @@
             <h1>أسعار صرف العملات</h1>
             <p class="subtitle">أسعار الصرف المباشرة - محدثة لحظياً</p>
         </header>
-        
-        <div class="separator"></div>
         
         <div class="rates-grid">
             <!-- اليورو إلى الدولار -->
@@ -332,81 +245,39 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="separator"></div>
-        
-        <h2 class="additional-title">أسعار إضافية</h2>
-        
-        <div class="additional-rates">
+            
             <!-- الجنيه الإسترليني -->
-            <div class="additional-item" data-currency="GBP">
+            <div class="rate-item" data-currency="GBP">
                 <div class="currency-icon">
                     <div class="icon-placeholder">GBP</div>
                 </div>
-                <div class="additional-details">
-                    <div class="additional-pair">
-                        <span class="additional-number">1</span>
-                        <span class="additional-code">GBP</span>
-                        <span class="additional-equals">=</span>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">GBP</span>
+                        <span class="equals">=</span>
                     </div>
-                    <div class="additional-rate">
-                        <span class="additional-value">1.3237</span>
-                        <span class="additional-currency">USD</span>
+                    <div class="exchange-rate">
+                        <span class="rate-value">1.3237</span>
+                        <span class="rate-currency">USD</span>
                     </div>
                 </div>
             </div>
             
             <!-- الدولار الكندي -->
-            <div class="additional-item" data-currency="CAD">
+            <div class="rate-item" data-currency="CAD">
                 <div class="currency-icon">
                     <div class="icon-placeholder">CAD</div>
                 </div>
-                <div class="additional-details">
-                    <div class="additional-pair">
-                        <span class="additional-number">1</span>
-                        <span class="additional-code">CAD</span>
-                        <span class="additional-equals">=</span>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">CAD</span>
+                        <span class="equals">=</span>
                     </div>
-                    <div class="additional-rate">
-                        <span class="additional-value">0.7654</span>
-                        <span class="additional-currency">USD</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- الين الياباني -->
-            <div class="additional-item" data-currency="JPY">
-                <div class="currency-icon">
-                    <div class="icon-placeholder">JPY</div>
-                </div>
-                <div class="additional-details">
-                    <div class="additional-pair">
-                        <span class="additional-number">1</span>
-                        <span class="additional-code">JPY</span>
-                        <span class="additional-equals">=</span>
-                    </div>
-                    <div class="additional-rate">
-                        <span class="additional-value">0.0072</span>
-                        <span class="additional-currency">USD</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- اليوان الصيني -->
-            <div class="additional-item" data-currency="CNY">
-                <div class="currency-icon">
-                    <div class="icon-placeholder">CNY</div>
-                </div>
-                <div class="additional-details">
-                    <div class="additional-pair">
-                        <span class="additional-number">1</span>
-                        <span class="additional-code">CNY</span>
-                        <span class="additional-equals">=</span>
-                    </div>
-                    <div class="additional-rate">
-                        <span class="additional-value">0.1543</span>
-                        <span class="additional-currency">USD</span>
+                    <div class="exchange-rate">
+                        <span class="rate-value">0.7654</span>
+                        <span class="rate-currency">USD</span>
                     </div>
                 </div>
             </div>
@@ -425,29 +296,8 @@
             'GBP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png',
             'CHF': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chf.png',
             'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-cad.png',
-            'AUD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png',
-            'TRY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-try.png',
-            'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-cny.png',
-            'BRL': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-brl.png',
-            'MXN': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-mxn.png',
-            'ARS': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/110-currency-ars.png',
-            'RUB': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-rub.png',
-            'ZAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/112-currency-zar.png',
             'JPY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-jpy.png',
-            'KRW': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-krw.png',
-            'INR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/115-currency-inr.png',
-            'HKD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/116-currency-hkd.png',
-            'MYR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/117-currency-myr.png',
-            'MAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-mad.png',
-            'EGP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/119-currency-egp.png',
-            'TND': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/120-currency-tnd.png',
-            'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/121-currency-sar.png',
-            'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/122-currency-qar.png',
-            'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/123-currency-aed.png',
-            'DKK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/001-currency-dkk.png',
-            'SEK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/002-currency-sek.png',
-            'NOK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/003-currency-nok.png',
-            'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/004-currency-isk.png'
+            'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-cny.png'
         };
         
         // تحميل الأيقونات بعد تحميل الصفحة
@@ -484,64 +334,6 @@
                     };
                 }
             });
-        });
-        
-        // إضافة المزيد من الأسعار الإضافية عند النقر (اختياري)
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('additional-title')) {
-                const additionalRates = document.querySelector('.additional-rates');
-                
-                // إضافة عملات إضافية فقط إذا لم تكن موجودة بالفعل
-                if (additionalRates.children.length === 4) {
-                    const extraCurrencies = [
-                        { code: 'AUD', rate: '0.7345', target: 'USD' },
-                        { code: 'NZD', rate: '0.6821', target: 'USD' },
-                        { code: 'SGD', rate: '0.7423', target: 'USD' },
-                        { code: 'HKD', rate: '0.1278', target: 'USD' }
-                    ];
-                    
-                    extraCurrencies.forEach(currency => {
-                        const newItem = document.createElement('div');
-                        newItem.className = 'additional-item';
-                        newItem.setAttribute('data-currency', currency.code);
-                        newItem.innerHTML = `
-                            <div class="currency-icon">
-                                <div class="icon-placeholder">${currency.code}</div>
-                            </div>
-                            <div class="additional-details">
-                                <div class="additional-pair">
-                                    <span class="additional-number">1</span>
-                                    <span class="additional-code">${currency.code}</span>
-                                    <span class="additional-equals">=</span>
-                                </div>
-                                <div class="additional-rate">
-                                    <span class="additional-value">${currency.rate}</span>
-                                    <span class="additional-currency">${currency.target}</span>
-                                </div>
-                            </div>
-                        `;
-                        
-                        // تحميل الأيقونة
-                        if (iconUrls[currency.code]) {
-                            const iconContainer = newItem.querySelector('.currency-icon');
-                            const placeholder = newItem.querySelector('.icon-placeholder');
-                            
-                            const img = document.createElement('img');
-                            img.src = iconUrls[currency.code];
-                            img.alt = `${currency.code} icon`;
-                            img.onload = function() {
-                                iconContainer.innerHTML = '';
-                                iconContainer.appendChild(img);
-                            };
-                            img.onerror = function() {
-                                placeholder.textContent = currency.code;
-                            };
-                        }
-                        
-                        additionalRates.appendChild(newItem);
-                    });
-                }
-            }
         });
     </script>
 </body>
