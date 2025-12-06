@@ -29,7 +29,7 @@
             display: none; /* إخفاء المحتوى حتى يتم تحميل الصور */
         }
         
-        /* شاشة التحميل مع السهم الدائري الأخضر */
+        /* شاشة التحميل مع القوس الأخضر */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -45,31 +45,31 @@
             transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         
-        /* الدائرة الخضراء - كما في الكود السابق */
-        .loading-circle {
-            width: 80px;
-            height: 80px;
+        /* القوس الأخضر */
+        .loading-arc {
+            width: 100px;
+            height: 100px;
             position: relative;
             margin-bottom: 20px;
         }
         
-        .circle-base {
+        .arc-outer {
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 4px solid rgba(76, 217, 100, 0.1);
+            border: 8px solid rgba(76, 217, 100, 0.1);
             border-radius: 50%;
         }
         
-        .circle-spinner {
+        .arc-inner {
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 4px solid transparent;
-            border-top: 4px solid #4cd964;
-            border-right: 4px solid #4cd964;
+            border: 8px solid transparent;
+            border-top: 8px solid #4cd964;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: arcProgress 1.5s linear forwards;
+            transform: rotate(-45deg);
         }
         
         .loading-text {
@@ -79,15 +79,42 @@
             margin-top: 10px;
         }
         
-        .loading-progress {
-            color: #4cd964;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes arcProgress {
+            0% {
+                transform: rotate(-45deg);
+                border-top-color: #4cd964;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+            }
+            25% {
+                transform: rotate(45deg);
+                border-top-color: #4cd964;
+                border-right-color: #4cd964;
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+            }
+            50% {
+                transform: rotate(135deg);
+                border-top-color: #4cd964;
+                border-right-color: #4cd964;
+                border-bottom-color: #4cd964;
+                border-left-color: transparent;
+            }
+            75% {
+                transform: rotate(225deg);
+                border-top-color: #4cd964;
+                border-right-color: #4cd964;
+                border-bottom-color: #4cd964;
+                border-left-color: #4cd964;
+            }
+            100% {
+                transform: rotate(315deg);
+                border-top-color: #4cd964;
+                border-right-color: #4cd964;
+                border-bottom-color: #4cd964;
+                border-left-color: #4cd964;
+            }
         }
         
         .tab-buttons {
@@ -264,13 +291,6 @@
             min-width: 60px;
         }
         
-        .single-green-box {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.5);
-            min-width: 60px;
-        }
-        
         .official-rate-box {
             background: linear-gradient(135deg, #1e3a8a, #3730a3);
             color: white;
@@ -358,14 +378,13 @@
     </style>
 </head>
 <body>
-    <!-- شاشة التحميل مع الدائرة الخضراء -->
+    <!-- شاشة التحميل مع القوس الأخضر -->
     <div class="loading-screen" id="loadingScreen">
-        <div class="loading-circle">
-            <div class="circle-base"></div>
-            <div class="circle-spinner"></div>
+        <div class="loading-arc">
+            <div class="arc-outer"></div>
+            <div class="arc-inner"></div>
         </div>
-        <div class="loading-text">Loading currency images...</div>
-        <div class="loading-progress" id="loadingProgress">0%</div>
+        <div class="loading-text">Loading...</div>
     </div>
     
     <div class="container" id="mainContainer">
@@ -485,28 +504,14 @@
                 img.src = url;
                 img.onload = () => {
                     loadedImages++;
-                    updateProgress();
                 };
                 img.onerror = () => {
                     loadedImages++;
-                    updateProgress();
                 };
             });
         }
 
-        // دالة لتحديث شريط التقدم
-        function updateProgress() {
-            const progress = Math.round((loadedImages / totalImages) * 100);
-            document.getElementById('loadingProgress').textContent = `${progress}%`;
-            
-            if (loadedImages === totalImages && !isAllImagesLoaded) {
-                isAllImagesLoaded = true;
-                // انتظار 500ms إضافية للتأكد من اكتمال التحميل
-                setTimeout(showContent, 500);
-            }
-        }
-
-        // دالة لعرض المحتوى الرئيسي
+        // دالة لعرض المحتوى الرئيسي بعد 1.5 ثانية
         function showContent() {
             const loadingScreen = document.getElementById('loadingScreen');
             const mainContainer = document.getElementById('mainContainer');
@@ -592,16 +597,10 @@
                     </div>
                 `;
             } else {
-                // تحديد لون المستطيل الواحد بناءً على القيمة
-                // إذا كانت قيمة البيع (sell) أكبر من قيمة الشراء (buy) = أحمر
-                // إذا كانت قيمة الشراء (buy) أكبر من قيمة البيع (sell) = أخضر
-                const boxClass = currency.sell > currency.buy ? 'single-red-box' : 'single-green-box';
-                const displayValue = currency.sell > currency.buy ? currency.sell : currency.buy;
-                
                 ratesHtml = `
                     <div class="currency-rates">
-                        <div class="rate-box ${boxClass}">
-                            <div class="rate-box-value">${displayValue}</div>
+                        <div class="rate-box single-red-box">
+                            <div class="rate-box-value">${currency.sell}</div>
                         </div>
                     </div>
                 `;
@@ -689,13 +688,8 @@
                 switchTab('official');
             });
             
-            // ضمان عرض المحتوى في حالة فشل بعض الصور
-            setTimeout(() => {
-                if (!isAllImagesLoaded) {
-                    loadedImages = totalImages;
-                    updateProgress();
-                }
-            }, 5000); // وقت استجابة أقصى 5 ثوان
+            // عرض المحتوى بعد 1.5 ثانية (مدة القوس)
+            setTimeout(showContent, 1500);
         });
     </script>
 </body>
