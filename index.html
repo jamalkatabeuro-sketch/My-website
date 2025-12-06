@@ -264,6 +264,13 @@
             min-width: 60px;
         }
         
+        .single-green-box {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.5);
+            min-width: 60px;
+        }
+        
         .official-rate-box {
             background: linear-gradient(135deg, #1e3a8a, #3730a3);
             color: white;
@@ -406,10 +413,6 @@
             { code: 'CAD', buy: 164, sell: 161, trending: true, arrow: 'down', fullName: 'Can Dollar' },
             { code: 'AUD', buy: 158, sell: 155, trending: true, arrow: 'down', fullName: 'Aus Dollar' },
             { code: 'CHF', buy: 300, sell: 297, trending: true, arrow: 'up', fullName: 'Swiss Franc' },
-            { code: 'DKK', buy: 36.5, sell: 37.2, trending: false, arrow: 'none', fullName: 'Danish Krone' },
-            { code: 'SEK', buy: 22.8, sell: 23.5, trending: false, arrow: 'none', fullName: 'Swedish Krona' },
-            { code: 'NOK', buy: 22.1, sell: 22.8, trending: false, arrow: 'none', fullName: 'Norwegian Krone' },
-            { code: 'ISK', buy: 1.7, sell: 1.8, trending: false, arrow: 'none', fullName: 'Icelandic Króna' },
             { code: 'TRY', buy: 5.5, sell: 6.5, trending: false, arrow: 'none', fullName: 'Turkish Lira' },
             { code: 'CNY', buy: 33, sell: 34, trending: false, arrow: 'none', fullName: 'Chinese Yuan' },
             { code: 'RUB', buy: 2.6, sell: 2.8, trending: false, arrow: 'none', fullName: 'Russian Ruble' },
@@ -464,11 +467,7 @@
             'TND': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/120-currency-tnd.png',
             'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/121-currency-sar.png',
             'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/122-currency-qar.png',
-            'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/123-currency-aed.png',
-            'DKK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/001-currency-dkk.png',
-            'SEK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/002-currency-sek.png',
-            'NOK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/003-currency-nok.png',
-            'ISK': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/004-currency-isk.png'
+            'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/123-currency-aed.png'
         };
 
         // متغيرات للتتبع
@@ -593,10 +592,16 @@
                     </div>
                 `;
             } else {
+                // تحديد لون المستطيل الواحد بناءً على القيمة
+                // إذا كانت قيمة البيع (sell) أكبر من قيمة الشراء (buy) = أحمر
+                // إذا كانت قيمة الشراء (buy) أكبر من قيمة البيع (sell) = أخضر
+                const boxClass = currency.sell > currency.buy ? 'single-red-box' : 'single-green-box';
+                const displayValue = currency.sell > currency.buy ? currency.sell : currency.buy;
+                
                 ratesHtml = `
                     <div class="currency-rates">
-                        <div class="rate-box single-red-box">
-                            <div class="rate-box-value">${currency.sell}</div>
+                        <div class="rate-box ${boxClass}">
+                            <div class="rate-box-value">${displayValue}</div>
                         </div>
                     </div>
                 `;
