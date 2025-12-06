@@ -149,40 +149,7 @@
             display: block;
         }
         
-        /* بطاقة خضراء للتاريخ - مثل كود سابق */
-        .date-card {
-            width: 100%;
-            background: linear-gradient(135deg, #4cd964, #2ecc71);
-            color: #000000;
-            padding: 15px 20px;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-align: center;
-            border: none;
-            box-shadow: 0 2px 10px rgba(76, 217, 100, 0.3);
-        }
-        
-        /* بطاقة اسم التبويب */
-        .tab-name-card {
-            width: 100%;
-            background: linear-gradient(135deg, #333, #222);
-            color: #4cd964;
-            padding: 12px 20px;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-align: center;
-            border-bottom: 2px solid #4cd964;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        /* تم إزالة .usd-rates-container وكل ما يتعلق به */
         
         .currency-list {
             padding: 0;
@@ -348,6 +315,26 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
         
+        .update-header {
+            padding: 15px;
+            background: #000000;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .update-card {
+            background: #000;
+            padding: 12px;
+            margin: 0;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+        }
+        
         .copyright {
             position: absolute;
             bottom: 0;
@@ -387,16 +374,6 @@
             .currency-rates {
                 gap: 12px;
             }
-            
-            .date-card {
-                font-size: 1.3rem;
-                padding: 18px 20px;
-            }
-            
-            .tab-name-card {
-                font-size: 1.8rem;
-                padding: 15px 20px;
-            }
         }
     </style>
 </head>
@@ -418,11 +395,9 @@
         
         <!-- Square Tab Content -->
         <div class="tab-content active" id="squareContent">
-            <!-- بطاقة اسم التبويب Square -->
-            <div class="tab-name-card">Square</div>
+            <div class="update-header">Last Update 2025-11-18</div>
             
-            <!-- بطاقة التاريخ الخضراء -->
-            <div class="date-card">Last Update 2025-11-18</div>
+            <!-- تم إزالة كامل قسم usd-rates-container -->
             
             <div class="currency-list" id="square-currency-list">
                 <!-- سيتم ملء العملات تلقائياً بواسطة JavaScript -->
@@ -431,11 +406,9 @@
         
         <!-- Official Tab Content -->
         <div class="tab-content" id="officialContent">
-            <!-- بطاقة اسم التبويب Official -->
-            <div class="tab-name-card">Official</div>
+            <div class="update-card">Last Update 2025-11-18</div>
             
-            <!-- بطاقة التاريخ الخضراء -->
-            <div class="date-card">Last Update 2025-11-18</div>
+            <!-- تم إزالة كامل قسم usd-rates-container -->
             
             <div class="currency-list" id="official-currency-list">
                 <!-- سيتم ملء العملات تلقائياً بواسطة JavaScript -->
@@ -721,3 +694,4 @@
     </script>
 </body>
 </html>
+
