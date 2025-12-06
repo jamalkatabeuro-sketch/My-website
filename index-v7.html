@@ -65,7 +65,7 @@
         .currency-icon {
             width: 50px;
             height: 50px;
-            margin-right: 20px;
+            margin-right: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -81,7 +81,6 @@
             display: flex;
             align-items: center;
             flex-grow: 1;
-            justify-content: space-between;
         }
         
         .currency-pair {
@@ -101,14 +100,13 @@
             color: #ffffff;
             font-size: 1.1rem;
             font-weight: 600;
-            margin-right: 15px;
         }
         
         .equals {
             color: #ff3333;
             font-size: 1.1rem;
             font-weight: 600;
-            margin: 0 15px;
+            margin: 0 8px;
         }
         
         .exchange-rate {
@@ -120,7 +118,7 @@
             color: #27ae60;
             font-size: 1.2rem;
             font-weight: 600;
-            margin-right: 5px;
+            margin-right: 3px;
         }
         
         .rate-currency {
@@ -459,6 +457,24 @@
                 </div>
             </div>
             
+            <!-- MYR العملة الجديدة -->
+            <div class="rate-item" data-currency="USD-MYR">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">4.10</span>
+                        <span class="rate-currency">MYR</span>
+                    </div>
+                </div>
+            </div>
+            
             <div class="rate-item" data-currency="USD-RUB">
                 <div class="currency-icon">
                     <div class="icon-placeholder">USD</div>
@@ -588,25 +604,26 @@
     <script>
         // روابط الأيقونات المخزنة على GitHub
         const iconUrls = {
-            'EUR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eur.png',
-            'USD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png',
-            'GBP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png',
-            'CHF': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chf.png',
-            'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-cad.png',
-            'AUD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png',
-            'JPY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-jpy.png',
-            'KRW': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-krw.png',
-            'BRL': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-brl.png',
-            'MXN': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-mxn.png',
-            'TRY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-try.png',
-            'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-cny.png',
-            'RUB': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-rub.png',
-            'MAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-mad.png',
-            'EGP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/119-currency-egp.png',
-            'TND': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/120-currency-tnd.png',
-            'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/121-currency-sar.png',
-            'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/122-currency-qar.png',
-            'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/123-currency-aed.png'
+            'EUR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/500-currency-eur.png',
+            'USD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/501-currency-usd.png',
+            'GBP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/502-currency-gbp.png',
+            'CHF': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/503-currency-chf.png',
+            'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/504-currency-cad.png',
+            'AUD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/505-currency-aud.png',
+            'JPY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/506-currency-jpy.png',
+            'KRW': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/507-currency-krw.png',
+            'BRL': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/508-currency-brl.png',
+            'MXN': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/509-currency-mxn.png',
+            'TRY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/510-currency-try.png',
+            'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/511-currency-cny.png',
+            'MYR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/512-currency-myr.png',
+            'RUB': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/513-currency-rub.png',
+            'MAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/514-currency-mad.png',
+            'EGP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/515-currency-egp.png',
+            'TND': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/516-currency-tnd.png',
+            'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/517-currency-sar.png',
+            'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/518-currency-qar.png',
+            'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/519-currency-aed.png'
         };
         
         // تحميل الأيقونات بعد تحميل الصفحة
