@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
         
         body {
@@ -20,320 +20,324 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
         
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+        .currency-row {
+            display: flex;
+            align-items: center;
+            padding: 15px;
             border-bottom: 1px solid #333;
         }
         
-        h1 {
-            color: #4CAF50;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            color: #aaa;
-            font-size: 1rem;
-        }
-        
-        .currency-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-        }
-        
-        .currency-item {
-            background-color: #111;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.2s ease;
-        }
-        
-        .currency-item:hover {
-            background-color: #1a1a1a;
-            border-color: #4CAF50;
-        }
-        
-        .currency-code {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4CAF50;
+        .currency-image {
             width: 60px;
+            height: 60px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #222;
+            border-radius: 50%;
+            overflow: hidden;
         }
         
-        .currency-name {
-            flex-grow: 1;
-            color: #ddd;
-            font-size: 1rem;
+        .currency-image img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
         }
         
         .currency-rate {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
             color: #ffffff;
-            text-align: right;
-            min-width: 120px;
         }
         
-        .currency-base {
-            font-size: 0.9rem;
+        .currency-code {
+            font-size: 1.2rem;
+            color: #4CAF50;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        
+        .currency-usd {
             color: #888;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .update-time {
-            text-align: center;
-            margin-top: 30px;
-            color: #777;
             font-size: 0.9rem;
+            margin-right: 5px;
         }
         
         @media (max-width: 600px) {
-            .currency-list {
-                grid-template-columns: 1fr;
+            .container {
+                max-width: 100%;
             }
             
-            .currency-item {
-                padding: 12px;
+            .currency-rate {
+                font-size: 1.2rem;
             }
             
-            h1 {
-                font-size: 1.8rem;
+            .currency-image {
+                width: 50px;
+                height: 50px;
+                margin-right: 15px;
+            }
+            
+            .currency-image img {
+                width: 35px;
+                height: 35px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Currency Exchange Rates</h1>
-            <p class="subtitle">1 USD to other currencies</p>
-        </header>
-        
-        <div class="currency-list">
-            <!-- EUR -->
-            <div class="currency-item">
-                <div class="currency-code">EUR</div>
-                <div class="currency-name">Euro</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    0.8588
-                </div>
+        <!-- EUR -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eurx.png" alt="EUR">
             </div>
-            
-            <!-- CAD -->
-            <div class="currency-item">
-                <div class="currency-code">CAD</div>
-                <div class="currency-name">Canadian Dollar</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    1.3578
-                </div>
-            </div>
-            
-            <!-- GBP -->
-            <div class="currency-item">
-                <div class="currency-code">GBP</div>
-                <div class="currency-name">British Pound</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    0.7501
-                </div>
-            </div>
-            
-            <!-- CHF -->
-            <div class="currency-item">
-                <div class="currency-code">CHF</div>
-                <div class="currency-name">Swiss Franc</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    0.8041
-                </div>
-            </div>
-            
-            <!-- AUD -->
-            <div class="currency-item">
-                <div class="currency-code">AUD</div>
-                <div class="currency-name">Australian Dollar</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    1.5000
-                </div>
-            </div>
-            
-            <!-- JPY -->
-            <div class="currency-item">
-                <div class="currency-code">JPY</div>
-                <div class="currency-name">Japanese Yen</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    155.33
-                </div>
-            </div>
-            
-            <!-- KRW -->
-            <div class="currency-item">
-                <div class="currency-code">KRW</div>
-                <div class="currency-name">South Korean Won</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    1473.30
-                </div>
-            </div>
-            
-            <!-- BRL -->
-            <div class="currency-item">
-                <div class="currency-code">BRL</div>
-                <div class="currency-name">Brazilian Real</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    5.43
-                </div>
-            </div>
-            
-            <!-- MXN -->
-            <div class="currency-item">
-                <div class="currency-code">MXN</div>
-                <div class="currency-name">Mexican Peso</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    18.17
-                </div>
-            </div>
-            
-            <!-- TRY -->
-            <div class="currency-item">
-                <div class="currency-code">TRY</div>
-                <div class="currency-name">Turkish Lira</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    42.46
-                </div>
-            </div>
-            
-            <!-- CNY -->
-            <div class="currency-item">
-                <div class="currency-code">CNY</div>
-                <div class="currency-name">Chinese Yuan</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    7.06
-                </div>
-            </div>
-            
-            <!-- MYR -->
-            <div class="currency-item">
-                <div class="currency-code">MYR</div>
-                <div class="currency-name">Malaysian Ringgit</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    4.10
-                </div>
-            </div>
-            
-            <!-- RUB -->
-            <div class="currency-item">
-                <div class="currency-code">RUB</div>
-                <div class="currency-name">Russian Ruble</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    76.50
-                </div>
-            </div>
-            
-            <!-- MAD -->
-            <div class="currency-item">
-                <div class="currency-code">MAD</div>
-                <div class="currency-name">Moroccan Dirham</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    9.22
-                </div>
-            </div>
-            
-            <!-- EGP -->
-            <div class="currency-item">
-                <div class="currency-code">EGP</div>
-                <div class="currency-name">Egyptian Pound</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    47.51
-                </div>
-            </div>
-            
-            <!-- TND -->
-            <div class="currency-item">
-                <div class="currency-code">TND</div>
-                <div class="currency-name">Tunisian Dinar</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    2.95
-                </div>
-            </div>
-            
-            <!-- SAR -->
-            <div class="currency-item">
-                <div class="currency-code">SAR</div>
-                <div class="currency-name">Saudi Riyal</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    3.75
-                </div>
-            </div>
-            
-            <!-- QAR -->
-            <div class="currency-item">
-                <div class="currency-code">QAR</div>
-                <div class="currency-name">Qatari Riyal</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    3.64
-                </div>
-            </div>
-            
-            <!-- AED -->
-            <div class="currency-item">
-                <div class="currency-code">AED</div>
-                <div class="currency-name">UAE Dirham</div>
-                <div class="currency-rate">
-                    <span class="currency-base">1 USD =</span>
-                    3.67
-                </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                0.8588
+                <span class="currency-code">EUR</span>
             </div>
         </div>
         
-        <div class="update-time">
-            Last updated: <span id="currentTime"></span>
+        <!-- CAD -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-cadx.png" alt="CAD">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                1.3578
+                <span class="currency-code">CAD</span>
+            </div>
+        </div>
+        
+        <!-- GBP -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbpx.png" alt="GBP">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                0.7501
+                <span class="currency-code">GBP</span>
+            </div>
+        </div>
+        
+        <!-- CHF -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chfx.png" alt="CHF">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                0.8041
+                <span class="currency-code">CHF</span>
+            </div>
+        </div>
+        
+        <!-- AUD -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-audx.png" alt="AUD">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                1.5000
+                <span class="currency-code">AUD</span>
+            </div>
+        </div>
+        
+        <!-- JPY -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-jpyx.png" alt="JPY">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                155.33
+                <span class="currency-code">JPY</span>
+            </div>
+        </div>
+        
+        <!-- KRW -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-krwx.png" alt="KRW">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                1473.30
+                <span class="currency-code">KRW</span>
+            </div>
+        </div>
+        
+        <!-- BRL -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-brlx.png" alt="BRL">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                5.43
+                <span class="currency-code">BRL</span>
+            </div>
+        </div>
+        
+        <!-- MXN -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-mxnx.png" alt="MXN">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                18.17
+                <span class="currency-code">MXN</span>
+            </div>
+        </div>
+        
+        <!-- TRY -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-tryx.png" alt="TRY">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                42.46
+                <span class="currency-code">TRY</span>
+            </div>
+        </div>
+        
+        <!-- CNY -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/110-currency-cnyx.png" alt="CNY">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                7.06
+                <span class="currency-code">CNY</span>
+            </div>
+        </div>
+        
+        <!-- MYR -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-myrx.png" alt="MYR">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                4.10
+                <span class="currency-code">MYR</span>
+            </div>
+        </div>
+        
+        <!-- RUB -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/112-currency-rubx.png" alt="RUB">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                76.50
+                <span class="currency-code">RUB</span>
+            </div>
+        </div>
+        
+        <!-- MAD -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-madx.png" alt="MAD">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                9.22
+                <span class="currency-code">MAD</span>
+            </div>
+        </div>
+        
+        <!-- EGP -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-egbx.png" alt="EGP">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                47.51
+                <span class="currency-code">EGP</span>
+            </div>
+        </div>
+        
+        <!-- TND -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/115-currency-tndx.png" alt="TND">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                2.95
+                <span class="currency-code">TND</span>
+            </div>
+        </div>
+        
+        <!-- SAR -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/116-currency-sarx.png" alt="SAR">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                3.75
+                <span class="currency-code">SAR</span>
+            </div>
+        </div>
+        
+        <!-- QAR -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/117-currency-qarx.png" alt="QAR">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                3.64
+                <span class="currency-code">QAR</span>
+            </div>
+        </div>
+        
+        <!-- AED -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-aed.png" alt="AED">
+            </div>
+            <div class="currency-rate">
+                <span class="currency-usd">1 USD =</span>
+                3.67
+                <span class="currency-code">AED</span>
+            </div>
         </div>
     </div>
 
     <script>
-        // Function to update current time
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
+        // بدائل للصور في حالة عدم تحميلها
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.currency-image img');
+            
+            images.forEach(img => {
+                img.onerror = function() {
+                    // إذا فشل تحميل الصورة، عرض رمز العملة كنص
+                    const altText = img.alt;
+                    const parent = img.parentElement;
+                    parent.innerHTML = `<div style="color: #4CAF50; font-weight: bold; font-size: 20px;">${altText}</div>`;
+                };
             });
-            document.getElementById('currentTime').textContent = timeString;
-        }
-        
-        // Update time on page load and every second
-        updateTime();
-        setInterval(updateTime, 1000);
+        });
     </script>
 </body>
 </html>
