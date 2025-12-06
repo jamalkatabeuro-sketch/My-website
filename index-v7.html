@@ -111,6 +111,29 @@
             display: none;
         }
         
+        /* السعر الأخضر الكامل في سطر أفقي */
+        .green-price-row {
+            width: 100%;
+            background: linear-gradient(135deg, #00ff00, #00cc00);
+            color: #000000;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+            border: 2px solid #00ff00;
+        }
+        
+        .green-price-text {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+        }
+        
         @media (max-width: 600px) {
             .container {
                 max-width: 100%;
@@ -134,6 +157,11 @@
                 width: 60px;
                 height: 60px;
             }
+            
+            .green-price-row {
+                font-size: 1.5rem;
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
@@ -146,6 +174,11 @@
     
     <!-- المحتوى الرئيسي -->
     <div class="container" id="contentContainer" style="display: none;">
+        <!-- السعر الأخضر الكامل -->
+        <div class="green-price-row">
+            <div class="green-price-text">1 USD = 0.8588 EUR</div>
+        </div>
+        
         <!-- EUR -->
         <div class="currency-row">
             <div class="currency-image">
