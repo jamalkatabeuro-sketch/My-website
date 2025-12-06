@@ -14,7 +14,7 @@
         
         body {
             background-color: #000000;
-            color: #ffffff;
+            color: #ffffff; /* لون أبيض للنص */
             padding: 20px;
             direction: rtl;
         }
@@ -30,16 +30,16 @@
         }
         
         h1 {
-            color: #ffffff;
+            color: #ffffff; /* لون أبيض */
             font-size: 1.8rem;
             margin-bottom: 8px;
             font-weight: 600;
         }
         
         .subtitle {
-            color: #aaaaaa;
+            color: #ffffff; /* لون أبيض */
             font-size: 0.95rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .rates-grid {
@@ -55,6 +55,7 @@
             border-radius: 8px;
             display: flex;
             align-items: center;
+            justify-content: center;
             transition: background-color 0.2s;
         }
         
@@ -81,51 +82,51 @@
             display: flex;
             align-items: center;
             flex-grow: 1;
-            justify-content: space-between;
         }
         
-        .currency-pair {
+        .currency-from {
             display: flex;
             align-items: center;
         }
         
-        .currency-number {
-            color: #27ae60;
+        .from-amount {
+            color: #ffffff; /* لون أبيض */
             font-size: 1rem;
             font-weight: 600;
             margin-left: 5px;
         }
         
-        .currency-code {
-            color: #27ae60;
+        .from-code {
+            color: #ffffff; /* لون أبيض */
             font-size: 1rem;
             font-weight: 600;
-            margin-left: 10px;
+            margin-left: 5px;
         }
         
         .equals {
-            color: #ff3333;
+            color: #ffffff; /* لون أبيض */
             font-size: 1rem;
             font-weight: 600;
-            margin: 0 15px;
+            margin: 0 8px;
         }
         
-        .exchange-rate {
+        .currency-to {
             display: flex;
             align-items: center;
         }
         
-        .rate-value {
-            color: #27ae60;
-            font-size: 1.1rem;
+        .to-amount {
+            color: #ffffff; /* لون أبيض */
+            font-size: 1rem;
             font-weight: 600;
             margin-left: 5px;
         }
         
-        .rate-currency {
-            color: #27ae60;
+        .to-code {
+            color: #ffffff; /* لون أبيض */
             font-size: 1rem;
             font-weight: 600;
+            margin-left: 5px;
         }
         
         footer {
@@ -133,7 +134,7 @@
             margin-top: 25px;
             padding-top: 20px;
             border-top: 1px solid #333333;
-            color: #666666;
+            color: #ffffff; /* لون أبيض */
             font-size: 0.8rem;
         }
         
@@ -160,7 +161,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #27ae60;
+            color: #ffffff; /* لون أبيض */
             font-weight: bold;
             font-size: 0.9rem;
         }
@@ -174,110 +175,92 @@
         </header>
         
         <div class="rates-grid">
-            <!-- اليورو إلى الدولار -->
-            <div class="rate-item" data-currency="EUR">
-                <div class="currency-icon">
-                    <div class="icon-placeholder">EUR</div>
-                </div>
-                <div class="currency-details">
-                    <div class="currency-pair">
-                        <span class="currency-number">1</span>
-                        <span class="currency-code">EUR</span>
-                        <span class="equals">=</span>
-                    </div>
-                    <div class="exchange-rate">
-                        <span class="rate-value">1.1515</span>
-                        <span class="rate-currency">USD</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- الدولار إلى اليورو -->
+            <!-- USD 1.1515 = EUR 1 -->
             <div class="rate-item" data-currency="USD">
                 <div class="currency-icon">
                     <div class="icon-placeholder">USD</div>
                 </div>
                 <div class="currency-details">
-                    <div class="currency-pair">
-                        <span class="currency-number">1</span>
-                        <span class="currency-code">USD</span>
-                        <span class="equals">=</span>
+                    <div class="currency-from">
+                        <span class="from-amount">1.1515</span>
+                        <span class="from-code">USD</span>
                     </div>
-                    <div class="exchange-rate">
-                        <span class="rate-value">0.8562</span>
-                        <span class="rate-currency">EUR</span>
+                    <span class="equals">=</span>
+                    <div class="currency-to">
+                        <span class="to-amount">1</span>
+                        <span class="to-code">EUR</span>
                     </div>
                 </div>
             </div>
             
-            <!-- الفرنك السويسري إلى الدولار -->
-            <div class="rate-item" data-currency="CHF">
+            <!-- EUR 0.8562 = USD 1 -->
+            <div class="rate-item" data-currency="EUR">
                 <div class="currency-icon">
-                    <div class="icon-placeholder">CHF</div>
+                    <div class="icon-placeholder">EUR</div>
                 </div>
                 <div class="currency-details">
-                    <div class="currency-pair">
-                        <span class="currency-number">1</span>
-                        <span class="currency-code">CHF</span>
-                        <span class="equals">=</span>
+                    <div class="currency-from">
+                        <span class="from-amount">0.8562</span>
+                        <span class="from-code">EUR</span>
                     </div>
-                    <div class="exchange-rate">
-                        <span class="rate-value">1.0838</span>
-                        <span class="rate-currency">USD</span>
+                    <span class="equals">=</span>
+                    <div class="currency-to">
+                        <span class="to-amount">1</span>
+                        <span class="to-code">USD</span>
                     </div>
                 </div>
             </div>
             
-            <!-- الدولار إلى الفرنك السويسري -->
+            <!-- USD 1.0838 = CHF 1 -->
             <div class="rate-item" data-currency="USD2">
                 <div class="currency-icon">
                     <div class="icon-placeholder">USD</div>
                 </div>
                 <div class="currency-details">
-                    <div class="currency-pair">
-                        <span class="currency-number">1</span>
-                        <span class="currency-code">USD</span>
-                        <span class="equals">=</span>
+                    <div class="currency-from">
+                        <span class="from-amount">1.0838</span>
+                        <span class="from-code">USD</span>
                     </div>
-                    <div class="exchange-rate">
-                        <span class="rate-value">0.9228</span>
-                        <span class="rate-currency">CHF</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- الجنيه الإسترليني -->
-            <div class="rate-item" data-currency="GBP">
-                <div class="currency-icon">
-                    <div class="icon-placeholder">GBP</div>
-                </div>
-                <div class="currency-details">
-                    <div class="currency-pair">
-                        <span class="currency-number">1</span>
-                        <span class="currency-code">GBP</span>
-                        <span class="equals">=</span>
-                    </div>
-                    <div class="exchange-rate">
-                        <span class="rate-value">1.3237</span>
-                        <span class="rate-currency">USD</span>
+                    <span class="equals">=</span>
+                    <div class="currency-to">
+                        <span class="to-amount">1</span>
+                        <span class="to-code">CHF</span>
                     </div>
                 </div>
             </div>
             
-            <!-- الدولار الكندي -->
-            <div class="rate-item" data-currency="CAD">
+            <!-- CHF 0.9228 = USD 1 -->
+            <div class="rate-item" data-currency="CHF">
                 <div class="currency-icon">
-                    <div class="icon-placeholder">CAD</div>
+                    <div class="icon-placeholder">CHF</div>
                 </div>
                 <div class="currency-details">
-                    <div class="currency-pair">
-                        <span class="currency-number">1</span>
-                        <span class="currency-code">CAD</span>
-                        <span class="equals">=</span>
+                    <div class="currency-from">
+                        <span class="from-amount">0.9228</span>
+                        <span class="from-code">CHF</span>
                     </div>
-                    <div class="exchange-rate">
-                        <span class="rate-value">0.7654</span>
-                        <span class="rate-currency">USD</span>
+                    <span class="equals">=</span>
+                    <div class="currency-to">
+                        <span class="to-amount">1</span>
+                        <span class="to-code">USD</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- USD 1.3237 = GBP 1 -->
+            <div class="rate-item" data-currency="USD3">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-from">
+                        <span class="from-amount">1.3237</span>
+                        <span class="from-code">USD</span>
+                    </div>
+                    <span class="equals">=</span>
+                    <div class="currency-to">
+                        <span class="to-amount">1</span>
+                        <span class="to-code">GBP</span>
                     </div>
                 </div>
             </div>
@@ -295,9 +278,7 @@
             'USD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png',
             'GBP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png',
             'CHF': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chf.png',
-            'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-cad.png',
-            'JPY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-jpy.png',
-            'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-cny.png'
+            'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-cad.png'
         };
         
         // تحميل الأيقونات بعد تحميل الصفحة
@@ -308,8 +289,8 @@
                 const currencyCode = item.getAttribute('data-currency');
                 let iconKey = currencyCode;
                 
-                // معالجة الحالات الخاصة مثل USD2
-                if (currencyCode === 'USD2') {
+                // معالجة الحالات الخاصة مثل USD2, USD3
+                if (currencyCode === 'USD2' || currencyCode === 'USD3') {
                     iconKey = 'USD';
                 }
                 
