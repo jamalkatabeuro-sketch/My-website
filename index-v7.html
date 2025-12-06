@@ -135,81 +135,6 @@
             100% { transform: rotate(360deg); }
         }
         
-        .hidden {
-            display: none;
-        }
-        
-        /* منطقة تعديل الأسعار للمطور */
-        .dev-panel {
-            background-color: #111;
-            border: 1px dashed #00ff00;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
-            display: none; /* مخفي بشكل افتراضي */
-        }
-        
-        .dev-panel h3 {
-            color: #00ff00;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .dev-control {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-        
-        .dev-control label {
-            color: #ffffff;
-            min-width: 60px;
-        }
-        
-        .dev-control input {
-            flex-grow: 1;
-            padding: 5px 10px;
-            background-color: #222;
-            color: #00ff00;
-            border: 1px solid #00ff00;
-            border-radius: 4px;
-        }
-        
-        .dev-control button {
-            padding: 5px 15px;
-            background-color: #00ff00;
-            color: #000;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .dev-control button:hover {
-            background-color: #00cc00;
-        }
-        
-        /* زر إظهار/إخفاء لوحة المطور */
-        .dev-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #00ff00;
-            color: #000;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 10px rgba(0, 255, 0, 0.5);
-        }
-        
         @media (max-width: 600px) {
             .container {
                 max-width: 100%;
@@ -238,12 +163,6 @@
                 font-size: 1.3rem;
                 padding: 12px 15px;
             }
-            
-            .dev-toggle {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-            }
         }
     </style>
 </head>
@@ -254,42 +173,11 @@
         <div class="loading-text">Loading...</div>
     </div>
     
-    <!-- زر التبديل للمطور -->
-    <button class="dev-toggle" id="devToggle">⚙️</button>
-    
     <!-- المحتوى الرئيسي -->
     <div class="container" id="contentContainer" style="display: none;">
         <!-- بطاقة التاريخ الخضراء -->
         <div class="date-card">
             2025-12-06
-        </div>
-        
-        <!-- منطقة تعديل الأسعار للمطور فقط -->
-        <div class="dev-panel" id="devPanel">
-            <h3>Developer Panel (تعديل الأسعار)</h3>
-            <div class="dev-control">
-                <label>EUR:</label>
-                <input type="text" id="eurRate" value="0.8588">
-                <button onclick="updateRate('EUR', 'eurRate')">Update</button>
-            </div>
-            <div class="dev-control">
-                <label>CAD:</label>
-                <input type="text" id="cadRate" value="1.3578">
-                <button onclick="updateRate('CAD', 'cadRate')">Update</button>
-            </div>
-            <div class="dev-control">
-                <label>GBP:</label>
-                <input type="text" id="gbpRate" value="0.7501">
-                <button onclick="updateRate('GBP', 'gbpRate')">Update</button>
-            </div>
-            <div class="dev-control">
-                <label>CHF:</label>
-                <input type="text" id="chfRate" value="0.8041">
-                <button onclick="updateRate('CHF', 'chfRate')">Update</button>
-            </div>
-            <div style="text-align: center; margin-top: 10px;">
-                <small style="color: #888;">* هذه المنطقة للمطور فقط</small>
-            </div>
         </div>
         
         <!-- EUR -->
@@ -340,48 +228,235 @@
             </div>
         </div>
         
-        <!-- باقي العملات -->
-        <!-- يمكن إضافة المزيد هنا -->
+        <!-- AUD -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-audx.png" alt="AUD">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="audValue">1.5000</span> <span class="currency-code">AUD</span>
+                </div>
+            </div>
+        </div>
         
+        <!-- JPY -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-jpyx.png" alt="JPY">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="jpyValue">155.33</span> <span class="currency-code">JPY</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KRW -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-krwx.png" alt="KRW">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="krwValue">1473.30</span> <span class="currency-code">KRW</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- BRL -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-brlx.png" alt="BRL">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="brlValue">5.43</span> <span class="currency-code">BRL</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MXN -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-mxnx.png" alt="MXN">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="mxnValue">18.17</span> <span class="currency-code">MXN</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TRY -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-tryx.png" alt="TRY">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="tryValue">42.46</span> <span class="currency-code">TRY</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CNY -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/110-currency-cnyx.png" alt="CNY">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="cnyValue">7.06</span> <span class="currency-code">CNY</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MYR -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-myrx.png" alt="MYR">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="myrValue">4.10</span> <span class="currency-code">MYR</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUB -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/112-currency-rubx.png" alt="RUB">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="rubValue">76.50</span> <span class="currency-code">RUB</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MAD -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-madx.png" alt="MAD">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="madValue">9.22</span> <span class="currency-code">MAD</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EGP -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-egbx.png" alt="EGP">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="egpValue">47.51</span> <span class="currency-code">EGP</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TND -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/115-currency-tndx.png" alt="TND">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="tndValue">2.95</span> <span class="currency-code">TND</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SAR -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/116-currency-sarx.png" alt="SAR">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="sarValue">3.75</span> <span class="currency-code">SAR</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- QAR -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/117-currency-qarx.png" alt="QAR">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="qarValue">3.64</span> <span class="currency-code">QAR</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AED -->
+        <div class="currency-row">
+            <div class="currency-image">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-aed.png" alt="AED">
+            </div>
+            <div class="currency-info">
+                <div class="currency-rate">
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="aedValue">3.67</span> <span class="currency-code">AED</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // بيانات العملات
-        const currencyData = {
-            'EUR': { value: 0.8588, elementId: 'eurValue' },
-            'CAD': { value: 1.3578, elementId: 'cadValue' },
-            'GBP': { value: 0.7501, elementId: 'gbpValue' },
-            'CHF': { value: 0.8041, elementId: 'chfValue' }
+        // ============================================
+        // منطقة تعديل الأسعار (للمطور فقط - داخل الكود)
+        // ============================================
+        // يمكن تعديل القيم هنا بسهولة:
+        
+        const currencyRates = {
+            'EUR': 0.8588,
+            'CAD': 1.3578,
+            'GBP': 0.7501,
+            'CHF': 0.8041,
+            'AUD': 1.5000,
+            'JPY': 155.33,
+            'KRW': 1473.30,
+            'BRL': 5.43,
+            'MXN': 18.17,
+            'TRY': 42.46,
+            'CNY': 7.06,
+            'MYR': 4.10,
+            'RUB': 76.50,
+            'MAD': 9.22,
+            'EGP': 47.51,
+            'TND': 2.95,
+            'SAR': 3.75,
+            'QAR': 3.64,
+            'AED': 3.67
         };
         
-        // تحديث سعر العملة
-        function updateRate(currencyCode, inputId) {
-            const input = document.getElementById(inputId);
-            const newValue = input.value.trim();
-            
-            // التحقق من أن القيمة رقم
-            if (!isNaN(newValue) && newValue !== '') {
-                currencyData[currencyCode].value = newValue;
-                document.getElementById(currencyData[currencyCode].elementId).textContent = newValue;
-                alert(`تم تحديث ${currencyCode} إلى ${newValue}`);
-            } else {
-                alert('الرجاء إدخال قيمة رقمية صحيحة');
-                input.value = currencyData[currencyCode].value;
+        // ============================================
+        // نهاية منطقة التعديل
+        // ============================================
+        
+        // دالة لتحديث جميع الأسعار
+        function updateAllRates() {
+            for (const [currency, rate] of Object.entries(currencyRates)) {
+                const elementId = currency.toLowerCase() + 'Value';
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.textContent = rate;
+                }
             }
         }
         
-        // تبديل عرض لوحة المطور
-        document.getElementById('devToggle').addEventListener('click', function() {
-            const panel = document.getElementById('devPanel');
-            if (panel.style.display === 'block') {
-                panel.style.display = 'none';
-            } else {
-                panel.style.display = 'block';
-            }
-        });
-        
         // بدائل للصور في حالة عدم تحميلها
         document.addEventListener('DOMContentLoaded', function() {
+            // تحديث الأسعار عند تحميل الصفحة
+            updateAllRates();
+            
             const images = document.querySelectorAll('.currency-image img');
             let loadedImages = 0;
             const totalImages = images.length;
