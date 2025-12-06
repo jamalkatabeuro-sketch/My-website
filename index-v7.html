@@ -203,13 +203,20 @@
             color: #8c9eb5;
             margin-bottom: 5px;
         }
+        
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>أسعار العملات مقابل الدولار الأمريكي</h1>
-            <p class="subtitle">عرض حي لأسعار الصرف مشابه لـ TradingView - يتم التحديث تلقائياً</p>
+            <p class="subtitle">عرض حي لأسعار الصرف مشابه لـ TradingView</p>
         </header>
         
         <div class="currency-grid" id="currencyGrid">
@@ -223,15 +230,16 @@
         
         <div class="update-info">
             <p>يتم تحديث الأسعار كل 60 ثانية | آخر تحديث: <span id="updateTime">الآن</span></p>
+            <p id="imageStatus" class="error-message">جارٍ تحميل الصور...</p>
         </div>
         
         <div class="footer">
-            <p>© 2023 عرض أسعار العملات | الصور من مستودع GitHub: jamalkatabeuro-sketch</p>
+            <p>© 2023 عرض أسعار العملات | الصور من مستودع GitHub: jamalkatabeuro-sketch/My-website</p>
         </div>
     </div>
 
     <script>
-        // بيانات العملات
+        // بيانات العملات مع تصحيح أسماء الصور
         const currencies = [
             { code: "EUR", rate: 0.8588, name: "يورو", image: "100-currency-eurx.png", change: -0.12 },
             { code: "CAD", rate: 1.3578, name: "دولار كندي", image: "101-currency-cadx.png", change: 0.24 },
@@ -251,23 +259,46 @@
             { code: "TND", rate: 2.95, name: "دينار تونسي", image: "115-currency-tndx.png", change: -0.02 },
             { code: "SAR", rate: 3.75, name: "ريال سعودي", image: "116-currency-sarx.png", change: 0.00 },
             { code: "QAR", rate: 3.64, name: "ريال قطري", image: "117-currency-qarx.png", change: 0.00 },
-            { code: "AED", rate: 3.67, name: "درهم إماراتي", image: "118-currency-aedx.png", change: 0.00 }
+            { code: "AED", rate: 3.67, name: "درهم إماراتي", image: "118-currency-aed.png", change: 0.00 }
         ];
         
-        // رابط قاعدة الصور على GitHub
-        const githubRepo = "jamalkatabeuro-sketch";
+        // رابط قاعدة الصور على GitHub - تصحيح المسار
+        // من الصورة التي أرسلتها، يبدو أن المستودع هو My-website تحت حساب jamalkatabeuro-sketch
+        const githubRepo = "jamalkatabeuro-sketch/My-website";
         const imageBaseUrl = `https://raw.githubusercontent.com/${githubRepo}/main/`;
         
-        // دالة لإنشاء بطاقة عملة
-        function createCurrencyCard(currency) {
+        // دالة للتحقق من تحميل الصور
+        function checkImageLoad(imageUrl) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = imageUrl;
+            });
+        }
+        
+        // دالة لإنشاء بطاقة عملة مع التحقق من الصور
+        async function createCurrencyCard(currency) {
             const changeClass = currency.change >= 0 ? "positive" : "negative";
             const changeSign = currency.change >= 0 ? "+" : "";
+            const imageUrl = imageBaseUrl + currency.image;
+            
+            // التحقق مما إذا كانت الصورة موجودة
+            const imageExists = await checkImageLoad(imageUrl);
+            
+            let imageHtml;
+            if (imageExists) {
+                imageHtml = `<img src="${imageUrl}" alt="${currency.name}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"50\" height=\"50\" viewBox=\"0 0 50 50\"><circle cx=\"25\" cy=\"25\" r=\"20\" fill=\"%232a4a6f\"/><text x=\"25\" y=\"30\" text-anchor=\"middle\" fill=\"%23ffffff\" font-size=\"16\">${currency.code}</text></svg>'">`;
+            } else {
+                // استخدام بديل إذا لم تتحمل الصورة
+                imageHtml = `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #2a4a6f; border-radius: 50%; color: white; font-weight: bold; font-size: 16px;">${currency.code}</div>`;
+            }
             
             return `
                 <div class="currency-card">
                     <div class="card-header"></div>
                     <div class="currency-icon">
-                        <img src="${imageBaseUrl}${currency.image}" alt="${currency.name}">
+                        ${imageHtml}
                     </div>
                     <div class="currency-info">
                         <div class="currency-pair">
@@ -315,15 +346,39 @@
             updateTime();
         }
         
-        // دالة لعرض جميع العملات
-        function renderCurrencies() {
+        // دالة لعرض جميع العملات مع التحقق من الصور
+        async function renderCurrencies() {
             const currencyGrid = document.getElementById('currencyGrid');
-            currencyGrid.innerHTML = currencies.map(createCurrencyCard).join('');
+            const imageStatus = document.getElementById('imageStatus');
+            
+            let loadedImages = 0;
+            let totalImages = currencies.length;
+            
+            let cardsHTML = '';
+            
+            for (const currency of currencies) {
+                const cardHTML = await createCurrencyCard(currency);
+                cardsHTML += cardHTML;
+                loadedImages++;
+                
+                // تحديث حالة التحميل
+                imageStatus.textContent = `جارٍ تحميل الصور: ${loadedImages}/${totalImages}`;
+            }
+            
+            currencyGrid.innerHTML = cardsHTML;
+            
+            if (loadedImages === totalImages) {
+                imageStatus.textContent = "✓ تم تحميل جميع الصور بنجاح";
+                imageStatus.style.color = "#00ff9d";
+            } else {
+                imageStatus.textContent = `تم تحميل ${loadedImages} من أصل ${totalImages} صورة`;
+                imageStatus.style.color = "#ffa726";
+            }
         }
         
         // تهيئة الصفحة عند التحميل
-        document.addEventListener('DOMContentLoaded', function() {
-            renderCurrencies();
+        document.addEventListener('DOMContentLoaded', async function() {
+            await renderCurrencies();
             updateTime();
             
             // تحديث الأسعار كل 60 ثانية
