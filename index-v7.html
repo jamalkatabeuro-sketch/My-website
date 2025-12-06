@@ -31,21 +31,21 @@
         
         h1 {
             color: #ffffff;
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 10px;
             font-weight: 600;
         }
         
         .subtitle {
             color: #aaaaaa;
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin-bottom: 30px;
         }
         
         .rates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
             margin-bottom: 40px;
         }
         
@@ -65,7 +65,7 @@
         .currency-icon {
             width: 50px;
             height: 50px;
-            margin-right: 15px;
+            margin-right: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -84,49 +84,49 @@
             justify-content: space-between;
         }
         
-        .currency-from {
+        .currency-pair {
             display: flex;
             align-items: center;
-            gap: 5px;
+            font-size: 1.1rem;
         }
         
-        .from-amount {
+        .currency-number {
             color: #ffffff;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
+            margin-right: 5px;
         }
         
-        .from-code {
+        .currency-code {
             color: #ffffff;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
+            margin-right: 15px;
         }
         
         .equals {
             color: #ff3333;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin: 0 8px;
+            margin: 0 15px;
         }
         
-        .currency-to {
+        .exchange-rate {
             display: flex;
             align-items: center;
-            gap: 5px;
-            flex-wrap: nowrap;
         }
         
-        .to-amount {
+        .rate-value {
             color: #27ae60;
             font-size: 1.2rem;
             font-weight: 600;
+            margin-right: 5px;
         }
         
-        .to-code {
+        .rate-currency {
             color: #27ae60;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-right: 0;
         }
         
         footer {
@@ -162,11 +162,7 @@
             }
             
             h1 {
-                font-size: 2rem;
-            }
-            
-            .from-amount, .from-code, .to-amount, .to-code, .equals {
-                font-size: 1.1rem;
+                font-size: 1.6rem;
             }
         }
         
@@ -178,128 +174,406 @@
             body {
                 padding: 15px;
             }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .from-amount, .from-code, .to-amount, .to-code, .equals {
-                font-size: 1rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>1 EUR</h1>
+            <h1>Exchange Rates</h1>
+            <p class="subtitle">Direct Exchange Rates - Updated in Real Time</p>
         </header>
         
         <div class="rates-grid">
-            <!-- 1 USD = 0.8562 EUR -->
+            <!-- Original Rates -->
+            <div class="rate-item" data-currency="EUR">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">EUR</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">EUR</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">1.1515</span>
+                        <span class="rate-currency">USD</span>
+                    </div>
+                </div>
+            </div>
+            
             <div class="rate-item" data-currency="USD">
                 <div class="currency-icon">
                     <div class="icon-placeholder">USD</div>
                 </div>
                 <div class="currency-details">
-                    <div class="currency-from">
-                        <span class="from-amount">1</span>
-                        <span class="from-code">USD</span>
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
                     </div>
-                    <span class="equals">=</span>
-                    <div class="currency-to">
-                        <span class="to-amount">0.8562</span>
-                        <span class="to-code">EUR</span>
+                    <div class="exchange-rate">
+                        <span class="rate-value">0.8562</span>
+                        <span class="rate-currency">EUR</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 1 CHF = 1.0838 USD -->
             <div class="rate-item" data-currency="CHF">
                 <div class="currency-icon">
                     <div class="icon-placeholder">CHF</div>
                 </div>
                 <div class="currency-details">
-                    <div class="currency-from">
-                        <span class="from-amount">1</span>
-                        <span class="from-code">CHF</span>
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">CHF</span>
+                        <span class="equals">=</span>
                     </div>
-                    <span class="equals">=</span>
-                    <div class="currency-to">
-                        <span class="to-amount">1.0838</span>
-                        <span class="to-code">USD</span>
+                    <div class="exchange-rate">
+                        <span class="rate-value">1.0838</span>
+                        <span class="rate-currency">USD</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 1 USD = 0.9228 CHF -->
             <div class="rate-item" data-currency="USD2">
                 <div class="currency-icon">
                     <div class="icon-placeholder">USD</div>
                 </div>
                 <div class="currency-details">
-                    <div class="currency-from">
-                        <span class="from-amount">1</span>
-                        <span class="from-code">USD</span>
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
                     </div>
-                    <span class="equals">=</span>
-                    <div class="currency-to">
-                        <span class="to-amount">0.9228</span>
-                        <span class="to-code">CHF</span>
+                    <div class="exchange-rate">
+                        <span class="rate-value">0.9228</span>
+                        <span class="rate-currency">CHF</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 1 GBP = 1.3237 USD -->
             <div class="rate-item" data-currency="GBP">
                 <div class="currency-icon">
                     <div class="icon-placeholder">GBP</div>
                 </div>
                 <div class="currency-details">
-                    <div class="currency-from">
-                        <span class="from-amount">1</span>
-                        <span class="from-code">GBP</span>
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">GBP</span>
+                        <span class="equals">=</span>
                     </div>
-                    <span class="equals">=</span>
-                    <div class="currency-to">
-                        <span class="to-amount">1.3237</span>
-                        <span class="to-code">USD</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 1 USD = 0.8588 EUR -->
-            <div class="rate-item" data-currency="USD3">
-                <div class="currency-icon">
-                    <div class="icon-placeholder">USD</div>
-                </div>
-                <div class="currency-details">
-                    <div class="currency-from">
-                        <span class="from-amount">1</span>
-                        <span class="from-code">USD</span>
-                    </div>
-                    <span class="equals">=</span>
-                    <div class="currency-to">
-                        <span class="to-amount">0.8588</span>
-                        <span class="to-code">EUR</span>
+                    <div class="exchange-rate">
+                        <span class="rate-value">1.3237</span>
+                        <span class="rate-currency">USD</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 1 USD = 1.3578 CAD -->
-            <div class="rate-item" data-currency="USD4">
+            <!-- Additional Rates (1 USD = ...) -->
+            <div class="rate-item" data-currency="USD-EUR">
                 <div class="currency-icon">
                     <div class="icon-placeholder">USD</div>
                 </div>
                 <div class="currency-details">
-                    <div class="currency-from">
-                        <span class="from-amount">1</span>
-                        <span class="from-code">USD</span>
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
                     </div>
-                    <span class="equals">=</span>
-                    <div class="currency-to">
-                        <span class="to-amount">1.3578</span>
-                        <span class="to-code">CAD</span>
+                    <div class="exchange-rate">
+                        <span class="rate-value">0.8588</span>
+                        <span class="rate-currency">EUR</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-CAD">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">1.3578</span>
+                        <span class="rate-currency">CAD</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-GBP">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">0.7501</span>
+                        <span class="rate-currency">GBP</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-CHF">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">0.8041</span>
+                        <span class="rate-currency">CHF</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-AUD">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">1.50</span>
+                        <span class="rate-currency">AUD</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-JPY">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">155.33</span>
+                        <span class="rate-currency">JPY</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-KRW">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">1473.30</span>
+                        <span class="rate-currency">KRW</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-BRL">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">5.43</span>
+                        <span class="rate-currency">BRL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-MXN">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">18.17</span>
+                        <span class="rate-currency">MXN</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-TRY">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">42.46</span>
+                        <span class="rate-currency">TRY</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-CNY">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">7.06</span>
+                        <span class="rate-currency">CNY</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-RUB">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">76.50</span>
+                        <span class="rate-currency">RUB</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-MAD">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">9.22</span>
+                        <span class="rate-currency">MAD</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-EGP">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">47.51</span>
+                        <span class="rate-currency">EGP</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-TND">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">2.95</span>
+                        <span class="rate-currency">TND</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-SAR">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">3.75</span>
+                        <span class="rate-currency">SAR</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-QAR">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">3.64</span>
+                        <span class="rate-currency">QAR</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rate-item" data-currency="USD-AED">
+                <div class="currency-icon">
+                    <div class="icon-placeholder">USD</div>
+                </div>
+                <div class="currency-details">
+                    <div class="currency-pair">
+                        <span class="currency-number">1</span>
+                        <span class="currency-code">USD</span>
+                        <span class="equals">=</span>
+                    </div>
+                    <div class="exchange-rate">
+                        <span class="rate-value">3.67</span>
+                        <span class="rate-currency">AED</span>
                     </div>
                 </div>
             </div>
@@ -318,7 +592,21 @@
             'USD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png',
             'GBP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbp.png',
             'CHF': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chf.png',
-            'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-cad.png'
+            'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-cad.png',
+            'AUD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png',
+            'JPY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-jpy.png',
+            'KRW': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-krw.png',
+            'BRL': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-brl.png',
+            'MXN': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-mxn.png',
+            'TRY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-try.png',
+            'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-cny.png',
+            'RUB': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-rub.png',
+            'MAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-mad.png',
+            'EGP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/119-currency-egp.png',
+            'TND': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/120-currency-tnd.png',
+            'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/121-currency-sar.png',
+            'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/122-currency-qar.png',
+            'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/123-currency-aed.png'
         };
         
         // تحميل الأيقونات بعد تحميل الصفحة
@@ -327,11 +615,13 @@
             
             currencyItems.forEach(item => {
                 const currencyCode = item.getAttribute('data-currency');
-                let iconKey = currencyCode;
+                let iconKey = 'USD'; // Default to USD for USD pairs
                 
-                // معالجة الحالات الخاصة مثل USD2, USD3, USD4
-                if (currencyCode.startsWith('USD')) {
-                    iconKey = 'USD';
+                // Extract base currency from data-currency attribute
+                if (currencyCode.includes('-')) {
+                    iconKey = currencyCode.split('-')[0];
+                } else {
+                    iconKey = currencyCode.replace('2', '').replace('3', '');
                 }
                 
                 if (iconUrls[iconKey]) {
