@@ -60,7 +60,7 @@
             background-color: #111;
             border-radius: 10px;
             padding: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border: 1px solid #333;
             opacity: 0;
             transform: translateY(10px);
@@ -209,7 +209,7 @@
         .swap-container {
             display: flex;
             justify-content: center;
-            margin: 15px 0;
+            margin: 10px 0;
             position: relative;
         }
         
@@ -227,22 +227,6 @@
         .swap-arrows:hover {
             background: rgba(0, 255, 128, 0.2);
             transform: rotate(180deg) scale(1.1);
-        }
-        
-        .rate-display {
-            text-align: center;
-            color: #aaa;
-            font-size: 13px;
-            margin-top: 8px;
-            padding: 6px;
-            background: rgba(0, 255, 128, 0.05);
-            border-radius: 6px;
-            margin-bottom: 15px;
-        }
-        
-        .rate-display span {
-            color: #00ff80;
-            font-weight: bold;
         }
         
         /* تحذير */
@@ -281,13 +265,13 @@
             margin: 10px 0;
         }
         
-        /* لوحة المفاتيح الرقمية */
+        /* لوحة المفاتيح الرقمية - متلاصقة تحت DZD */
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 15px;
-            margin-top: 10px;
+            gap: 8px;
+            padding: 0 15px 15px 15px;
+            margin-top: 0;
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.5s ease;
@@ -302,11 +286,11 @@
             background-color: #111;
             border: 1px solid #333;
             border-radius: 8px;
-            height: 50px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             color: #00ff80;
             cursor: pointer;
@@ -327,7 +311,6 @@
         
         .key.clear {
             color: #ff4444;
-            grid-column: span 2;
         }
         
         .key.zero {
@@ -502,8 +485,8 @@
             }
             
             .key {
-                height: 45px;
-                font-size: 18px;
+                height: 55px;
+                font-size: 22px;
             }
         }
     </style>
@@ -534,7 +517,7 @@
                 </div>
                 <div class="currency-amount">
                     <div class="amount-container">
-                        <input type="number" class="amount" id="from-amount" value="50" min="0" step="0.01">
+                        <input type="number" class="amount" id="from-amount" value="4545" min="0" step="0.01">
                         <span class="currency-symbol" id="from-symbol">€</span>
                     </div>
                 </div>
@@ -554,31 +537,27 @@
                 </div>
                 <div class="currency-amount">
                     <div class="amount-container">
-                        <div class="amount-display" id="to-amount">13,700</div>
+                        <div class="amount-display" id="to-amount">1,245,330</div>
                         <span class="currency-symbol">DA</span>
                     </div>
                 </div>
             </div>
             
-            <div class="rate-display">
-                Current rate: <span id="current-rate">1 EUR = 274 DZD</span>
+            <!-- لوحة المفاتيح الرقمية - متلاصقة تحت DZD -->
+            <div class="keypad" id="keypad">
+                <div class="key" data-value="1">1</div>
+                <div class="key" data-value="2">2</div>
+                <div class="key" data-value="3">3</div>
+                <div class="key" data-value="4">4</div>
+                <div class="key" data-value="5">5</div>
+                <div class="key" data-value="6">6</div>
+                <div class="key" data-value="7">7</div>
+                <div class="key" data-value="8">8</div>
+                <div class="key" data-value="9">9</div>
+                <div class="key zero" data-value="0">0</div>
+                <div class="key clear" id="clear-key">C</div>
+                <div class="key" id="backspace-key">⌫</div>
             </div>
-        </div>
-        
-        <!-- لوحة المفاتيح الرقمية -->
-        <div class="keypad" id="keypad">
-            <div class="key" data-value="1">1</div>
-            <div class="key" data-value="2">2</div>
-            <div class="key" data-value="3">3</div>
-            <div class="key" data-value="4">4</div>
-            <div class="key" data-value="5">5</div>
-            <div class="key" data-value="6">6</div>
-            <div class="key" data-value="7">7</div>
-            <div class="key" data-value="8">8</div>
-            <div class="key" data-value="9">9</div>
-            <div class="key clear" id="clear-key">C</div>
-            <div class="key zero" data-value="0">0</div>
-            <div class="key" id="backspace-key">⌫</div>
         </div>
         
         <!-- تحذير -->
@@ -714,7 +693,6 @@
             const fromCurrencyName = document.getElementById('from-currency-name');
             const fromFlag = document.getElementById('from-flag');
             const fromSymbol = document.getElementById('from-symbol');
-            const currentRateElement = document.getElementById('current-rate');
             const pageLoadingProgress = document.getElementById('pageLoadingProgress');
             const currencySelector = document.getElementById('currency-selector');
             const dropdownArrow = document.querySelector('.dropdown-arrow');
@@ -784,7 +762,6 @@
                         document.querySelector('.currency-selector .currency-code').textContent = currency;
                         fromCurrencyName.textContent = currencies[currency].name;
                         fromSymbol.textContent = currencies[currency].symbol;
-                        currentRateElement.textContent = `1 ${currency} = ${currentRate} DZD`;
                         
                         // تحديث النتيجة
                         updateResult();
@@ -837,6 +814,11 @@
                     document.getElementById('to-currency-box').classList.add('visible');
                 }, 200);
                 
+                // تفعيل ظهور لوحة المفاتيح
+                setTimeout(() => {
+                    keypad.classList.add('visible');
+                }, 300);
+                
                 // تفعيل ظهور خيارات العملات مع تأخير متزايد
                 setTimeout(() => {
                     currencyOptions.forEach((option, index) => {
@@ -844,11 +826,6 @@
                             option.classList.add('visible');
                         }, 50 * index);
                     });
-                }, 300);
-                
-                // تفعيل ظهور لوحة المفاتيح
-                setTimeout(() => {
-                    keypad.classList.add('visible');
                 }, 400);
                 
                 // تفعيل ظهور تحذير
