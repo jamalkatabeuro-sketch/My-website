@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .contact-container {
+            background-color: white;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .email-icon {
+            font-size: 60px;
+            color: #4A5568;
+            margin-bottom: 20px;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+        
+        .send-button {
+            background-color: white;
+            border: 2px solid #4A5568;
+            border-radius: 8px;
+            padding: 14px 30px;
+            font-size: 18px;
+            color: #4A5568;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+        
+        .send-button:hover {
+            background-color: #f7fafc;
+            border-color: #2D3748;
+            color: #2D3748;
+            transform: translateY(-2px);
+        }
+        
+        .send-icon {
+            font-size: 20px;
+        }
+        
+        .response-time {
+            color: #718096;
+            font-size: 14px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .response-time i {
+            color: #38A169;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <!-- أيقونة البريد الإلكتروني -->
+        <div class="email-icon">
+            <i class="fas fa-envelope"></i>
+        </div>
+        
+        <!-- الوصف -->
+        <p class="description">
+            نحن هنا لمساعدتك! إذا كان لديك أي استفسار أو تحتاج إلى دعم، لا تتردد في مراسلتنا عبر البريد الإلكتروني. سنكون سعداء بالتواصل معك والرد على استفساراتك في أقرب وقت ممكن.
+        </p>
+        
+        <!-- زر الإرسال -->
+        <a href="mailto:jamalkatabeuro@gmail.com" class="send-button">
+            <i class="fas fa-paper-plane send-icon"></i>
+            إرسال بريد إلكتروني
+        </a>
+        
+        <!-- مدة الرد -->
+        <div class="response-time">
+            <i class="fas fa-check-circle"></i>
+            <span>نعمل على الرد خلال 24-48 ساعة</span>
+        </div>
+    </div>
+</body>
+</html>
