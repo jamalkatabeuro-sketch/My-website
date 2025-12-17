@@ -100,6 +100,38 @@
             color: #00ff00;
         }
         
+        /* تصميم خاص لسعر EUR (الشراء والبيع) */
+        .eur-price-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .price-label {
+            font-size: 1rem;
+            color: #aaa;
+            min-width: 80px;
+        }
+        
+        .buy-price {
+            color: #ff4444;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .sell-price {
+            color: #44ff44;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -163,6 +195,16 @@
                 font-size: 1.3rem;
                 padding: 12px 15px;
             }
+            
+            .buy-price,
+            .sell-price {
+                font-size: 1.5rem;
+            }
+            
+            .price-label {
+                font-size: 0.9rem;
+                min-width: 70px;
+            }
         }
     </style>
 </head>
@@ -183,23 +225,35 @@
         <!-- EUR -->
         <div class="currency-row">
             <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/100-currency-eurx.png" alt="EUR">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/90-currency-eur.jpg" alt="EUR">
             </div>
             <div class="currency-info">
                 <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="eurValue">0.8588</span> <span class="currency-code">EUR</span>
+                    <span class="currency-usd">1 USD =</span>
+                </div>
+                <div class="eur-price-container">
+                    <div class="price-row">
+                        <span class="price-label">سعر شراء</span>
+                        <span class="buy-price">177</span>
+                        <span class="currency-code">EUR</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">سعر بيع</span>
+                        <span class="sell-price">288</span>
+                        <span class="currency-code">EUR</span>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <!-- CAD -->
+        <!-- USD -->
         <div class="currency-row">
             <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-cadx.png" alt="CAD">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/91-currency-usd.jpg" alt="USD">
             </div>
             <div class="currency-info">
                 <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="cadValue">1.3578</span> <span class="currency-code">CAD</span>
+                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="usdValue">1.0000</span> <span class="currency-code">USD</span>
                 </div>
             </div>
         </div>
@@ -207,7 +261,7 @@
         <!-- GBP -->
         <div class="currency-row">
             <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/102-currency-gbpx.png" alt="GBP">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/92-currency-gbp.jpg" alt="GBP">
             </div>
             <div class="currency-info">
                 <div class="currency-rate">
@@ -219,191 +273,11 @@
         <!-- CHF -->
         <div class="currency-row">
             <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/103-currency-chfx.png" alt="CHF">
+                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/93-currency-chf.jpg" alt="CHF">
             </div>
             <div class="currency-info">
                 <div class="currency-rate">
                     <span class="currency-usd">1 USD =</span> <span class="currency-value" id="chfValue">0.8041</span> <span class="currency-code">CHF</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- AUD -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-audx.png" alt="AUD">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="audValue">1.5000</span> <span class="currency-code">AUD</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- JPY -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-jpyx.png" alt="JPY">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="jpyValue">155.33</span> <span class="currency-code">JPY</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- KRW -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-krwx.png" alt="KRW">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="krwValue">1473.30</span> <span class="currency-code">KRW</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- BRL -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-brlx.png" alt="BRL">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="brlValue">5.43</span> <span class="currency-code">BRL</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- MXN -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-mxnx.png" alt="MXN">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="mxnValue">18.17</span> <span class="currency-code">MXN</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- TRY -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-tryx.png" alt="TRY">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="tryValue">42.46</span> <span class="currency-code">TRY</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- CNY -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/110-currency-cnyx.png" alt="CNY">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="cnyValue">7.06</span> <span class="currency-code">CNY</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- MYR -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-myrx.png" alt="MYR">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="myrValue">4.10</span> <span class="currency-code">MYR</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- RUB -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/112-currency-rubx.png" alt="RUB">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="rubValue">76.50</span> <span class="currency-code">RUB</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- MAD -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-madx.png" alt="MAD">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="madValue">9.22</span> <span class="currency-code">MAD</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- EGP -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-egbx.png" alt="EGP">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="egpValue">47.51</span> <span class="currency-code">EGP</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- TND -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/115-currency-tndx.png" alt="TND">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="tndValue">2.95</span> <span class="currency-code">TND</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SAR -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/116-currency-sarx.png" alt="SAR">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="sarValue">3.75</span> <span class="currency-code">SAR</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- QAR -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/117-currency-qarx.png" alt="QAR">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="qarValue">3.64</span> <span class="currency-code">QAR</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- AED -->
-        <div class="currency-row">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-aed.png" alt="AED">
-            </div>
-            <div class="currency-info">
-                <div class="currency-rate">
-                    <span class="currency-usd">1 USD =</span> <span class="currency-value" id="aedValue">3.67</span> <span class="currency-code">AED</span>
                 </div>
             </div>
         </div>
@@ -416,25 +290,9 @@
         // يمكن تعديل القيم هنا بسهولة:
         
         const currencyRates = {
-            'EUR': 0.8588,
-            'CAD': 1.7878,
+            'USD': 1.0000,
             'GBP': 0.7501,
-            'CHF': 0.8041,
-            'AUD': 1.5000,
-            'JPY': 155.33,
-            'KRW': 1473.30,
-            'BRL': 5.43,
-            'MXN': 18.17,
-            'TRY': 42.46,
-            'CNY': 7.06,
-            'MYR': 4.10,
-            'RUB': 76.50,
-            'MAD': 9.22,
-            'EGP': 47.51,
-            'TND': 2.95,
-            'SAR': 3.75,
-            'QAR': 3.64,
-            'AED': 3.67
+            'CHF': 0.8041
         };
         
         // ============================================
