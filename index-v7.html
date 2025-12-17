@@ -1,394 +1,730 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Exchange Rates</title>
+    <title>Exchange Rates</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         body {
-            background-color: #000000;
-            color: #ffffff;
-            padding: 20px;
+            background: #000;
+            color: #fff;
             min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        /* البطاقة الخضراء للتاريخ */
-        .date-card {
             width: 100%;
-            background: linear-gradient(135deg, #00ff00, #00cc00);
-            color: #000000;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 10px 0 20px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 0 6px 20px rgba(0, 255, 0, 0.4);
-            border: 3px solid #00ff00;
+            background: #111;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 60px;
+            display: none; /* إخفاء المحتوى حتى يتم تحميل الصور */
         }
         
-        .currency-card {
-            display: flex;
-            align-items: center;
-            padding: 25px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #111111, #222222);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            border: 2px solid #333;
-            min-height: 160px;
-        }
-        
-        .currency-image {
-            width: 120px;
-            height: 120px;
-            margin-right: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #000000, #222222);
-            border-radius: 60px;
-            overflow: hidden;
-            padding: 8px;
-            border: 3px solid #00ff00;
-        }
-        
-        .currency-image img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            filter: brightness(1.3);
-        }
-        
-        .currency-info {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        
-        .currency-title {
-            font-size: 1.2rem;
-            color: #00ff00;
-            margin-bottom: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        .prices-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .price-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-        }
-        
-        .buy-price {
-            color: #ff4444;
-            font-size: 2.8rem;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
-            line-height: 1;
-        }
-        
-        .sell-price {
-            color: #44ff44;
-            font-size: 2.8rem;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(68, 255, 68, 0.5);
-            line-height: 1;
-        }
-        
-        .price-label {
-            font-size: 1.1rem;
-            color: #aaa;
-            margin-top: 8px;
-        }
-        
-        .loading-overlay {
+        /* شاشة التحميل مع القوس الأخضر */
+        .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #000;
+            background: #000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         
-        .loading-circle {
-            width: 80px;
-            height: 80px;
-            border: 6px solid transparent;
-            border-top: 6px solid #00ff00;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        /* القوس الأخضر */
+        .loading-arc {
+            width: 100px;
+            height: 100px;
+            position: relative;
             margin-bottom: 20px;
         }
         
+        .arc-outer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 8px solid rgba(76, 217, 100, 0.1);
+            border-radius: 50%;
+        }
+        
+        .arc-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 8px solid transparent;
+            border-top: 8px solid #4cd964;
+            border-radius: 50%;
+            animation: arcProgress 1.5s linear forwards;
+            transform: rotate(-45deg);
+        }
+        
         .loading-text {
-            color: #00ff00;
-            font-size: 1.2rem;
+            color: #888;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        @keyframes arcProgress {
+            0% {
+                transform: rotate(-45deg);
+                border-top-color: #4cd964;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+            }
+            25% {
+                transform: rotate(45deg);
+                border-top-color: #4cd964;
+                border-right-color: #4cd964;
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+            }
+            50% {
+                transform: rotate(135deg);
+                border-top-color: #4cd964;
+                border-right-color: #4cd964;
+                border-bottom-color: #4cd964;
+                border-left-color: transparent;
+            }
+            75% {
+                transform: rotate(225deg);
+                border-top-color: #4cd964;
+                border-right-color: #4cd964;
+                border-bottom-color: #4cd964;
+                border-left-color: #4cd964;
+            }
+            100% {
+                transform: rotate(315deg);
+                border-top-color: #4cd964;
+                border-right-color: #4cd964;
+                border-bottom-color: #4cd964;
+                border-left-color: #4cd964;
+            }
+        }
+        
+        .tab-buttons {
+            display: flex;
+            background: #000;
+            border-bottom: 1px solid #333;
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            background: #151515;
+            color: #4cd964;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* تم إزالة .usd-rates-container وكل ما يتعلق به */
+        
+        .currency-list {
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .currency-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #000;
+            transition: all 0.3s ease;
+        }
+        
+        .currency-item:hover {
+            background: #151515;
+        }
+        
+        .currency-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .currency-flag {
+            width: 70px;
+            height: 40px;
+            border-radius: 8px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            position: relative;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        
+        .currency-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .currency-names {
+            flex: 1;
+        }
+        
+        .currency-code {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .currency-full-name {
+            font-size: 10px;
+            color: #888;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .trending-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .up-arrow {
+            color: #10b981;
             font-weight: bold;
+            font-size: 16px;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .down-arrow {
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 16px;
         }
         
-        @media (max-width: 600px) {
-            .container {
-                max-width: 100%;
-                gap: 15px;
-            }
-            
-            .date-card {
-                font-size: 1.6rem;
+        .currency-rates {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        
+        .rate-box {
+            padding: 5px 8px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            min-width: 55px;
+            min-height: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .rate-box-value {
+            font-size: 22px;
+            font-weight: 900;
+            line-height: 1.1;
+            text-shadow: 
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
+        
+        .sell-box {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.5);
+        }
+        
+        .buy-box {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
+        }
+
+        .single-red-box {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.5);
+            min-width: 60px;
+        }
+        
+        .official-rate-box {
+            background: linear-gradient(135deg, #1e3a8a, #3730a3);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            min-width: 60px;
+            min-height: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .rate-label {
+            font-size: 9px;
+            opacity: 0.8;
+            font-weight: 500;
+            text-shadow: none;
+        }
+        
+        .rate-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .update-header {
+            padding: 15px;
+            background: #000000;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .update-card {
+            background: #000;
+            padding: 12px;
+            margin: 0;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+        }
+        
+        /* إخلاء المسؤولية */
+        .disclaimer {
+            padding: 15px;
+            background: #1a1a1a;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            font-size: 11px;
+            color: #888;
+            line-height: 1.5;
+        }
+        
+        .copyright {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            text-align: center;
+            font-size: 10px;
+            color: #888;
+            border-top: 1px solid #333;
+            background: #1a1a1a;
+            line-height: 1.4;
+        }
+        
+        @media (min-width: 768px) {
+            .currency-item {
                 padding: 15px;
             }
             
-            .currency-card {
-                padding: 20px;
-                min-height: 140px;
+            .rate-box {
+                padding: 6px 10px;
+                min-width: 65px;
             }
             
-            .currency-image {
-                width: 100px;
-                height: 100px;
-                margin-right: 20px;
+            .official-rate-box {
+                padding: 6px 10px;
+                min-width: 65px;
             }
             
-            .currency-image img {
-                width: 85px;
-                height: 85px;
+            .rate-box-value {
+                font-size: 24px;
             }
             
-            .buy-price,
-            .sell-price {
-                font-size: 2.2rem;
+            .currency-full-name {
+                font-size: 11px;
             }
             
-            .currency-title {
-                font-size: 1.1rem;
-            }
-            
-            .price-label {
-                font-size: 1rem;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .currency-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 15px;
-            }
-            
-            .currency-image {
-                margin-right: 0;
-                margin-bottom: 15px;
-                width: 90px;
-                height: 90px;
-            }
-            
-            .currency-image img {
-                width: 75px;
-                height: 75px;
-            }
-            
-            .prices-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .price-item {
-                flex-direction: row;
-                justify-content: center;
-                gap: 10px;
-                width: 100%;
-            }
-            
-            .price-label {
-                margin-top: 0;
-                min-width: 60px;
-            }
-            
-            .buy-price,
-            .sell-price {
-                font-size: 2rem;
+            .currency-rates {
+                gap: 12px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- شاشة التحميل -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-circle"></div>
+    <!-- شاشة التحميل مع القوس الأخضر -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-arc">
+            <div class="arc-outer"></div>
+            <div class="arc-inner"></div>
+        </div>
         <div class="loading-text">Loading...</div>
     </div>
     
-    <!-- المحتوى الرئيسي -->
-    <div class="container" id="contentContainer" style="display: none;">
-        <!-- بطاقة التاريخ الخضراء -->
-        <div class="date-card">
-            2025-12-06
+    <div class="container" id="mainContainer">
+        <div class="tab-buttons">
+            <button class="tab-button active" id="squareTab">marché  </button>
+            <button class="tab-button" id="officialTab">Banque  </button>
         </div>
         
-        <!-- EUR -->
-        <div class="currency-card">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/90-currency-eur.jpg" alt="EUR">
+        <!-- Square Tab Content -->
+        <div class="tab-content active" id="squareContent">
+            <div class="update-header">Dernière mise à jour  2025-12-17</div>
+            
+            <!-- تم إزالة كامل قسم usd-rates-container -->
+            
+            <div class="currency-list" id="square-currency-list">
+                <!-- سيتم ملء العملات تلقائياً بواسطة JavaScript -->
             </div>
-            <div class="currency-info">
-                <div class="currency-title">الأسعار:</div>
-                <div class="prices-container">
-                    <div class="price-item">
-                        <div class="buy-price">177</div>
-                        <div class="price-label">شراء</div>
-                    </div>
-                    <div class="price-item">
-                        <div class="sell-price">288</div>
-                        <div class="price-label">بيع</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- USD -->
-        <div class="currency-card">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/91-currency-usd.jpg" alt="USD">
-            </div>
-            <div class="currency-info">
-                <div class="currency-title">الأسعار:</div>
-                <div class="prices-container">
-                    <div class="price-item">
-                        <div class="buy-price">1.0000</div>
-                        <div class="price-label">شراء</div>
-                    </div>
-                    <div class="price-item">
-                        <div class="sell-price">1.0100</div>
-                        <div class="price-label">بيع</div>
-                    </div>
-                </div>
+            
+            <!-- إخلاء المسؤولية بالفرنسية -->
+            <div class="disclaimer">
+                <strong>Avertissement:</strong><br>
+                Ces taux sont fournis à titre indicatif uniquement et ne constituent pas une offre d'achat ou de vente.<br>
+                Les prix sont variables et peuvent différer des taux réels sur le marché.<br>
+                Nous ne sommes pas responsables des pertes résultant de l'utilisation de ces données.
             </div>
         </div>
         
-        <!-- GBP -->
-        <div class="currency-card">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/92-currency-gbp.jpg" alt="GBP">
+        <!-- Official Tab Content -->
+        <div class="tab-content" id="officialContent">
+            <div class="update-header">Dernière mise à jour  2025-12-12</div>
+            
+            <!-- تم إزالة كامل قسم usd-rates-container -->
+            
+            <div class="currency-list" id="official-currency-list">
+                <!-- سيتم ملء العملات تلقائياً بواسطة JavaScript -->
             </div>
-            <div class="currency-info">
-                <div class="currency-title">الأسعار:</div>
-                <div class="prices-container">
-                    <div class="price-item">
-                        <div class="buy-price">0.7400</div>
-                        <div class="price-label">شراء</div>
-                    </div>
-                    <div class="price-item">
-                        <div class="sell-price">0.7501</div>
-                        <div class="price-label">بيع</div>
-                    </div>
-                </div>
+            
+            <!-- إخلاء المسؤولية بالفرنسية -->
+            <div class="disclaimer">
+                <strong>Avertissement:</strong><br>
+                Ces taux sont fournis à titre indicatif uniquement et ne constituent pas une offre d'achat ou de vente.<br>
+                Les prix sont variables et peuvent différer des taux réels sur le marché.<br>
+                Nous ne sommes pas responsables des pertes résultant de l'utilisation de ces données.
             </div>
         </div>
         
-        <!-- CHF -->
-        <div class="currency-card">
-            <div class="currency-image">
-                <img src="https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/93-currency-chf.jpg" alt="CHF">
-            </div>
-            <div class="currency-info">
-                <div class="currency-title">الأسعار:</div>
-                <div class="prices-container">
-                    <div class="price-item">
-                        <div class="buy-price">0.7900</div>
-                        <div class="price-label">شراء</div>
-                    </div>
-                    <div class="price-item">
-                        <div class="sell-price">0.8041</div>
-                        <div class="price-label">بيع</div>
-                    </div>
-                </div>
-            </div>
+        <div class="copyright">
+            Une source de taux de change provenant d'un marché parallèle situé à Alger, avec des taux mis à jour quotidiennement chaque matin.
         </div>
     </div>
 
     <script>
-        // دالة لإخفاء شاشة التحميل
-        function hideLoadingScreen() {
-            document.getElementById('loadingOverlay').style.display = 'none';
-            document.getElementById('contentContainer').style.display = 'flex';
-        }
-        
-        // بدائل للصور في حالة عدم تحميلها
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('.currency-image img');
-            let loadedImages = 0;
-            const totalImages = images.length;
+        // العملات الخاصة (لها مستطيلان أخضر وأحمر)
+        const specialCurrencies = ['EUR', 'USD', 'CAD', 'GBP', 'CHF', 'AUD'];
+
+        // بيانات العملات مع الأسهم المطلوبة - جميع العملات
+        const squareExchangeRates = [
+            { code: 'EUR', buy: 282, sell: 279, trending: true, arrow: 'up', fullName: 'Euro' },
+            { code: 'USD', buy: 244, sell: 240, trending: true, arrow: 'down', fullName: 'US Dollar' },
+            { code: 'GBP', buy: 318, sell: 315, trending: false, arrow: 'up', fullName: 'Pound' },
+            { code: 'CAD', buy: 164, sell: 161, trending: false, arrow: 'down', fullName: 'Can Dollar' },
+            { code: 'AUD', buy: 158, sell: 155, trending: false, arrow: 'down', fullName: 'Aus Dollar' },
+            { code: 'CHF', buy: 300, sell: 297, trending: false, arrow: 'up', fullName: 'Swiss Franc' },
+            { code: 'TRY', buy: 5.5, sell: 6.5, trending: false, arrow: 'none', fullName: 'Turkish Lira' },
+            { code: 'CNY', buy: 33, sell: 34, trending: false, arrow: 'none', fullName: 'Chinese Yuan' },
+            { code: 'RUB', buy: 2.6, sell: 2.8, trending: false, arrow: 'none', fullName: 'Russian Ruble' },
+            { code: 'JPY', buy: 1.58, sell: 1.7, trending: false, arrow: 'none', fullName: 'Japanese Yen' },
+            { code: 'KRW', buy: 0.18, sell: 0.2, trending: false, arrow: 'none', fullName: 'Korean Won' },
+            { code: 'INR', buy: 2.85, sell: 3.05, trending: false, arrow: 'none', fullName: 'Indian Rupee' },
+            { code: 'MYR', buy: 50.25, sell: 53, trending: false, arrow: 'none', fullName: 'Malaysian Ringgit' },
+            { code: 'ZAR', buy: 15, sell: 13, trending: false, arrow: 'none', fullName: 'African Rand' },
+            { code: 'BRL', buy: 5.26, sell: 5.6, trending: false, arrow: 'none', fullName: 'Brazilian Real' },
+            { code: 'MXN', buy: 13, sell: 14, trending: false, arrow: 'none', fullName: 'Mexican Peso' },
+            { code: 'ARS', buy: 256, sell: 468, trending: false, arrow: 'none', fullName: 'Argentine Peso' },
+            { code: 'MAD', buy: 7.69, sell: 8.2, trending: false, arrow: 'none', fullName: 'Moroccan Dirham' },
+            { code: 'TND', buy: 2.33, sell: 2.5, trending: false, arrow: 'none', fullName: 'Tunisian Dinar' },
+            { code: 'EGP', buy: 26, sell: 28, trending: false, arrow: 'none', fullName: 'Egyptian Pound' },
+            { code: 'SAR', buy: 36.2, sell: 38.5, trending: false, arrow: 'none', fullName: 'Saudi Riyal' },
+            { code: 'QAR', buy: 4.17, sell: 4.45, trending: false, arrow: 'none', fullName: 'Qatari Riyal' },
+            { code: 'AED', buy: 37.15, sell: 39.8, trending: false, arrow: 'none', fullName: 'UAE Dirham' }
+        ];
+
+        // بيانات العملات المحدثة مع العملات الجديدة (Official) - معدل
+        const officialExchangeRates = [
+            { code: 'EUR', rate: 151.89 },
+            { code: 'USD', rate: 129.48 },
+            { code: 'CAD', rate: 93.46 },
+            { code: 'GBP', rate: 173.85 },
+            { code: 'CHF', rate: 162.30 },
+            { code: 'AUD', rate: 85.61 }
+        ];
+
+        // روابط الصور من المستودع الصحيح: My-website
+        const flagImages = {
+            'EUR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/90-currency-eur.jpg',
+            'USD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/91-currency-usd.jpg',
+            'GBP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/92-currency-gbp.jpg',
+            'CHF': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/93-currency-chf.jpg',
+            'CAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/104-currency-cad.png',
+            'AUD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/105-currency-aud.png',
+            'TRY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/106-currency-try.png',
+            'CNY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/107-currency-cny.png',
+            'BRL': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/108-currency-brl.png',
+            'MXN': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/109-currency-mxn.png',
+            'ARS': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/110-currency-ars.png',
+            'RUB': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/111-currency-rub.png',
+            'ZAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/112-currency-zar.png',
+            'JPY': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/113-currency-jpy.png',
+            'KRW': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/114-currency-krw.png',
+            'INR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/115-currency-inr.png',
+            'HKD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/116-currency-hkd.png',
+            'MYR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/117-currency-myr.png',
+            'MAD': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/118-currency-mad.png',
+            'EGP': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/119-currency-egp.png',
+            'TND': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/120-currency-tnd.png',
+            'SAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/121-currency-sar.png',
+            'QAR': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/122-currency-qar.png',
+            'AED': 'https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/123-currency-aed.png'
+        };
+
+        // متغيرات للتتبع
+        let loadedImages = 0;
+        let totalImages = 0;
+        let isAllImagesLoaded = false;
+
+        // دالة لتحميل الصور والتتبع
+        function preloadImages() {
+            const imageUrls = Object.values(flagImages);
+            totalImages = imageUrls.length;
             
-            if (totalImages === 0) {
-                setTimeout(hideLoadingScreen, 500);
-                return;
-            }
-            
-            images.forEach(img => {
-                img.onload = function() {
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+                img.onload = () => {
                     loadedImages++;
-                    if (loadedImages === totalImages) {
-                        setTimeout(hideLoadingScreen, 800);
-                    }
                 };
-                
-                img.onerror = function() {
-                    const altText = img.alt;
-                    const parent = img.parentElement;
-                    parent.innerHTML = `<div style="color: #00ff00; font-weight: bold; font-size: 32px;">${altText.charAt(0)}</div>`;
-                    
+                img.onerror = () => {
                     loadedImages++;
-                    if (loadedImages === totalImages) {
-                        setTimeout(hideLoadingScreen, 800);
-                    }
                 };
             });
+        }
+
+        // دالة لعرض المحتوى الرئيسي بعد 1.5 ثانية
+        function showContent() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const mainContainer = document.getElementById('mainContainer');
             
-            setTimeout(hideLoadingScreen, 3000);
-        });
-        
-        // تحديث التاريخ التلقائي
-        window.addEventListener('load', function() {
-            const now = new Date();
-            const formattedDate = now.toISOString().split('T')[0];
-            document.querySelector('.date-card').textContent = formattedDate;
+            // إخفاء شاشة التحميل
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.visibility = 'hidden';
+            
+            // عرض المحتوى الرئيسي
+            mainContainer.style.display = 'block';
+            
+            // إنشاء قائمة العملات بعد تحميل الصور
+            createCurrencyList();
+        }
+
+        // دالة لإنشاء قائمة العملات
+        function createCurrencyList() {
+            const squareList = document.getElementById('square-currency-list');
+            const officialList = document.getElementById('official-currency-list');
+            
+            // إنشاء قائمة Square
+            squareExchangeRates.forEach((currency, index) => {
+                const item = createSquareCurrencyItem(currency, index);
+                squareList.appendChild(item);
+                
+                // إضافة تأثير الظهور التدريجي
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+            
+            // إنشاء قائمة Official
+            officialExchangeRates.forEach((currency, index) => {
+                const item = createOfficialCurrencyItem(currency, index);
+                officialList.appendChild(item);
+                
+                // إضافة تأثير الظهور التدريجي
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+        }
+
+        // دالة لإنشاء عنصر عملة لـ Square
+        function createSquareCurrencyItem(currency, index) {
+            const item = document.createElement('div');
+            item.className = 'currency-item';
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(10px)';
+            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            
+            const imageUrl = flagImages[currency.code] || flagImages['USD'];
+            const isSpecialCurrency = specialCurrencies.includes(currency.code);
+            
+            let trendingHtml = '';
+            if (currency.trending) {
+                let arrowHtml = '';
+                if (currency.arrow === 'up') {
+                    arrowHtml = '<span class="up-arrow">▲</span>';
+                } else if (currency.arrow === 'down') {
+                    arrowHtml = '<span class="down-arrow">▼</span>';
+                }
+                
+                trendingHtml = `
+                    <div class="trending-indicator">
+                        ${arrowHtml}
+                    </div>
+                `;
+            }
+            
+            let ratesHtml = '';
+            if (isSpecialCurrency) {
+                ratesHtml = `
+                    <div class="currency-rates">
+                        <div class="rate-box sell-box">
+                            <div class="rate-box-value">${currency.sell}</div>
+                        </div>
+                        <div class="rate-box buy-box">
+                            <div class="rate-box-value">${currency.buy}</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                ratesHtml = `
+                    <div class="currency-rates">
+                        <div class="rate-box single-red-box">
+                            <div class="rate-box-value">${currency.sell}</div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            item.innerHTML = `
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png'">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">${currency.code}${trendingHtml}</div>
+                        <div class="currency-full-name">${currency.fullName}</div>
+                    </div>
+                </div>
+                ${ratesHtml}
+            `;
+            
+            return item;
+        }
+
+        // دالة لإنشاء عنصر عملة لـ Official
+        function createOfficialCurrencyItem(currency, index) {
+            const item = document.createElement('div');
+            item.className = 'currency-item';
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(10px)';
+            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            
+            const imageUrl = flagImages[currency.code] || flagImages['USD'];
+            
+            item.innerHTML = `
+                <div class="currency-info">
+                    <div class="currency-flag">
+                        <img src="${imageUrl}" alt="${currency.code}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/jamalkatabeuro-sketch/My-website/main/101-currency-usd.png'">
+                    </div>
+                    <div class="currency-names">
+                        <div class="currency-code">${currency.code}</div>
+                        <div class="currency-full-name">${currency.code === 'EUR' ? 'Euro' : 
+                                                          currency.code === 'USD' ? 'US Dollar' : 
+                                                          currency.code === 'CAD' ? 'Canadian Dollar' : 
+                                                          currency.code === 'GBP' ? 'British Pound' : 
+                                                          currency.code === 'CHF' ? 'Swiss Franc' : 
+                                                          'Australian Dollar'}</div>
+                    </div>
+                </div>
+                <div class="currency-rates">
+                    <div class="rate-box official-rate-box">
+                        <div class="rate-box-value">${currency.rate}</div>
+                    </div>
+                </div>
+            `;
+            
+            return item;
+        }
+
+        // دالة للتبديل بين التبويبات
+        function switchTab(tabName) {
+            // تحديث أزرار التبويب
+            document.getElementById('squareTab').classList.remove('active');
+            document.getElementById('officialTab').classList.remove('active');
+            document.getElementById('squareContent').classList.remove('active');
+            document.getElementById('officialContent').classList.remove('active');
+            
+            if (tabName === 'square') {
+                document.getElementById('squareTab').classList.add('active');
+                document.getElementById('squareContent').classList.add('active');
+            } else {
+                document.getElementById('officialTab').classList.add('active');
+                document.getElementById('officialContent').classList.add('active');
+            }
+        }
+
+        // إضافة مستمعي الأحداث عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // بدء تحميل الصور مسبقاً
+            preloadImages();
+            
+            // إضافة مستمعي الأحداث للتبويبات
+            document.getElementById('squareTab').addEventListener('click', function() {
+                switchTab('square');
+            });
+            
+            document.getElementById('officialTab').addEventListener('click', function() {
+                switchTab('official');
+            });
+            
+            // عرض المحتوى بعد 1.5 ثانية (مدة القوس)
+            setTimeout(showContent, 1500);
         });
     </script>
 </body>
-    </html>
+</html>
+
+
+
+
+
